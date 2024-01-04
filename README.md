@@ -1,7 +1,7 @@
 # dotfiles
 Contains scrips to make setting up configurations in a new machine easier
 
-First setup the git ssh keys:
+First setup the git ssh keys: 
 
 1. [Generate your ssh key](https://docs.github.com/en/enterprise-cloud@latest/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
