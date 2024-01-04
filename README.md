@@ -14,6 +14,8 @@ git clone git@github.com:henriquemeca/dotfiles.git ~/.dotfiles
 
 #TODO 
 Use `ln -s real_path symbolic_path` to dinamic create symbolic links between the repo and home folder
+#TODO
+Add .git config to the repo
 
 ## Mac scripts
 
