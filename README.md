@@ -1,6 +1,7 @@
 # dotfiles
 Contains scrips to make setting up configurations in a new machine easier
 
+## Github setup
 First setup the git ssh keys: 
 
 1. [Generate your ssh key](https://docs.github.com/en/enterprise-cloud@latest/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
@@ -16,6 +17,11 @@ git clone git@github.com:henriquemeca/dotfiles.git ~/.dotfiles
 Use `ln -s real_path symbolic_path` to dinamic create symbolic links between the repo and home folder
 #TODO
 Add .git config to the repo
+
+Then give permission to the scripts in this project:
+```shell
+chmod -R +x .
+```
 
 ## Mac scripts
 
@@ -49,3 +55,11 @@ cd ~/.dotfiles && brew bundle
 - Automate symlinking and run script files with a bootstrapping tool like [Dotbot](https://github.com/anishathalye/dotbot).
 - Revisit the list in [`.zshrc`](.zshrc) to customize the shell.
 - Find inspiration and examples in other Dotfiles repositories at [dotfiles.github.io](https://dotfiles.github.io/).
+
+
+## LazyVim setup
+The folder `.config/nvim` was created running:
+```shell
+git clone https://github.com/LazyVim/starter ./.config/nvim
+rm -rf ./.config/nvim/{.git,.gitignore,LICENSE}
+```
