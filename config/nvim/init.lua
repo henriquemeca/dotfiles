@@ -1,2 +1,2 @@
 require("default")
-print("hello")
+vim.cmd("set relativenumber")
