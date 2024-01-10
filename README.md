@@ -23,6 +23,13 @@ Then give permission to the scripts in this project:
 chmod -R +x .
 ```
 
+# Setup vim
+1. Install NeoVim
+
+On mac:
+```shell
+brew install neovim
+```
 ## Mac scripts
 
 #TODO
@@ -56,10 +63,3 @@ cd ~/.dotfiles && brew bundle
 - Revisit the list in [`.zshrc`](.zshrc) to customize the shell.
 - Find inspiration and examples in other Dotfiles repositories at [dotfiles.github.io](https://dotfiles.github.io/).
 
-
-## LazyVim setup
-The folder `.config/nvim` was created running:
-```shell
-git clone https://github.com/LazyVim/starter ./.config/nvim
-rm -rf ./.config/nvim/{.git,.gitignore,LICENSE}
-```
