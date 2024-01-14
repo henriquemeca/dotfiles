@@ -18,5 +18,4 @@ local chadtree_settings ={
 
 vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
 
-vim.keymap.set("n", "<leader>pv", ':CHADopen<CR>', {desc = "open CHADTree"})
-vim.cmd("CHADopen")
+vim.keymap.set("n", "<leader>e", ':CHADopen<CR>', {desc = "open CHADTree"})

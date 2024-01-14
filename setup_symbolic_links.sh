@@ -33,7 +33,7 @@ mkdir -p "$HOME/.$nvim_start_path"
 create_link $source_dir $target_dir
 
 ### Add .files
-files=("vimrc" "tmux")
+files=("vimrc" "tmux", "tmux.conf")
 
 for file in "${files[@]}"; do
 	source="$(pwd)/$file"
