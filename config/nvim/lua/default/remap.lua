@@ -1,7 +1,10 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz",{desc = "Page down"})
+vim.keymap.set("n", "<C-u>", "<C-u>zz",{desc = "Page up"})
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv",{desc = "Move selected lines up (on Visual Mode)"})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv",{desc = "Move seleted lines down (on Visual Mode)"})
 
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", {desc = "clear search highlights"})
 vim.keymap.set("n", "x", '"_x', {desc = "delete single character without copying into register"})
