@@ -22,15 +22,6 @@ for dir in $(find "config" -maxdepth 1 -mindepth 1 -type d); do
 
 done
 
-### Add packer.nvim symbolic link
-nvim_start_path="local/share/nvim/site/pack/packer/start"
-nvim_packer_path="$nvim_start_path/packer.nvim"
-
-source_dir="$(pwd)/$nvim_packer_path"
-target_dir="$HOME/.$nvim_start_path"
-
-mkdir -p "$HOME/.$nvim_start_path"
-create_link $source_dir $target_dir
 
 ### Add .files
 files=("vimrc" "tmux" "tmux.conf" "powerlevel10k" "zshrc")

@@ -34,6 +34,16 @@ brew install neovim
 
 #TODO
 
+### Add packer.nvim symbolic link - Write this setup details
+nvim_start_path="local/share/nvim/site/pack/packer/start"
+nvim_packer_path="$nvim_start_path/packer.nvim"
+
+source_dir="$(pwd)/$nvim_packer_path"
+target_dir="$HOME/.$nvim_start_path"
+
+mkdir -p "$HOME/.$nvim_start_path"
+create_link $source_dir $target_dir
+
 Give more detailed info about setting up brew. Probably involves using `xcode-select --install` as pre requisite for brew and git.
 
 Use the code bellow to keep up to date packages installed with `brew`:
