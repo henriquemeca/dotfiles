@@ -8,5 +8,5 @@
 	path = lazy_vim
 	url = https://github.com/LazyVim/starter
 [submodule "powerlevel0k"]
-	path = powerlevel0k
+	path = powerlevel10k
 	url = https://gitee.com/romkatv/powerlevel10k.git
