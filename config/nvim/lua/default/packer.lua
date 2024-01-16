@@ -79,7 +79,7 @@ return require("packer").startup(function(use)
 		run = "pip install pynvim jedi",
 	})
 
-	use({"davidhalter/jedi-vim", as = "jedi-vim"})
+	use({ "davidhalter/jedi-vim", as = "jedi-vim" })
 
 	-- beatiful vim messages
 	--use({
@@ -100,4 +100,5 @@ return require("packer").startup(function(use)
 		"sbdchd/neoformat",
 		run = "python3 -m yapf",
 	})
+
 end)
