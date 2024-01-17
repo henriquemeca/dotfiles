@@ -5,6 +5,8 @@ vim.keymap.set("n", "<leader>gaf", ":Git add ", { desc = "git add - specific fil
 vim.keymap.set("n", "<leader>gcc", ":Git commit -m ", { desc = "git commit - short message" })
 vim.keymap.set("n", "<leader>gcm", ":Git commit ", { desc = "git commit - page message" })
 vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "git checkout" })
+vim.keymap.set("n", "<leader>gs", ":Git push", { desc = "git push" })
+vim.keymap.set("n", "<leader>gl", ":Git pull", { desc = "git pull" })
 
 -- Git tools
 vim.keymap.set("n", "<leader>go", ":GBrowse<CR>", { desc = "Open on Browser" })
