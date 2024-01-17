@@ -7,3 +7,4 @@ vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>",{desc = "find s
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>",{desc = "find string under cursor in current working directory"})
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>",{desc = "list open buffers in current neovim instance"})
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>",{desc = "list available help tags"})
+vim.keymap.set("n", "<leader>ft", "<cmd> Telescope<cr>", { desc = "Open Telescope" })

@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>Qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
@@ -13,7 +14,7 @@ vim.keymap.set("n", "x", '"_x', { desc = "delete single character without copyin
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard"})
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
 
 vim.keymap.set("n", "<leader><leader>", function()
@@ -29,7 +30,8 @@ vim.keymap.set("n", "<leader>wh", "<C-w>s", { desc = "split window horizontally"
 vim.keymap.set("n", "<leader>wx", ":close<CR>", { desc = "close current split window" })
 vim.keymap.set("n", "<leader>wt", "<C-w>T", { desc = "Break into new tab" })
 -- tab management
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "open new tab" })
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "close current tab" })
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "go to next tab" })
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "go to previous tab" })
+vim.keymap.set("n", "<leader><tab>o", ":tabnew<CR>", { desc = "open new tab" })
+vim.keymap.set("n", "<leader><tab>x", ":tabclose<CR>", { desc = "close current tab" })
+vim.keymap.set("n", "<leader><tab>n", ":tabn<CR>", { desc = "go to next tab" })
+vim.keymap.set("n", "<leader><tab><tab>", ":tabn<CR>", { desc = "go to next tab" })
+vim.keymap.set("n", "<leader><tab>p", ":tabp<CR>", { desc = "go to previous tab" })

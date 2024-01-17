@@ -1,35 +1,41 @@
 local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "hover" })
 	vim.keymap.set("n", "<leader>vws", function()
 		vim.lsp.buf.workspace_symbol()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "workspace_symbol" })
 	vim.keymap.set("n", "<leader>vd", function()
 		vim.diagnostic.open_float()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "open_float" })
 	vim.keymap.set("n", "[d", function()
 		vim.diagnostic.goto_next()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "goto_next" })
 	vim.keymap.set("n", "]d", function()
 		vim.diagnostic.goto_prev()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "goto_prev" })
 	vim.keymap.set("n", "<leader>vca", function()
 		vim.lsp.buf.code_action()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "code_action" })
 	vim.keymap.set("n", "<leader>vrr", function()
 		vim.lsp.buf.references()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "references" })
 	vim.keymap.set("n", "<leader>vrn", function()
 		vim.lsp.buf.rename()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "rename" })
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
-	end, opts)
+	end, { buffer = bufnr, remap = false, desc = "signature_help" })
+
+	local mappings = {
+		["<leader>v"] = { name = "+lsp" },
+		["<leader>vw"] = { name = "workspace" },
+		["<leader>vc"] = { name = "code" },
+		["<leader>vr"] = { name = "misc" },
+	}
+	require("which-key").register(mappings)
 end)
 
 require("mason").setup({})

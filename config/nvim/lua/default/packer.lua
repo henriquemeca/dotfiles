@@ -101,5 +101,19 @@ return require("packer").startup(function(use)
 	-- Debugger
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 	-- Diff view on github
-	use({"sindrets/diffview.nvim", requires = {"nvim-tree/nvim-web-devicons"}})
+	use({ "sindrets/diffview.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+	-- Add  persistance to files
+	use({
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+	})
+	-- Lazy git
+	-- nvim v0.7.2
+	use({
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
 end)

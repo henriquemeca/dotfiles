@@ -17,3 +17,5 @@ vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { desc = "Git Merge Tool
 vim.keymap.set("n", "<leader>gh", ":Agit<CR>", { desc = "Git History - Agit" })
 vim.keymap.set("n", "<leader>gf", ":AgitFile<CR>", { desc = "File Git History - Agit" })
 vim.keymap.set("n", "<leader>gF", ":DiffviewFileHistory<CR>", { desc = "File Git History - Diffview" })
+vim.keymap.set("n", "<leader>gl","<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
+
