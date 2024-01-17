@@ -34,6 +34,8 @@ brew install neovim
 
 #TODO
 
+gem install colorls
+
 ### Add packer.nvim symbolic link - Write this setup details
 nvim_start_path="local/share/nvim/site/pack/packer/start"
 nvim_packer_path="$nvim_start_path/packer.nvim"
