@@ -81,17 +81,6 @@ return require("packer").startup(function(use)
 
 	use({ "davidhalter/jedi-vim", as = "jedi-vim" })
 
-	-- beatiful vim messages
-	--use({
-	--    "folke/noice.nvim",
-	--    requires = {
-	--        {"MunifTanjim/nui.nvim"},
-	--        {"rcarriga/nvim-notify"}
-	--    }
-	--})
-	---- Status bar plugin
-	--use 'vim-airline/vim-airline'
-
 	-- Smart comments
 	use({ "preservim/nerdcommenter" })
 
@@ -101,4 +90,16 @@ return require("packer").startup(function(use)
 		run = "python3 -m yapf",
 	})
 
+	-- Git commit preview
+	use("cohama/agit.vim")
+	-- Git Browser
+	use("tpope/vim-rhubarb")
+	-- Git Sign
+	use("airblade/vim-gitgutter")
+	-- Git Blame
+	use("APZelos/blamer.nvim")
+	-- Debugger
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	-- Diff view on github
+	use({"sindrets/diffview.nvim", requires = {"nvim-tree/nvim-web-devicons"}})
 end)
