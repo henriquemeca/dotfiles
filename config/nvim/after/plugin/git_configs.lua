@@ -2,11 +2,11 @@
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "git status" })
 vim.keymap.set("n", "<leader>gaa", ":Git add .<CR>", { desc = "git add ." })
 vim.keymap.set("n", "<leader>gaf", ":Git add ", { desc = "git add - specific files" })
-vim.keymap.set("n", "<leader>gcc", ":Git commit -m ", { desc = "git commit - short message" })
+vim.keymap.set("n", "<leader>gcc", ":Git commit -m ''<Left>", { desc = "git commit - short message" })
 vim.keymap.set("n", "<leader>gcm", ":Git commit ", { desc = "git commit - page message" })
 vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "git checkout" })
-vim.keymap.set("n", "<leader>gs", ":Git push", { desc = "git push" })
-vim.keymap.set("n", "<leader>gl", ":Git pull", { desc = "git pull" })
+vim.keymap.set("n", "<leader>gs", ":Git push<CR>", { desc = "git push" })
+vim.keymap.set("n", "<leader>gl", ":Git pull<CR>", { desc = "git pull" })
 
 -- Git tools
 vim.keymap.set("n", "<leader>go", ":GBrowse<CR>", { desc = "Open on Browser" })
