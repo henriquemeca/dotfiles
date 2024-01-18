@@ -1,42 +1,50 @@
 local lsp_zero = require("lsp-zero")
 
+local set_nkeymap = function(map, func, bufnr, description)
+	vim.keymap.set("n", map, func, { buffer = bufnr, remap = false, desc = description })
+end
+
 lsp_zero.on_attach(function(client, bufnr)
-	vim.keymap.set("n", "K", function()
+	set_nkeymap("K", function()
 		vim.lsp.buf.hover()
-	end, { buffer = bufnr, remap = false, desc = "hover" })
-	vim.keymap.set("n", "<leader>vws", function()
-		vim.lsp.buf.workspace_symbol()
-	end, { buffer = bufnr, remap = false, desc = "workspace_symbol" })
-	vim.keymap.set("n", "<leader>vd", function()
-		vim.diagnostic.open_float()
-	end, { buffer = bufnr, remap = false, desc = "open_float" })
-	vim.keymap.set("n", "[d", function()
+	end, bufnr, "hover")
+	--set_nkeymap("<leader>vws", function()
+	--vim.lsp.buf.workspace_symbol()
+	--end, bufnr, "workspace_symbol")
+	--set_nkeymap("<leader>vd", function()
+	--vim.diagnostic.open_float()
+	--end, bufnr, "open_float")
+	set_nkeymap("<leader>vdn", function()
 		vim.diagnostic.goto_next()
-	end, { buffer = bufnr, remap = false, desc = "goto_next" })
-	vim.keymap.set("n", "]d", function()
+	end, bufnr, "goto_next")
+	set_nkeymap("<leader>vdp", function()
 		vim.diagnostic.goto_prev()
-	end, { buffer = bufnr, remap = false, desc = "goto_prev" })
-	vim.keymap.set("n", "<leader>vca", function()
+	end, bufnr, "goto_prev")
+	set_nkeymap("<leader>vca", function()
 		vim.lsp.buf.code_action()
-	end, { buffer = bufnr, remap = false, desc = "code_action" })
-	vim.keymap.set("n", "<leader>vrr", function()
+	end, bufnr, "code_action")
+	set_nkeymap("<leader>vrr", function()
 		vim.lsp.buf.references()
-	end, { buffer = bufnr, remap = false, desc = "references" })
-	vim.keymap.set("n", "<leader>vrn", function()
+	end, bufnr, "references")
+	set_nkeymap("<leader>vrn", function()
 		vim.lsp.buf.rename()
-	end, { buffer = bufnr, remap = false, desc = "rename" })
-	vim.keymap.set("i", "<C-h>", function()
-		vim.lsp.buf.signature_help()
-	end, { buffer = bufnr, remap = false, desc = "signature_help" })
+	end, bufnr, "rename")
+	--set_nkeymap("<C-h>", function()
+	--vim.lsp.buf.signature_help()
+	--end, bufnr, "signature_help")
 
 	local mappings = {
 		["<leader>v"] = { name = "+lsp" },
 		["<leader>vw"] = { name = "workspace" },
 		["<leader>vc"] = { name = "code" },
+		["<leader>vd"] = { name = "+diagnostic" },
 		["<leader>vr"] = { name = "misc" },
 	}
 	require("which-key").register(mappings)
 end)
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -50,48 +58,52 @@ require("mason-lspconfig").setup({
 		"marksman", --markdown
 		"sqlls",
 		"taplo", --TOML
-	},
-	settings = {
-		efm = { -- example configuration for efm-langserver
-			rootMarkers = { ".git/" },
-			languages = {
-				python = {
-					{
-						formatCommand = "black --quiet -",
-						formatStdin = true, -- for black formatting
-					},
-					{
-						LintCommand = "flake8 --stdin-display-name ${INPUT} -",
-						lintStdin = true, -- for linting using flake8
-						lintFormats = { "%f:%l:%c: %m" },
-					},
-				},
-				sql = {
-					{
-						LintCommand = "sqlfluff lint -",
-						lintStdin = true, -- for linting using sqlfluff
-						lintFormats = { "%f:%l:%c: %m" },
-					},
-				},
-			},
-		},
+		--"vimls", --vim scripts
 	},
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+		end,
+		pyright = function()
 			require("lspconfig").pyright.setup({
 				capabilities = capabilities,
+				settings = {
+					plugins = {
+						-- formatter options
+						black = { enabled = true },
+						autopep8 = { enabled = false },
+						yapf = { enabled = false },
+						-- linter options
+						pylint = { enabled = true, executable = "pylint" },
+						pyflakes = { enabled = false },
+						pycodestyle = { enabled = false },
+						-- type checker
+						pylsp_mypy = { enabled = true },
+						-- auto-completion options
+						jedi_completion = { fuzzy = true },
+						-- import sorting
+						pyls_isort = { enabled = true },
+					},
+					pyright = {
+						disableOrganizeImports = false,
+					},
+					python = {
+						analysis = {
+							autoImportCompletions = true,
+							diagnosticMode = "workspace",
+							--extraPaths = "",
+							typeCheckingMode = "basic",
+						},
+					},
+				},
 			})
 		end,
 	},
 })
 
 local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	sources = {
@@ -100,6 +112,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "luasnip", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 3 },
+		{ name = "friendly-snippets" },
 	},
 	formatting = lsp_zero.cmp_format(),
 	mapping = cmp.mapping.preset.insert({

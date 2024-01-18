@@ -23,25 +23,20 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 	use({
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
-	})
-	use({
 		"VonHeikemen/lsp-zero.nvim",
 		-- branch = 'v3.x',
 		requires = {
 			--- Uncomment the two plugins below if you want to manage the language servers from neovim
 			--- and read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-			-- {'williamboman/mason.nvim'},
-			-- {'williamboman/mason-lspconfig.nvim'},
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" },
+			{ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } },
 			{ "jiangmiao/auto-pairs" },
 		},
 	})
@@ -67,11 +62,6 @@ return require("packer").startup(function(use)
 		run = "python3 -m chadtree deps",
 	})
 
-	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-	use("rafamadriz/friendly-snippets") -- useful snippets
-
 	-- Python auto complete
 	use("Shougo/deoplete.nvim")
 	use({
@@ -86,8 +76,10 @@ return require("packer").startup(function(use)
 
 	-- auto format
 	use({
-		"sbdchd/neoformat",
-		run = "python3 -m yapf",
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup()
+		end,
 	})
 
 	-- Git commit preview
@@ -108,7 +100,6 @@ return require("packer").startup(function(use)
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 	})
 	-- Lazy git
-	-- nvim v0.7.2
 	use({
 		"kdheepak/lazygit.nvim",
 		-- optional for floating window border decoration
@@ -116,4 +107,6 @@ return require("packer").startup(function(use)
 			"nvim-lua/plenary.nvim",
 		},
 	})
+	-- Vim LSP
+	use("prabirshrestha/vim-lsp")
 end)
