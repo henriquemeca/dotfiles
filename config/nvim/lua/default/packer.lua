@@ -31,6 +31,11 @@ return require("packer").startup(function(use)
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 
+			--Formatters and linters
+			{ "jose-elias-alvarez/null-ls.nvim" },
+			{ "mhartington/formatter.nvim" },
+			{ "mfussenegger/nvim-lint" },
+
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			-- Autocompletion

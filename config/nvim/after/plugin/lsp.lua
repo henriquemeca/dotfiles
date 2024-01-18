@@ -58,7 +58,6 @@ require("mason-lspconfig").setup({
 		"marksman", --markdown
 		"sqlls",
 		"taplo", --TOML
-		--"vimls", --vim scripts
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -66,40 +65,46 @@ require("mason-lspconfig").setup({
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
 		end,
-		pyright = function()
-			require("lspconfig").pyright.setup({
-				capabilities = capabilities,
-				settings = {
-					plugins = {
-						-- formatter options
-						black = { enabled = true },
-						autopep8 = { enabled = false },
-						yapf = { enabled = false },
-						-- linter options
-						pylint = { enabled = true, executable = "pylint" },
-						pyflakes = { enabled = false },
-						pycodestyle = { enabled = false },
-						-- type checker
-						pylsp_mypy = { enabled = true },
-						-- auto-completion options
-						jedi_completion = { fuzzy = true },
-						-- import sorting
-						pyls_isort = { enabled = true },
-					},
-					pyright = {
-						disableOrganizeImports = false,
-					},
-					python = {
-						analysis = {
-							autoImportCompletions = true,
-							diagnosticMode = "workspace",
-							--extraPaths = "",
-							typeCheckingMode = "basic",
-						},
-					},
-				},
-			})
-		end,
+        pyright = function ()
+require("lspconfig").pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		single_file_support = true,
+		pyright = {
+			disableLanguageServices = false,
+			disableOrganizeImports = false,
+		},
+        plugins = {
+        -- formatter options
+        black = { enabled = true },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        -- linter options
+        pylint = { enabled = true, executable = "pylint" },
+        pyflakes = { enabled = false },
+        pycodestyle = { enabled = false },
+        -- type checker
+        pylsp_mypy = { enabled = true },
+        -- auto-completion options
+        jedi_completion = { fuzzy = true },
+        -- import sorting
+        pyls_isort = { enabled = true },
+        },
+		python = {
+			analysis = {
+				extraPaths = "",
+				typeCheckingMode = "basic",
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				autoImportCompletions = true,
+				diagnosticMode = "openFilesOnly",
+			},
+		},
+	},
+})
+
+            
+        end
 	},
 })
 

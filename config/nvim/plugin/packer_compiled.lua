@@ -130,6 +130,11 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -170,6 +175,11 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -184,6 +194,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
+  ["nvim-lint"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nvim-lint",
+    url = "https://github.com/mfussenegger/nvim-lint"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

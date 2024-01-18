@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>Qq", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>Qf", "<cmd>qa!<cr>", { desc = "Quit all (Force)" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
@@ -14,7 +15,7 @@ vim.keymap.set("n", "x", '"_x', { desc = "delete single character without copyin
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard"})
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
 
 vim.keymap.set("n", "<leader><leader>", function()
