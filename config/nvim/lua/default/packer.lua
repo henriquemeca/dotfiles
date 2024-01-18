@@ -74,6 +74,8 @@ return require("packer").startup(function(use)
 		run = "pip install pynvim jedi",
 	})
 
+	use({ "davidhalter/jedi-vim", as = "jedi-vim" })
+
 	-- Smart comments
 	use({ "preservim/nerdcommenter" })
 
@@ -112,16 +114,4 @@ return require("packer").startup(function(use)
 	})
 	-- Vim LSP
 	use("prabirshrestha/vim-lsp")
-	-- LSP navigator
-	use({
-		"ray-x/navigator.lua",
-		requires = {
-			{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-			{ "neovim/nvim-lspconfig" },
-		},
-	})
-	-- Signature help
-	use({
-		"ray-x/lsp_signature.nvim",
-	})
 end)

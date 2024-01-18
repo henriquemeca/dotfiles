@@ -140,15 +140,15 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
-  ["guihua.lua"] = {
-    loaded = true,
-    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/guihua.lua",
-    url = "https://github.com/ray-x/guihua.lua"
-  },
   harpoon = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
+  },
+  ["jedi-vim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/jedi-vim",
+    url = "https://github.com/davidhalter/jedi-vim"
   },
   ["lazygit.nvim"] = {
     loaded = true,
@@ -160,11 +160,6 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
-  ["lsp_signature.nvim"] = {
-    loaded = true,
-    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
-    url = "https://github.com/ray-x/lsp_signature.nvim"
-  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -174,11 +169,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["navigator.lua"] = {
-    loaded = true,
-    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/navigator.lua",
-    url = "https://github.com/ray-x/navigator.lua"
   },
   nerdcommenter = {
     loaded = true,

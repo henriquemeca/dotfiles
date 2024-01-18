@@ -1,12 +1,46 @@
 local lsp_zero = require("lsp-zero")
 
+local set_nkeymap = function(map, func, bufnr, description)
+	vim.keymap.set("n", map, func, { buffer = bufnr, remap = false, desc = description })
+end
+
 lsp_zero.on_attach(function(client, bufnr)
-	require("which-key").register({
-		["<leader>n"] = { name = "+Lsp Navigator" },
-		["<leader>nc"] = { name = "+code/calls" },
-		["<leader>nl"] = { name = "lens" },
-		["<leader>nw"] = { name = "+workspace" },
-	})
+	set_nkeymap("K", function()
+		vim.lsp.buf.hover()
+	end, bufnr, "hover")
+	--set_nkeymap("<leader>vws", function()
+	--vim.lsp.buf.workspace_symbol()
+	--end, bufnr, "workspace_symbol")
+	--set_nkeymap("<leader>vd", function()
+	--vim.diagnostic.open_float()
+	--end, bufnr, "open_float")
+	set_nkeymap("<leader>vdn", function()
+		vim.diagnostic.goto_next()
+	end, bufnr, "goto_next")
+	set_nkeymap("<leader>vdp", function()
+		vim.diagnostic.goto_prev()
+	end, bufnr, "goto_prev")
+	set_nkeymap("<leader>vca", function()
+		vim.lsp.buf.code_action()
+	end, bufnr, "code_action")
+	set_nkeymap("<leader>vrr", function()
+		vim.lsp.buf.references()
+	end, bufnr, "references")
+	set_nkeymap("<leader>vrn", function()
+		vim.lsp.buf.rename()
+	end, bufnr, "rename")
+	--set_nkeymap("<C-h>", function()
+	--vim.lsp.buf.signature_help()
+	--end, bufnr, "signature_help")
+
+	local mappings = {
+		["<leader>v"] = { name = "+lsp" },
+		["<leader>vw"] = { name = "workspace" },
+		["<leader>vc"] = { name = "code" },
+		["<leader>vd"] = { name = "+diagnostic" },
+		["<leader>vr"] = { name = "misc" },
+	}
+	require("which-key").register(mappings)
 end)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -31,44 +65,46 @@ require("mason-lspconfig").setup({
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
 		end,
-		pyright = function()
-			require("lspconfig").pyright.setup({
-				capabilities = capabilities,
-				settings = {
-					single_file_support = true,
-					pyright = {
-						disableLanguageServices = false,
-						disableOrganizeImports = false,
-					},
-					plugins = {
-						-- formatter options
-						black = { enabled = true },
-						autopep8 = { enabled = false },
-						yapf = { enabled = false },
-						-- linter options
-						pylint = { enabled = true, executable = "pylint" },
-						pyflakes = { enabled = false },
-						pycodestyle = { enabled = false },
-						-- type checker
-						pylsp_mypy = { enabled = true },
-						-- auto-completion options
-						jedi_completion = { fuzzy = true },
-						-- import sorting
-						pyls_isort = { enabled = true },
-					},
-					python = {
-						analysis = {
-							extraPaths = "",
-							typeCheckingMode = "basic",
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							autoImportCompletions = true,
-							diagnosticMode = "openFilesOnly",
-						},
-					},
-				},
-			})
-		end,
+        pyright = function ()
+require("lspconfig").pyright.setup({
+	capabilities = capabilities,
+	settings = {
+		single_file_support = true,
+		pyright = {
+			disableLanguageServices = false,
+			disableOrganizeImports = false,
+		},
+        plugins = {
+        -- formatter options
+        black = { enabled = true },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        -- linter options
+        pylint = { enabled = true, executable = "pylint" },
+        pyflakes = { enabled = false },
+        pycodestyle = { enabled = false },
+        -- type checker
+        pylsp_mypy = { enabled = true },
+        -- auto-completion options
+        jedi_completion = { fuzzy = true },
+        -- import sorting
+        pyls_isort = { enabled = true },
+        },
+		python = {
+			analysis = {
+				extraPaths = "",
+				typeCheckingMode = "basic",
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				autoImportCompletions = true,
+				diagnosticMode = "openFilesOnly",
+			},
+		},
+	},
+})
+
+            
+        end
 	},
 })
 
@@ -89,134 +125,3 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 	}),
 })
-
-require("navigator").setup({
-	mason = true,
-	default_mapping = false,
-	keymaps = {
-		{ key = "<Leader>nr", func = require("navigator.reference").async_ref, desc = "async_ref" },
-		{ key = "<Leader>n0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
-		{
-			key = "<Leader>nW",
-			func = require("navigator.workspace").workspace_symbol_live,
-			desc = "workspace_symbol_live",
-		},
-		{ key = "<Leader>nd", func = require("navigator.definition").definition, desc = "definition" },
-		{ key = "<Leader>nD", func = vim.lsp.buf.declaration, desc = "declaration" },
-		{
-			key = "<Leader>np",
-			func = require("navigator.definition").definition_preview,
-			desc = "definition_preview",
-		},
-		{ key = "<Leader>nn", func = require("navigator.rename").rename, desc = "rename" },
-		--{
-		--key = "<Leader>nP",
-		--func = require("navigator.definition").type_definition_preview,
-		--desc = "type_definition_preview",
-		--},
-		{ key = "<Leader>na", func = require("navigator.treesitter").buf_ts, desc = "buf_ts" },
-		{
-			key = "<Leader>nca",
-			mode = "n",
-			func = require("navigator.codeAction").code_action,
-			desc = "code_action",
-		},
-		{
-			key = "<Leader>nci",
-			func = vim.lsp.buf.incoming_calls,
-			desc = "incoming_calls",
-		},
-		{
-			key = "<Leader>nco",
-			func = vim.lsp.buf.outgoing_calls,
-			desc = "outgoing_calls",
-		},
-		{
-			key = "<Leader>ni",
-			func = vim.lsp.buf.implementation,
-			desc = "implementation",
-		},
-		{
-			key = "<Leader>nL",
-			func = require("navigator.diagnostics").show_diagnostics,
-			desc = "show_diagnostics",
-		},
-		{
-			key = "<Leader>nG",
-			func = require("navigator.diagnostics").show_buf_diagnostics,
-			desc = "show_buf_diagnostics",
-		},
-		{
-			key = "<Leader>nt",
-			func = require("navigator.diagnostics").toggle_diagnostics,
-			desc = "toggle_diagnostics",
-		},
-		--{
-		--key = "]d",
-		--func = vim.diagnostic.goto_next,
-		--desc = "next diagnostics",
-		--},
-		--{
-		--key = "[d",
-		--func = vim.diagnostic.goto_prev,
-		--desc = "prev diagnostics",
-		--},
-		--{
-		--key = "]O",
-		--func = vim.diagnostic.set_loclist,
-		--desc = "diagnostics set loclist",
-		--},
-		--{
-		--key = "]r",
-		--func = require("navigator.treesitter").goto_next_usage,
-		--desc = "<Leader>noto_next_usage",
-		--},
-		--{
-		--key = "[r",
-		--func = require("navigator.treesitter").goto_previous_usage,
-		--desc = "<Leader>noto_previous_usage",
-		--},
-		--{ key = "<C-LeftMouse>", func = vim.lsp.buf.definition, desc = "definition" },
-		--{
-		--key = "<Leader>n<LeftMouse>",
-		--func = vim.lsp.buf.implementation,
-		--desc = "implementation",
-		--},
-		--{ key = "<Space>ff", func = vim.lsp.buf.format,                          mode = "n",        desc = "format" },
-		--{
-		--key = "<Space>ff",
-		--func = vim.lsp.buf.range_formatting,
-		--mode = "v",
-		--desc = "range format",
-		--},
-		{ key = "<Leader>nh", func = require("navigator.dochighlight").hi_symbol, desc = "hi_symbol" },
-		{
-			key = "<Leader>nwa",
-			func = require("navigator.workspace").add_workspace_folder,
-			desc = "add_workspace_folder",
-		},
-		{
-			key = "<Leader>nwr",
-			func = require("navigator.workspace").remove_workspace_folder,
-			desc = "remove_workspace_folder",
-		},
-		--{
-		--key = "<Space>gm",
-		--func = require("navigator.formatting").range_format,
-		--mode = "n",
-		--desc = "range format operator e.g gmip",
-		--},
-		{
-			key = "<Leader>nwl",
-			func = require("navigator.workspace").list_workspace_folders,
-			desc = "list_workspace_folders",
-		},
-		{
-			key = "<Leader>nla",
-			mode = "n",
-			func = require("navigator.codelens").run_action,
-			desc = "run code lens action",
-		},
-	},
-})
-vim.keymap.set("n", "<leader>nk", "<cmd>LspKeymaps<cr>", { desc = "Show keymaps" })
