@@ -30,5 +30,5 @@ require("vscode").setup({
 		Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
 	},
 })
-vim.cmd("colorscheme rose-pine")
 require("vscode").load()
+vim.cmd("colorscheme rose-pine-moon")

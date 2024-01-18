@@ -23,4 +23,7 @@ require("conform").setup({
 	notify_on_error = true,
 })
 
-vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", { desc = "saves current file" })
+vim.keymap.set("n", "<leader>s", function()
+	vim.cmd("w")
+	vim.lsp.buf.format({ async = true })
+end, { desc = "saves current file" })
