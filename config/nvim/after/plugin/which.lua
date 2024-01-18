@@ -9,7 +9,7 @@ local mappings = {
 	["<leader>gp"] = { name = "+push/pull" },
 	["<leader>h"] = { name = "+Gutter highlight" },
 	["<leader>j"] = { name = "+jedi" },
-	["<leader>n"] = { name = "+clear highlights" },
+	["<leader>m"] = { name = "+clear highlights" },
 	["<leader>Q"] = { name = "+quit" },
 }
 require("which-key").register(mappings)
