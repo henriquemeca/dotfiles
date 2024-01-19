@@ -80,7 +80,6 @@ return require("packer").startup(function(use)
 		"zchee/deoplete-jedi",
 		run = "pip install pynvim jedi",
 	})
-	--use("davidhalter/jedi-vim")
 
 	-- Smart comments
 	use({ "preservim/nerdcommenter" })
