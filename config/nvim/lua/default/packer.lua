@@ -23,7 +23,7 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 	use({
-		"VonHeikemen/lsp-zero.nvim",
+		"neovim/nvim-lspconfig",
 		-- branch = 'v3.x',
 		requires = {
 			--- Uncomment the two plugins below if you want to manage the language servers from neovim
@@ -36,12 +36,19 @@ return require("packer").startup(function(use)
 			{ "mhartington/formatter.nvim" },
 			{ "mfussenegger/nvim-lint" },
 
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "hrsh7th/nvim-cmp" },
+
+			-- Lua snipets
 			{ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } },
+			{ "saadparwaiz1/cmp_luasnip" },
+
 			{ "jiangmiao/auto-pairs" },
 		},
 	})
@@ -73,6 +80,7 @@ return require("packer").startup(function(use)
 		"zchee/deoplete-jedi",
 		run = "pip install pynvim jedi",
 	})
+	--use("davidhalter/jedi-vim")
 
 	-- Smart comments
 	use({ "preservim/nerdcommenter" })
@@ -124,4 +132,8 @@ return require("packer").startup(function(use)
 	use({
 		"ray-x/lsp_signature.nvim",
 	})
+	-- Trouble diagnostics
+	use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+	-- Fidget notifications
+	use({ "j-hui/fidget.nvim" })
 end)
