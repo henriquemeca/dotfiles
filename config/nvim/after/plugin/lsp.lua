@@ -15,6 +15,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Cmp config
 local cmp = require("cmp")
+require("luasnip.loaders.from_vscode").load()
+local luasnip = require("luasnip")
+luasnip.config.setup({})
 
 cmp.setup({
 	snippet = {
@@ -39,9 +42,8 @@ cmp.setup({
 	}),
 })
 
-require("luasnip.loaders.from_vscode").load()
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 require("mason").setup({})
 require("mason-lspconfig").setup({

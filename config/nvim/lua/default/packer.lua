@@ -74,13 +74,6 @@ return require("packer").startup(function(use)
 		run = "python3 -m chadtree deps",
 	})
 
-	-- Python auto complete
-	use("Shougo/deoplete.nvim")
-	use({
-		"zchee/deoplete-jedi",
-		run = "pip install pynvim jedi",
-	})
-
 	-- Smart comments
 	use({ "preservim/nerdcommenter" })
 
@@ -135,4 +128,14 @@ return require("packer").startup(function(use)
 	use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
 	-- Fidget notifications
 	use({ "j-hui/fidget.nvim" })
+	-- DAP -debbuger
+	use({
+		"mfussenegger/nvim-dap",
+		requires = {
+			{ "rcarriga/nvim-dap-ui" },
+			{ "williamboman/mason.nvim" },
+			{ "jay-babu/mason-nvim-dap.nvim" },
+			{ "leoluz/nvim-dap-go" },
+		},
+	})
 end)

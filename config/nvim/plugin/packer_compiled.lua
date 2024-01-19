@@ -135,16 +135,6 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
   },
-  ["deoplete-jedi"] = {
-    loaded = true,
-    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/deoplete-jedi",
-    url = "https://github.com/zchee/deoplete-jedi"
-  },
-  ["deoplete.nvim"] = {
-    loaded = true,
-    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/deoplete.nvim",
-    url = "https://github.com/Shougo/deoplete.nvim"
-  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/diffview.nvim",
@@ -190,6 +180,11 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
+  ["mason-nvim-dap.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason-nvim-dap.nvim",
+    url = "https://github.com/jay-babu/mason-nvim-dap.nvim"
+  },
   ["mason.nvim"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason.nvim",
@@ -219,6 +214,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-go"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
+    url = "https://github.com/leoluz/nvim-dap-go"
   },
   ["nvim-dap-ui"] = {
     loaded = true,
