@@ -15,13 +15,13 @@ vim.keymap.set("n", "<leader>mh", ":nohl<CR>", { desc = "clear search highlights
 vim.keymap.set("n", "x", '"_x', { desc = "delete single character without copying into register" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+--vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
 
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("w")
-	vim.cmd("so")
+    vim.cmd("w")
+    vim.cmd("so")
 end, { desc = "save file and sources to vim" })
 
 -- window management
