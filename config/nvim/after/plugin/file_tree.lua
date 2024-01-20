@@ -103,7 +103,7 @@ require("nvim-tree").setup({
             max = 250,
         },
         float = {
-            enable = true,
+            enable = false,
             quit_on_focus_loss = true,
             open_win_config = {
                 relative = "editor",
@@ -274,7 +274,7 @@ require("nvim-tree").setup({
             },
         },
         open_file = {
-            quit_on_open = false,
+            quit_on_open = true,
             eject = true,
             resize_window = true,
             window_picker = {
@@ -332,7 +332,7 @@ require("nvim-tree").setup({
     },
 })
 VKSN("<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree" })
---WHICH_KEY_MAP({
+--WHICH_KEY_AP({
 --["<leader>E"] = { name = "+Nvim Tree" },
 --})
 

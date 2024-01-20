@@ -20,11 +20,14 @@ export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 #Aliases
 
 alias v="nvim"
-alias ta="tmux a"
 alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
-#alias rm-pycache="find . | grep -E '(/__pycache__$|\.pyc$|\.pyo$)' | xargs rm -rf"
+alias cdg='cd ~/github && cd $(find . -type d | fzf)'
+#
+## tmux
+alias ta="tmux a"
+alias tn="tmux new -s"
 
 ## Git
 alias ga="git add"

@@ -28,3 +28,5 @@ vim.opt.updatetime = 50
 -- split windows
 vim.opt.splitright = true -- split vertical window to the right
 vim.opt.splitbelow = true -- split horizontal window to the bottom
+
+vim.g.diagnostics_active = true

@@ -6,6 +6,8 @@ vim.keymap.set("n", "<leader>gcc", ":Git commit -m ''<Left>", { desc = "git comm
 vim.keymap.set("n", "<leader>gcm", ":Git commit ", { desc = "git commit - page message" })
 vim.keymap.set("n", "<leader>gca", ":Git commit --amend --no-edit<CR>", { desc = "git commit ammend" })
 vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "git checkout" })
+vim.keymap.set("n", "<leader>gcf", ":Git checkout -f ", { desc = "git checkout" })
+vim.keymap.set("n", "<leader>gC", ":Git clean -f ", { desc = "git checkout" })
 vim.keymap.set("n", "<leader>gps", ":Git push<CR>", { desc = "git push" })
 vim.keymap.set("n", "<leader>gpl", ":Git pull<CR>", { desc = "git pull" })
 
@@ -17,5 +19,6 @@ vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { desc = "Git Merge Tool
 vim.keymap.set("n", "<leader>gh", ":Agit<CR>", { desc = "Git History - Agit" })
 vim.keymap.set("n", "<leader>gf", ":AgitFile<CR>", { desc = "File Git History - Agit" })
 vim.keymap.set("n", "<leader>gF", ":DiffviewFileHistory<CR>", { desc = "File Git History - Diffview" })
-vim.keymap.set("n", "<leader>gl","<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
+vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
 
+WHICH_KEY_MAP({ ["<leader>g"] = { name = "+git" } })

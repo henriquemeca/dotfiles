@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 
+-- Quit
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>Qq", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>Qf", "<cmd>qa!<cr>", { desc = "Quit all (Force)" })
@@ -24,6 +25,13 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end, { desc = "save file and sources to vim" })
 
+-- Quick changes
+vim.keymap.set("n", 'c"', 'ci"', { desc = 'Change between "' })
+vim.keymap.set("n", "c'", "ci'", { desc = "Change between '" })
+vim.keymap.set("n", 'c{', 'ci{', { desc = 'Change between {}' })
+vim.keymap.set("n", 'c(', 'ci(', { desc = 'Change between ()' })
+vim.keymap.set("n", 'c[', 'ci[', { desc = 'Change between []' })
+
 -- window management
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "split window vertically" })
 vim.keymap.set("n", "<leader>we", "<C-w>=", { desc = "make split windows equal width & height" })
@@ -35,6 +43,7 @@ vim.keymap.set("n", "<leader>w<Down>", "<C-w>j", { desc = "Move to down window" 
 vim.keymap.set("n", "<leader>w<Up>", "<C-w>k", { desc = "Move to up window" })
 vim.keymap.set("n", "<leader>w<Left>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Move to right window" })
+
 -- tab management
 vim.keymap.set("n", "<leader><tab>o", ":tabnew<CR>", { desc = "open new tab" })
 vim.keymap.set("n", "<leader><tab>x", ":tabclose<CR>", { desc = "close current tab" })
