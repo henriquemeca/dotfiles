@@ -24,6 +24,7 @@ alias ta="tmux a"
 alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
+#alias rm-pycache="find . | grep -E '(/__pycache__$|\.pyc$|\.pyo$)' | xargs rm -rf"
 
 ## Git
 alias ga="git add"
@@ -38,4 +39,15 @@ cdf() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf -e +m) && \
   cd "$dir"
+}
+
+## remove folders containing only __pycache__ files
+function rm-pycache() {
+    files=$(find . | grep -E '(/__pycache__$|\.pyc$|\.pyo$)')
+    if [[ -z $files ]]; then
+        echo "No files to be removed."
+    else
+        echo "Files to be removed: $files"
+        echo $files | xargs rm -rf
+    fi
 }
