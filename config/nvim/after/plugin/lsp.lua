@@ -137,7 +137,6 @@ end
 
 vim.api.nvim_create_user_command("LspViewConfigSource", inspect_config_source, {
     nargs = 1,
-    complete = config_source_complete,
 })
 
 require("navigator").setup({
@@ -196,21 +195,21 @@ require("navigator").setup({
             func = require("telescope.builtin").diagnostics, --require("navigator.diagnostics").show_buf_diagnostics,
             desc = "show_buf_diagnostics",
         },
-        --{
-        --key = "<Leader>nt",
-        --func = require("navigator.diagnostics").toggle_diagnostics,
-        --desc = "toggle_diagnostics",
-        --},
-        --{
-        --key = "]d",
-        --func = vim.diagnostic.goto_next,
-        --desc = "next diagnostics",
-        --},
-        --{
-        --key = "[d",
-        --func = vim.diagnostic.goto_prev,
-        --desc = "prev diagnostics",
-        --},
+        {
+            key = "<Leader>nT",
+            func = require('navigator.diagnostics').toggle_diagnostics,
+            desc = "toggle_diagnostics",
+        },
+        {
+            key = "]d",
+            func = vim.diagnostic.goto_next,
+            desc = "next diagnostics",
+        },
+        {
+            key = "[d",
+            func = vim.diagnostic.goto_prev,
+            desc = "prev diagnostics",
+        },
         --{
         --key = "]O",
         --func = vim.diagnostic.set_loclist,

@@ -29,3 +29,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "list available help tags" })
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope tagstack<cr>", { desc = "list available help tags" })
 vim.keymap.set("n", "<leader>ft", "<cmd> Telescope<cr>", { desc = "Open Telescope" })
+vim.keymap.set("n", "<leader>fy", "<cmd> Telescope neoclip<cr>", { desc = "Telescope yanks" })
