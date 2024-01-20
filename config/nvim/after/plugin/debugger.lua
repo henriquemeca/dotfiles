@@ -1,5 +1,4 @@
 local dap = require("dap")
-require('dap.ext.vscode').load_launchjs()
 
 dap.adapters.python = {
     type = 'executable',
@@ -9,13 +8,33 @@ dap.adapters.python = {
         -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
         local cwd = vim.fn.getcwd()
         if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-            return cwd .. '/venv/bin/python'
+            return cwd .. '/venv/bin/python3'
         elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-            return cwd .. '/.venv/bin/python'
+            return cwd .. '/.venv/bin/python3'
         else
-            return '/usr/bin/python'
+            return '/opt/homebrew/bin/python3'
         end
     end,
+}
+
+dap.configurations.python = {
+    {
+        type = 'python',
+        request = 'launch',
+        name = "Launch file",
+        program = "${file}",
+        pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+                return cwd .. '/venv/bin/python3'
+            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+                return cwd .. '/.venv/bin/python3'
+            else
+                return '/opt/homebrew/bin/python3'
+            end
+        end,
+        args = { '-degug', 'true' },
+    },
 }
 
 local dapui = require("dapui")
@@ -120,72 +139,8 @@ VKSN("<leader>du", function() require("dapui").toggle({}) end,
 VKSN("<leader>de", function() require("dapui").eval() end, { desc = "Eval" })
 VKSN("<leader>de", function() require("dapui").list_breakpoints() end, { desc = "List breakpoints" })
 VKSN("<leader>de", function() require("dapui").clear_breakpoints() end, { desc = "Clear breakpoints" })
+VKSN("<leader>dv", function() require('dap.ext.vscode').load_launchjs() end, { desc = "Load .vscode/.launch.json" })
 
 WHICH_KEY_MAP({
     ["<leader>d"] = { name = "+debbug" }
 })
-
-
-
---local dap = require("dap")
---local dapui = require("dapui")
-
---require("mason-nvim-dap").setup({
----- Makes a best effort to setup the various debuggers with
----- reasonable debug configurations
---automatic_setup = true,
-
----- You can provide additional configuration to the handlers,
----- see mason-nvim-dap README for more information
---handlers = {},
-
----- You'll need to check that you have the required things installed
----- online, please don't ask me how to install them :)
---ensure_installed = {
----- Update this to ensure that you have the debuggers for the langs you want
---"delve",
---"python",
---},
---})
-
----- Basic debugging keymaps, feel free to change to your liking!
---vim.keymap.set("n", "<leader>bs", dap.continue, { desc = "Debug: Start/Continue" })
---vim.keymap.set("n", "<leader>bi", dap.step_into, { desc = "Debug: Step Into" })
---vim.keymap.set("n", "<leader>bv", dap.step_over, { desc = "Debug: Step Over" })
---vim.keymap.set("n", "<leader>bu", dap.step_out, { desc = "Debug: Step Out" })
---vim.keymap.set("n", "<leader>bb", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
---vim.keymap.set("n", "<leader>bB", function()
---dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
---end, { desc = "Debug: Set Breakpoint" })
-
----- Dap UI setup
----- For more information, see |:help nvim-dap-ui|
---dapui.setup({
----- Set icons to characters that are more likely to work in every terminal.
-----    Feel free to remove or use ones that you like more! :)
-----    Don't feel like these are good choices.
---icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
---controls = {
---icons = {
---pause = "⏸",
---play = "▶",
---step_into = "⏎",
---step_over = "⏭",
---step_out = "⏮",
---step_back = "b",
---run_last = "▶▶",
---terminate = "⏹",
---disconnect = "⏏",
---},
---},
---})
-
----- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
---vim.keymap.set("n", "<leader>bt", dapui.toggle, { desc = "Debug: See last session result." })
-
---dap.listeners.after.event_initialized["dapui_config"] = dapui.open
---dap.listeners.before.event_terminated["dapui_config"] = dapui.close
---dap.listeners.before.event_exited["dapui_config"] = dapui.close
-
----- Install golang specific config
---require("dap-go").setup()

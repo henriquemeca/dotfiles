@@ -143,4 +143,6 @@ return require("packer").startup(function(use)
     })
     -- Zen mode (focus on window)
     use("folke/zen-mode.nvim")
+    -- Catpccin colorscheme
+    use { 'catppuccin/vim', as = 'catppuccin' }
 end)
