@@ -106,7 +106,7 @@ require('lspsaga').setup({
         project_max_width = 0.5,
         project_max_height = 0.5,
         keys = {
-            quit = '<C-k>',
+            quit = '<C-q>',
             exec = '<CR>',
             select = 'x',
         },
@@ -145,7 +145,7 @@ require('lspsaga').setup({
             vsplit = 's',
             split = 'i',
             tabe = 't',
-            close = '<C-c>k',
+            close = '<C-q>',
             quit = 'q',
             shuttle = '[w',
             toggle_or_req = 'u',
