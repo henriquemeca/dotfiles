@@ -75,5 +75,5 @@ vim.keymap.set("n", "gR", function()
 end, { desc = "Toggle Trouble lsp_references" })
 
 WHICH_KEY_MAP({
-    ["<leader>nt"] = { name = "+Trouble diagnostics" },
+    ["<leader>nt"] = { name = "+Trouble diagnostics" }
 })

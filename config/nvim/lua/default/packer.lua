@@ -159,7 +159,11 @@ return require("packer").startup(function(use)
     }
     -- Markdown preview
     use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-})
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+    -- Lsp upgrades
+    use({
+        'nvimdev/lspsaga.nvim',
+    })
 end)
