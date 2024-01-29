@@ -166,4 +166,14 @@ return require("packer").startup(function(use)
     use({
         'nvimdev/lspsaga.nvim',
     })
+    -- Github issues plugins
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            -- OR 'ibhagwan/fzf-lua',
+            'nvim-tree/nvim-web-devicons',
+        },
+    }
 end)
