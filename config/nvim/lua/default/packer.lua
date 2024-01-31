@@ -69,11 +69,6 @@ return require("packer").startup(function(use)
         "christoomey/vim-tmux-navigator",
         lazy = false,
     })
-    use({
-        "ms-jpq/chadtree",
-        branch = "chad",
-        run = "python3 -m chadtree deps",
-    })
 
     -- Smart comments
     use({ "preservim/nerdcommenter" })
@@ -88,10 +83,6 @@ return require("packer").startup(function(use)
 
     -- Git commit preview
     use("cohama/agit.vim")
-    -- Git Browser
-    use("tpope/vim-rhubarb")
-    -- Git Sign
-    use("airblade/vim-gitgutter")
     -- Git Blame
     use("APZelos/blamer.nvim")
     -- Debugger
@@ -114,13 +105,13 @@ return require("packer").startup(function(use)
     -- Vim LSP
     use("prabirshrestha/vim-lsp")
     -- LSP navigator
-    use({
-        "ray-x/navigator.lua",
-        requires = {
-            { "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
-            { "neovim/nvim-lspconfig" },
-        },
-    })
+    --use({
+    --"ray-x/navigator.lua",
+    --requires = {
+    --{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
+    --{ "neovim/nvim-lspconfig" },
+    --},
+    --})
     -- Signature help
     use({
         "ray-x/lsp_signature.nvim",
@@ -128,7 +119,7 @@ return require("packer").startup(function(use)
     -- Trouble diagnostics
     use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
     -- Fidget notifications
-    use({ "j-hui/fidget.nvim" })
+    --use({ "j-hui/fidget.nvim" })
     -- DAP -debbuger
     use({
         "mfussenegger/nvim-dap",
@@ -166,4 +157,19 @@ return require("packer").startup(function(use)
     use({
         'nvimdev/lspsaga.nvim',
     })
+    -- Github issues plugins
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            -- OR 'ibhagwan/fzf-lua',
+            'nvim-tree/nvim-web-devicons',
+        },
+    }
+    -- Github plugin 2
+    use {
+        'ldelossa/gh.nvim',
+        requires = { { 'ldelossa/litee.nvim' } }
+    }
 end)

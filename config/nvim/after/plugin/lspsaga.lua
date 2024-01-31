@@ -169,12 +169,12 @@ require('lspsaga').setup({
 })
 
 --diagnostic
-VKSN("<leader>nh", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Diagnostic jump next" })
-VKSN("<leader>nj", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Diagnostic jump previous" })
+VKSN("[d", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Diagnostic jump next" })
+VKSN("]d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Diagnostic jump previous" })
 VKSN("<leader>na", "<cmd>Lspsaga code_action<cr>", { desc = "Code Actions" })
 VKSN("<leader>nf", "<cmd>Lspsaga finder<cr>", { desc = "Finder" })
 VKSN("<leader>nd", "<cmd>Lspsaga goto_definition<cr>", { desc = "Go to definition" })
-VKSN("<leader>nD", "<cmd>Lspsaga goto_type_definition<cr>", { desc = "Go to type definition" })
+VKSN("<leader>nD", "<cmd>vsplit<cr><cmd>Lspsaga goto_definition<cr>", { desc = "Go to type definition" })
 VKSN("<leader>np", "<cmd>Lspsaga peek_definition<cr>", { desc = "Peek definition" })
 VKSN("<leader>nP", "<cmd>Lspsaga peek_type_definition<cr>", { desc = "Peek type definition" })
 VKSN("<leader>nr", "<cmd>Lspsaga rename<cr>", { desc = "Rename" })
