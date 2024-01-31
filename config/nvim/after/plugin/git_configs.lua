@@ -31,9 +31,9 @@ VKSN("<leader>gl", "<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
 WHICH_KEY_MAP({ ["<leader>g"] = { name = "+git" } })
 
 require "octo".setup({
-    use_local_fs = false,                      -- use local files on right side of reviews
-    enable_builtin = false,                    -- shows a list of builtin actions when no action is provided
-    default_remote = { "upstream", "origin" }, -- order to try remotes
+    use_local_fs = true,                       -- use local files on right side of reviews
+    enable_builtin = true,                     -- shows a list of builtin actions when no action is provided
+    default_remote = { "origin", "upstream" }, -- order to try remotes
     default_merge_method = "commit",           -- default merge method which should be used when calling `Octo pr merge`, could be `commit`, `rebase` or `squash`
     ssh_aliases = {},                          -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
     picker = "telescope",                      -- or "fzf-lua"
@@ -59,7 +59,7 @@ require "octo".setup({
     snippet_context_lines = 4, -- number or lines around commented lines
     gh_env = {}, -- extra environment variables to pass on to GitHub CLI, can be a table or function returning a table
     timeout = 5000, -- timeout for requests between the remote server
-    default_to_projects_v2 = false, -- use projects v2 for the `Octo card ...` command by default. Both legacy and v2 commands are available under `Octo cardlegacy ...` and `Octo cardv2 ...` respectively.
+    default_to_projects_v2 = true, -- use projects v2 for the `Octo card ...` command by default. Both legacy and v2 commands are available under `Octo cardlegacy ...` and `Octo cardv2 ...` respectively.
     ui = {
         use_signcolumn = true, -- show "modified" marks on the sign column
     },
@@ -221,6 +221,8 @@ VKSN("<leader>oa", "<cmd>Octo actions<cr>", { desc = "Show octo actions" })
 -- PRs
 VKSN("<leader>opl", "<cmd>Octo pr list<cr>", { desc = "List PRs" })
 VKSN("<leader>ops", "<cmd>Octo pr search<cr>", { desc = "Search PRs" })
+VKSN("<leader>ope", "<cmd>Octo pr edit", { desc = "Open PR by number" })
+VKSN("<leader>opu", "<cmd>Octo pr ", { desc = "Open PR by URL" })
 VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
 VKSN("<leader>opc", "<cmd>Octo pr checkout<cr>", { desc = "Checkout PR" })
 VKSN("<leader>opw", "<cmd>Octo pr checks<cr>", { desc = "Check workflows" })
@@ -235,7 +237,7 @@ VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve
 -- Reviews
 VKSN("<leader>ors", "<cmd>Octo review start<cr>", { desc = "Start a review" })
 VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
-VKSN("<leader>orr", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
+VKSN("<leader>ore", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
 VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
 VKSN("<leader>orc", "<cmd>Octo review close<cr>", { desc = "Close window review" })
 --TODO VKSN("<leader>ocu", "<cmd>Octo thread unresolve", { desc = "Thread unresolve" }) add reactions
@@ -244,4 +246,5 @@ WHICH_KEY_MAP({
     ["<leader>o"] = { name = "+GitHub" },
     ["<leader>op"] = { name = "+PR" },
     ["<leader>oc"] = { name = "+commet" },
+    ["<leader>or"] = { name = "+Review" },
 })

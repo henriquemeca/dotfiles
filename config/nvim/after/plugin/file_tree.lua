@@ -1,6 +1,3 @@
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
@@ -332,29 +329,6 @@ require("nvim-tree").setup({
     },
 })
 VKSN("<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree" })
---WHICH_KEY_AP({
---["<leader>E"] = { name = "+Nvim Tree" },
---})
-
---Chadtree settings
---local chadtree_settings = {
---view = {
---sort_by = { "is_folder", "ext", "file_name" },
---width = 40,
---window_options = {
---cursorline = true,
---number = true,
---relativenumber = true,
---signcolumn = "no",
---winfixwidth = true,
---wrap = false,
---},
---},
---theme = {
---text_colour_set = "env",
---},
---}
-
---vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-
---vim.keymap.set("n", "<leader>e", ":CHADopen<CR>", { desc = "open CHADTree" })
+WHICH_KEY_MAP({
+["<leader>E"] = { name = "+Nvim Tree" },
+})
