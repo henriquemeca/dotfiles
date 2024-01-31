@@ -106,11 +106,11 @@ return require("packer").startup(function(use)
     use("prabirshrestha/vim-lsp")
     -- LSP navigator
     --use({
-        --"ray-x/navigator.lua",
-        --requires = {
-            --{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
-            --{ "neovim/nvim-lspconfig" },
-        --},
+    --"ray-x/navigator.lua",
+    --requires = {
+    --{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
+    --{ "neovim/nvim-lspconfig" },
+    --},
     --})
     -- Signature help
     use({
@@ -166,5 +166,10 @@ return require("packer").startup(function(use)
             -- OR 'ibhagwan/fzf-lua',
             'nvim-tree/nvim-web-devicons',
         },
+    }
+    -- Github plugin 2
+    use {
+        'ldelossa/gh.nvim',
+        requires = { { 'ldelossa/litee.nvim' } }
     }
 end)
