@@ -28,7 +28,7 @@ local remappings = {
     pull_request = {
         checkout_pr = { lhs = "<leader>opc", desc = "checkout PR" },
         merge_pr = { lhs = "<leader>opm", desc = "merge commit PR" },
-        squash_and_merge_pr = { lhs = "<leader>opsm", desc = "squash and merge PR" },
+        squash_and_merge_pr = { lhs = "<leader>opM", desc = "squash and merge PR" },
         list_commits = { lhs = "<leader>opc", desc = "list PR commits" },
         list_changed_files = { lhs = "<leader>opf", desc = "list PR changed files" },
         show_pr_diff = { lhs = "<leader>opd", desc = "show PR diff" },
@@ -203,29 +203,24 @@ require "octo".setup({
     mappings = remappings
 })
 
+-- Actions
 VKSN("<leader>oa", "<cmd>Octo actions<cr>", { desc = "Show octo actions" })
 -- PRs
-VKSN("<leader>opl", "<cmd>Octo pr list<cr>", { desc = "List PRs" })
+VKSN("<leader>ol", "<cmd>Octo pr list<cr>", { desc = "List PRs" })
 VKSN("<leader>ops", "<cmd>Octo pr search<cr>", { desc = "Search PRs" })
 VKSN("<leader>ope", "<cmd>Octo pr edit", { desc = "Open PR by number" })
 VKSN("<leader>opu", "<cmd>Octo pr ", { desc = "Open PR by URL" })
 VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
 VKSN("<leader>opw", "<cmd>Octo pr checks<cr>", { desc = "Check workflows" })
---VKSN("<leader>opc", "<cmd>Octo pr checkout<cr>", { desc = "Checkout PR" })
---VKSN("<leader>opr", "<cmd>Octo pr reload<cr>", { desc = "Reload PR" })
---VKSN("<leader>opb", "<cmd>Octo pr browser<cr>", { desc = "Open PR on browser" })
----- Comments
---VKSN("<leader>oca", "<cmd>Octo comment add<cr>", { desc = "Add comment" })
---VKSN("<leader>ocd", "<cmd>Octo comment delete<cr>", { desc = "Delete comment" })
 -- Threads
 VKSN("<leader>ocr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
 VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
 -- Reviews
-VKSN("<leader>ors", "<cmd>BlameHide<cr><cmd>Octo review start<cr>", { desc = "Start a review" })
+VKSN("<leader>ors", "<cmd>Octo review start<cr><cmd>BlamerHide<cr>", { desc = "Start a review" })
 VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
-VKSN("<leader>orr", "<cmd>BlameHide<cr><cmd>Octo review resume<cr>", { desc = "Resume pending review" })
-VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
-VKSN("<leader>orc", "<cmd>BlameShow<cr><cmd>Octo review close<cr>", { desc = "Close window review" })
+VKSN("<leader>orr", "<cmd>Octo review resume<cr><cmd>BlamerHide<cr>", { desc = "Resume pending review" })
+VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr>", { desc = "Discard review" })
+VKSN("<leader>orc", "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", { desc = "Close window review" })
 
 
 
@@ -237,6 +232,7 @@ WHICH_KEY_MAP({
     ["<leader>o"] = { name = "+GitHub" },
     ["<leader>op"] = { name = "+PR" },
     ["<leader>opa"] = { name = "+assignee" },
+    ["<leader>opl"] = { name = "+label" },
     ["<leader>opi"] = { name = "+issue" },
     ["<leader>opr"] = { name = "+react" },
     ["<leader>opv"] = { name = "+reviewer" },
