@@ -167,9 +167,6 @@ return require("packer").startup(function(use)
             'nvim-tree/nvim-web-devicons',
         },
     }
-    -- Github plugin 2
-    use {
-        'ldelossa/gh.nvim',
-        requires = { { 'ldelossa/litee.nvim' } }
-    }
+    -- Buffer line plugin
+    use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 end)
