@@ -42,7 +42,7 @@ local remappings = {
         copy_url = { lhs = "<leader>opu", desc = "copy url to system clipboard" },
         goto_file = { lhs = "gf", desc = "go to file" },
         add_assignee = { lhs = "<leader>opaa", desc = "add assignee" },
-        remove_assignee = { lhs = "<leader>opad", desc = "remove assignee" },
+        remove_assignee = { lhs = "<leader>opad", desc = "remove as ssignee" },
         create_label = { lhs = "<leader>oplc", desc = "create label" },
         add_label = { lhs = "<leader>opla", desc = "add label" },
         remove_label = { lhs = "<leader>opld", desc = "remove label" },
@@ -203,6 +203,7 @@ require "octo".setup({
     mappings = remappings
 })
 
+-- Actions
 VKSN("<leader>oa", "<cmd>Octo actions<cr>", { desc = "Show octo actions" })
 -- PRs
 VKSN("<leader>opl", "<cmd>Octo pr list<cr>", { desc = "List PRs" })
@@ -210,23 +211,15 @@ VKSN("<leader>ops", "<cmd>Octo pr search<cr>", { desc = "Search PRs" })
 VKSN("<leader>ope", "<cmd>Octo pr edit", { desc = "Open PR by number" })
 VKSN("<leader>opu", "<cmd>Octo pr ", { desc = "Open PR by URL" })
 VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
---VKSN("<leader>opc", "<cmd>Octo pr checkout<cr>", { desc = "Checkout PR" })
---VKSN("<leader>opw", "<cmd>Octo pr checks<cr>", { desc = "Check workflows" })
---VKSN("<leader>opr", "<cmd>Octo pr reload<cr>", { desc = "Reload PR" })
---VKSN("<leader>opb", "<cmd>Octo pr browser<cr>", { desc = "Open PR on browser" })
----- Comments
---VKSN("<leader>oca", "<cmd>Octo comment add<cr>", { desc = "Add comment" })
---VKSN("<leader>ocd", "<cmd>Octo comment delete<cr>", { desc = "Delete comment" })
----- Threads
---VKSN("<leader>ocr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
---VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
----- Reviews
---VKSN("<leader>ors", "<cmd>Octo review start<cr>", { desc = "Start a review" })
---VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
---VKSN("<leader>ore", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
---VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
---VKSN("<leader>orc", "<cmd>Octo review close<cr>", { desc = "Close window review" })
---TODO VKSN("<lactionsactionseader>ocu", "<cmd>Octo thread unresolve", { desc = "Thread unresolve" }) add reactions
+-- Threads
+VKSN("<leader>otr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
+VKSN("<leader>otu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
+-- Reviews
+VKSN("<leader>ors", "<cmd>Octo review start<cr><cmd>BlamerHide<cr>", { desc = "Start a review" })
+VKSN("<leader>orS", "<cmd>Octo review submit<cr><cmd>BlamerShow<cr>", { desc = "Submit a review" })
+VKSN("<leader>ore", "<cmd>Octo review resume<cr><cmd>BlamerHide<cr>", { desc = "Edit pending review" })
+VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr", { desc = "Discard review" })
+VKSN("<leader>orc", "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", { desc = "Close window review" })
 
 
 
