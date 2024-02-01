@@ -6,8 +6,10 @@ vim.keymap.set("n", "<leader>Qq", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>Qf", "<cmd>qa!<cr>", { desc = "Quit all (Force)" })
 vim.keymap.set("n", "gt", "<c-t>", { desc = "Go back on tagstask" })
 
+-- Navigation
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
+vim.keymap.set("n", "<leader>A", "ggVG", { desc = "Page up" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines up (on Visual Mode)" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move seleted lines down (on Visual Mode)" })
