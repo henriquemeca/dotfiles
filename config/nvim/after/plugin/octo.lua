@@ -223,7 +223,7 @@ VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve
 -- Reviews
 VKSN("<leader>ors", "<cmd>Octo review start<cr>", { desc = "Start a review" })
 VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
-VKSN("<leader>ore", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
+VKSN("<leader>orr", "<cmd>Octo review resume<cr>", { desc = "Resume pending review" })
 VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
 VKSN("<leader>orc", "<cmd>Octo review close<cr>", { desc = "Close window review" })
 
