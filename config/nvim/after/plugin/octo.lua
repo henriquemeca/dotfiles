@@ -11,7 +11,7 @@ local remappings = {
         create_label = { lhs = "<leader>oilc", desc = "create label" },
         add_label = { lhs = "<leader>oila", desc = "add label" },
         remove_label = { lhs = "<leader>oild", desc = "remove label" },
-        goto_issue = { lhs = "<leader>oigi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>oig", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>oica", desc = "add comment" },
         delete_comment = { lhs = "<leader>oicd", desc = "delete comment" },
         next_comment = { lhs = "]c", desc = "go to next comment" },
@@ -46,7 +46,7 @@ local remappings = {
         create_label = { lhs = "<leader>oplc", desc = "create label" },
         add_label = { lhs = "<leader>opla", desc = "add label" },
         remove_label = { lhs = "<leader>opld", desc = "remove label" },
-        goto_issue = { lhs = "<leader>opgi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>opg", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>opca", desc = "add comment" },
         delete_comment = { lhs = "<leader>opcd", desc = "delete comment" },
         next_comment = { lhs = "]c", desc = "go to next comment" },
@@ -61,7 +61,7 @@ local remappings = {
         react_confused = { lhs = "<leader>oprc", desc = "add/remove 😕 reaction" },
     },
     review_thread = {
-        goto_issue = { lhs = "<leader>otgi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>otg", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>otca", desc = "add comment" },
         add_suggestion = { lhs = "<leader>otsa", desc = "add suggestion" },
         delete_comment = { lhs = "<leader>otcd", desc = "delete comment" },
@@ -210,23 +210,22 @@ VKSN("<leader>ops", "<cmd>Octo pr search<cr>", { desc = "Search PRs" })
 VKSN("<leader>ope", "<cmd>Octo pr edit", { desc = "Open PR by number" })
 VKSN("<leader>opu", "<cmd>Octo pr ", { desc = "Open PR by URL" })
 VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
+VKSN("<leader>opw", "<cmd>Octo pr checks<cr>", { desc = "Check workflows" })
 --VKSN("<leader>opc", "<cmd>Octo pr checkout<cr>", { desc = "Checkout PR" })
---VKSN("<leader>opw", "<cmd>Octo pr checks<cr>", { desc = "Check workflows" })
 --VKSN("<leader>opr", "<cmd>Octo pr reload<cr>", { desc = "Reload PR" })
 --VKSN("<leader>opb", "<cmd>Octo pr browser<cr>", { desc = "Open PR on browser" })
 ---- Comments
 --VKSN("<leader>oca", "<cmd>Octo comment add<cr>", { desc = "Add comment" })
 --VKSN("<leader>ocd", "<cmd>Octo comment delete<cr>", { desc = "Delete comment" })
----- Threads
---VKSN("<leader>ocr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
---VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
----- Reviews
---VKSN("<leader>ors", "<cmd>Octo review start<cr>", { desc = "Start a review" })
---VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
---VKSN("<leader>ore", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
---VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
---VKSN("<leader>orc", "<cmd>Octo review close<cr>", { desc = "Close window review" })
---TODO VKSN("<lactionsactionseader>ocu", "<cmd>Octo thread unresolve", { desc = "Thread unresolve" }) add reactions
+-- Threads
+VKSN("<leader>ocr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
+VKSN("<leader>ocu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
+-- Reviews
+VKSN("<leader>ors", "<cmd>Octo review start<cr>", { desc = "Start a review" })
+VKSN("<leader>orS", "<cmd>Octo review submit<cr>", { desc = "Submit a review" })
+VKSN("<leader>ore", "<cmd>Octo review resume<cr>", { desc = "Edit pending review" })
+VKSN("<leader>ord", "<cmd>Octo review discard<cr>", { desc = "Discard review" })
+VKSN("<leader>orc", "<cmd>Octo review close<cr>", { desc = "Close window review" })
 
 
 
@@ -237,15 +236,26 @@ end
 WHICH_KEY_MAP({
     ["<leader>o"] = { name = "+GitHub" },
     ["<leader>op"] = { name = "+PR" },
+    ["<leader>opa"] = { name = "+assignee" },
+    ["<leader>opi"] = { name = "+issue" },
+    ["<leader>opr"] = { name = "+react" },
+    ["<leader>opv"] = { name = "+reviewer" },
     ["<leader>oc"] = { name = "+commet" },
     ["<leader>or"] = { name = "+Review" },
     ["<leader>ot"] = { name = "+Thread" },
+    ["<leader>otc"] = { name = "+comment" },
+    ["<leader>otr"] = { name = "+react" },
+    ["<leader>ots"] = { name = "+suggestion" },
     ["<leader>oi"] = { name = "+Issue" },
+    ["<leader>oia"] = { name = "+assignee" },
+    ["<leader>oic"] = { name = "+comment" },
+    ["<leader>oil"] = { name = "+label" },
+    ["<leader>oir"] = { name = "+react" },
 })
 
 
 
--- Create picker for octo mappings
+-- Create Telescope picker for octo mappings
 local telescope_conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local pickers = require("telescope.pickers")
