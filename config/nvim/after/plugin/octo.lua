@@ -267,7 +267,15 @@ custom_comment("<leader>oct", "toDo:", "Add toDo comment")
 custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
 ---- Suggestion
 custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
-custom_suggestion("<leader>ocG", "suggestion:", "Add suggestion suggestion")
+custom_suggestion("<leader>ocG", "suggestion:", "Add 'suggestion' suggestion")
+---- Prase
+custom_comment("<leader>ocp", "praise:", "Add suggestion comment")
+---- Thought
+custom_comment("<leader>och", "thought:", "Add thought comment")
+custom_suggestion("<leader>ocH", "thought:", "Add thought suggestion")
+---- Note
+custom_comment("<leader>ocn", "note:", "Add note comment")
+custom_suggestion("<leader>ocN", "note:", "Add note suggestion")
 
 for _, mapping in pairs(flatted_mapping) do
     WHICH_KEY_MAP({ [mapping.lhs] = { name = mapping.desc } })
