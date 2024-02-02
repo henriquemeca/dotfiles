@@ -89,7 +89,7 @@ local remappings = {
     },
     review_diff = {
         add_review_comment = { lhs = "<leader>oca", desc = "add a new review comment" },
-        add_review_suggestion = { lhs = "<leader>ocs", desc = "add a new review suggestion" },
+        --add_review_suggestion = { lhs = "<leader>ocs", desc = "add a new review suggestion" },
         focus_files = { lhs = "<leader>b", desc = "move focus to changed file panel" },
         toggle_files = { lhs = "<leader>B", desc = "hide/show changed files panel" },
         next_thread = { lhs = "]t", desc = "move to next thread" },
@@ -243,7 +243,31 @@ end, { desc = "Start/Resume pending review" })
 VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr>", { desc = "Discard review" })
 VKSN("<leader>orc", "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", { desc = "Close window review" })
 
+-- Comments
+local function custom_comment(remap, keys, description)
+    VKSN(remap, function()
+        octo_maps.add_review_comment()
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), 'n')
+    end, { desc = description })
+end
+local function custom_suggestion(remap, keys, description)
+    VKSN(remap, function()
+        octo_maps.add_review_suggestion()
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<ESC>kkko" .. keys, true, true, true), 'n')
+    end, { desc = description })
+end
 
+custom_suggestion("<leader>ocs", "", "Add suggestion")
+
+---- Question
+custom_comment("<leader>ocq", "question:", "Add question comment")
+custom_suggestion("<leader>ocQ", "question:", "Add question suggestion")
+---- ToDo
+custom_comment("<leader>oct", "toDo:", "Add toDo comment")
+custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
+---- Suggestion
+custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
+custom_suggestion("<leader>ocG", "suggestion:", "Add suggestion suggestion")
 
 for _, mapping in pairs(flatted_mapping) do
     WHICH_KEY_MAP({ [mapping.lhs] = { name = mapping.desc } })
@@ -257,7 +281,7 @@ WHICH_KEY_MAP({
     ["<leader>opr"] = { name = "+reaction" },
     ["<leader>opv"] = { name = "+viewer" },
     ["<leader>op"] = { name = "+PR" },
-    ["<leader>oc"] = { name = "+commet" },
+    ["<leader>oc"] = { name = "+comment" },
     ["<leader>or"] = { name = "+Review" },
     ["<leader>ot"] = { name = "+Thread" },
     ["<leader>otc"] = { name = "+comment" },
