@@ -24,6 +24,7 @@ alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
+alias gd='gh dash'
 #
 ## tmux
 alias ta="tmux a"

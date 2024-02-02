@@ -120,7 +120,7 @@ require("nvim-tree").setup({
         indent_width = 1,
         special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
         symlink_destination = true,
-        highlight_git = false,
+        highlight_git = true,
         highlight_diagnostics = false,
         highlight_opened_files = "none",
         highlight_modified = "none",
@@ -330,5 +330,5 @@ require("nvim-tree").setup({
 })
 VKSN("<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree" })
 WHICH_KEY_MAP({
-["<leader>E"] = { name = "+Nvim Tree" },
+    ["<leader>e"] = { name = "+Nvim Tree" },
 })

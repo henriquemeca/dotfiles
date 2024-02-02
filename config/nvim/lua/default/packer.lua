@@ -169,4 +169,9 @@ return require("packer").startup(function(use)
     }
     -- Buffer line plugin
     use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
+    -- Add git signs
+    use 'lewis6991/gitsigns.nvim'
+    -- Find and replace tool
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-pack/nvim-spectre'
 end)

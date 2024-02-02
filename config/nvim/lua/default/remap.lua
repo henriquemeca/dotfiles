@@ -17,7 +17,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move seleted lines down (
 vim.keymap.set("n", "<leader>mh", ":nohl<CR>", { desc = "clear search highlights" })
 vim.keymap.set("n", "x", '"_x', { desc = "delete single character without copying into register" })
 
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
+--vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
 --vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
@@ -47,8 +47,9 @@ vim.keymap.set("n", "<leader>w<Left>", "<C-w>h", { desc = "Move to left window" 
 vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Move to right window" })
 
 -- tab management
-vim.keymap.set("n", "<leader><tab>o", ":tabnew<CR>", { desc = "open new tab" })
-vim.keymap.set("n", "<leader><tab>x", ":tabclose<CR>", { desc = "close current tab" })
-vim.keymap.set("n", "<leader><tab>n", ":tabn<CR>", { desc = "go to next tab" })
-vim.keymap.set("n", "<leader><tab><tab>", ":tabn<CR>", { desc = "go to next tab" })
-vim.keymap.set("n", "<leader><tab>p", ":tabp<CR>", { desc = "go to previous tab" })
+vim.keymap.set("n", "<leader><tab>o", "<cmd>tabnew %<cr>", { desc = "open new tab" })
+vim.keymap.set("n", "<leader><tab>O", "<cmd>tabnew %<cr><cmd>Telescope find_files<cr>", { desc = "open new tab" })
+vim.keymap.set("n", "<leader><tab>x", "<cmd>tabclose<cr>", { desc = "close current tab" })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabn<cr>", { desc = "go to next tab" })
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabn<cr>", { desc = "go to next tab" })
+vim.keymap.set("n", "<leader><tab>p", "<cmd>tabp<cr>", { desc = "go to previous tab" })

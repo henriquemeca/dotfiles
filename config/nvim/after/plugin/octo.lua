@@ -11,7 +11,7 @@ local remappings = {
         create_label = { lhs = "<leader>oilc", desc = "create label" },
         add_label = { lhs = "<leader>oila", desc = "add label" },
         remove_label = { lhs = "<leader>oild", desc = "remove label" },
-        goto_issue = { lhs = "<leader>oigi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>oig", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>oica", desc = "add comment" },
         delete_comment = { lhs = "<leader>oicd", desc = "delete comment" },
         next_comment = { lhs = "]c", desc = "go to next comment" },
@@ -46,7 +46,7 @@ local remappings = {
         create_label = { lhs = "<leader>oplc", desc = "create label" },
         add_label = { lhs = "<leader>opla", desc = "add label" },
         remove_label = { lhs = "<leader>opld", desc = "remove label" },
-        goto_issue = { lhs = "<leader>opgi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>opg", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>opca", desc = "add comment" },
         delete_comment = { lhs = "<leader>opcd", desc = "delete comment" },
         next_comment = { lhs = "]c", desc = "go to next comment" },
@@ -61,16 +61,16 @@ local remappings = {
         react_confused = { lhs = "<leader>oprc", desc = "add/remove 😕 reaction" },
     },
     review_thread = {
-        goto_issue = { lhs = "<leader>otgi", desc = "navigate to a local repo issue" },
+        goto_issue = { lhs = "<leader>otg", desc = "navigate to a local repo issue" },
         add_comment = { lhs = "<leader>otca", desc = "add comment" },
         add_suggestion = { lhs = "<leader>otsa", desc = "add suggestion" },
         delete_comment = { lhs = "<leader>otcd", desc = "delete comment" },
         next_comment = { lhs = "]c", desc = "go to next comment" },
         prev_comment = { lhs = "[c", desc = "go to previous comment" },
-        select_next_entry = { lhs = "]f", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
-        select_first_entry = { lhs = "[F", desc = "move to first changed file" },
-        select_last_entry = { lhs = "]F", desc = "move to last changed file" },
+        --select_next_entry = { lhs = "]f", desc = "move to previous changed file" },
+        --select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
+        --select_first_entry = { lhs = "[F", desc = "move to first changed file" },
+        --select_last_entry = { lhs = "]F", desc = "move to last changed file" },
         close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
         react_hooray = { lhs = "<leader>otrp", desc = "add/remove 🎉 reaction" },
         react_heart = { lhs = "<leader>otrh", desc = "add/remove ❤️ reaction" },
@@ -94,10 +94,10 @@ local remappings = {
         toggle_files = { lhs = "<leader>B", desc = "hide/show changed files panel" },
         next_thread = { lhs = "]t", desc = "move to next thread" },
         prev_thread = { lhs = "[t", desc = "move to previous thread" },
-        select_next_entry = { lhs = "]f", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
-        select_first_entry = { lhs = "[F", desc = "move to first changed file" },
-        select_last_entry = { lhs = "]F", desc = "move to last changed file" },
+        --select_next_entry = { lhs = "]f", desc = "move to previous changed file" },
+        --select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
+        --select_first_entry = { lhs = "[F", desc = "move to first changed file" },
+        --select_last_entry = { lhs = "]F", desc = "move to last changed file" },
         close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
         toggle_viewed = { lhs = "<leader>v", desc = "toggle viewer viewed state" },
         goto_file = { lhs = "gf", desc = "go to file" },
@@ -109,10 +109,10 @@ local remappings = {
         refresh_files = { lhs = "R", desc = "refresh changed files panel" },
         focus_files = { lhs = "<leader>b", desc = "move focus to changed file panel" },
         toggle_files = { lhs = "<leader>B", desc = "hide/show changed files panel" },
-        select_next_entry = { lhs = "]f", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
-        select_first_entry = { lhs = "[F", desc = "move to first changed file" },
-        select_last_entry = { lhs = "]F", desc = "move to last changed file" },
+        --select_next_entry = { lhs ="]f", desc = "move to previous changed file" },
+        --select_prev_entry = { lhs = "[f", desc = "move to next changed file" },
+        --select_first_entry = { lhs = "[F", desc = "move to first changed file" },
+        --select_last_entry = { lhs = "]F", desc = "move to last changed file" },
         close_review_tab = { lhs = "<c-c>", desc = "close review tab" },
         toggle_viewed = { lhs = "<leader>v", desc = "toggle viewer viewed state" },
     },
@@ -202,7 +202,25 @@ require "octo".setup({
     },
     mappings = remappings
 })
+octo_maps = require("octo.mappings")
 
+-- Movements
+VKSN("]f", function()
+    octo_maps.select_next_entry()
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+end, { desc = "Move to next file" })
+VKSN("[f", function()
+    octo_maps.select_prev_entry()
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+end, { desc = "Move to previous file" })
+VKSN("]F", function()
+    octo_maps.select_last_entry()
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+end, { desc = "Move to first file" })
+VKSN("[F", function()
+    octo_maps.select_first_entry()
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+end, { desc = "Move to last file" })
 -- Actions
 VKSN("<leader>oa", "<cmd>Octo actions<cr>", { desc = "Show octo actions" })
 -- PRs
@@ -215,10 +233,14 @@ VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
 VKSN("<leader>otr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
 VKSN("<leader>otu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
 -- Reviews
-VKSN("<leader>ors", "<cmd>Octo review start<cr><cmd>BlamerHide<cr>", { desc = "Start a review" })
-VKSN("<leader>orS", "<cmd>Octo review submit<cr><cmd>BlamerShow<cr>", { desc = "Submit a review" })
-VKSN("<leader>ore", "<cmd>Octo review resume<cr><cmd>BlamerHide<cr>", { desc = "Edit pending review" })
-VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr", { desc = "Discard review" })
+VKSN("<leader>ors", "<cmd>Octo review submit<cr><cmd>BlamerShow<cr>", { desc = "Submit a review" })
+VKSN("<leader>orr", function()
+    if not pcall(vim.cmd("Octo review resume")) then
+        vim.cmd("Octo review start")
+    end
+    vim.cmd("BlamerHide")
+end, { desc = "Start/Resume pending review" })
+VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr>", { desc = "Discard review" })
 VKSN("<leader>orc", "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", { desc = "Close window review" })
 
 
@@ -228,12 +250,24 @@ for _, mapping in pairs(flatted_mapping) do
 end
 
 WHICH_KEY_MAP({
-    ["<leader>o"] = { name = "+GitHub" },
+    ["<leader>o"] = { name = "+Octo" },
+    ["<leader>op"] = { name = "+PR" },
+    ["<leader>opa"] = { name = "+assigne" },
+    ["<leader>opi"] = { name = "+issue" },
+    ["<leader>opr"] = { name = "+reaction" },
+    ["<leader>opv"] = { name = "+viewer" },
     ["<leader>op"] = { name = "+PR" },
     ["<leader>oc"] = { name = "+commet" },
     ["<leader>or"] = { name = "+Review" },
     ["<leader>ot"] = { name = "+Thread" },
+    ["<leader>otc"] = { name = "+comment" },
+    ["<leader>ots"] = { name = "+sugestion" },
     ["<leader>oi"] = { name = "+Issue" },
+    ["<leader>oia"] = { name = "+assigne" },
+    ["<leader>oic"] = { name = "+comment" },
+    ["<leader>oii"] = { name = "+issue" },
+    ["<leader>oil"] = { name = "+label" },
+    ["<leader>oir"] = { name = "+reaction" },
 })
 
 

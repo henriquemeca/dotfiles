@@ -42,7 +42,7 @@ require('lspsaga').setup({
     code_action = {
         num_shortcut = true,
         show_server_name = false,
-        extend_gitsigns = false,
+        extend_gitsigns = true,
         only_in_cursor = true,
         max_height = 0.3,
         keys = {
