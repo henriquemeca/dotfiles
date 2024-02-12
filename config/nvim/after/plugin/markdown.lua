@@ -1,4 +1,4 @@
 VKSN("<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview Toggle" })
-WHICH_KEY_MAP({
+WHICH_KEY({
     ["<leader>m"] = { name = "misc" }
 })

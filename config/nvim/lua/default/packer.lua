@@ -7,52 +7,67 @@ return require("packer").startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
 
+    -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
-        -- or                            , branch = '0.1.x',
         requires = { { "nvim-lua/plenary.nvim" } },
     })
+    use { "AckslD/nvim-neoclip.lua", }
 
+    -- Themes
     use({ "rose-pine/neovim", as = "rose-pine" })
     use({ "tomasiser/vim-code-dark", as = "code-dark" })
     use("Mofiqul/vscode.nvim")
+    use { 'catppuccin/vim', as = 'catppuccin' }
 
+    -- Trees
     use("nvim-tree/nvim-tree.lua")
-    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-    use("theprimeagen/harpoon")
+    --use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("mbbill/undotree")
-    use("tpope/vim-fugitive")
+
+    -- Harppon
+    use("theprimeagen/harpoon")
+
+    -- LSP
     use({
         "neovim/nvim-lspconfig",
         -- branch = 'v3.x',
         requires = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
-            --- and read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
 
-            --Formatters and linters
-            { "jose-elias-alvarez/null-ls.nvim" },
-            { "mhartington/formatter.nvim" },
-            { "mfussenegger/nvim-lint" },
+            ----Formatters and linters
+            --{ "jose-elias-alvarez/null-ls.nvim" },
+            --{ "mhartington/formatter.nvim" },
+            --{ "mfussenegger/nvim-lint" },
 
             -- Autocompletion
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-            { "hrsh7th/nvim-cmp" },
+            --{ "hrsh7th/cmp-nvim-lsp" },
+            --{ "hrsh7th/cmp-buffer" },
+            --{ "hrsh7th/cmp-path" },
+            --{ "hrsh7th/cmp-cmdline" },
+            --{ "hrsh7th/nvim-cmp" },
 
             -- Lua snipets
             { "L3MON4D3/LuaSnip",                 requires = { "rafamadriz/friendly-snippets" } },
-            { "saadparwaiz1/cmp_luasnip" },
+            { "cohama/lexima.vim" },
+            --{ "saadparwaiz1/cmp_luasnip" },
 
-            { "jiangmiao/auto-pairs" },
         },
     })
+    use({
+        'nvimdev/lspsaga.nvim',
+    })
+    use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+    use({
+        "ray-x/lsp_signature.nvim",
+    })
+    --
+
+    -- Which key
     use({
         "folke/which-key.nvim",
         config = function()
@@ -65,6 +80,7 @@ return require("packer").startup(function(use)
             })
         end,
     })
+    -- Tmux navigator
     use({
         "christoomey/vim-tmux-navigator",
         lazy = false,
@@ -73,7 +89,7 @@ return require("packer").startup(function(use)
     -- Smart comments
     use({ "preservim/nerdcommenter" })
 
-    -- auto format
+    -- Auto format
     use({
         "stevearc/conform.nvim",
         config = function()
@@ -81,20 +97,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Git commit preview
-    use("cohama/agit.vim")
-    -- Git Blame
-    use("APZelos/blamer.nvim")
-    -- Debugger
-    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-    -- Diff view on github
-    use({ "sindrets/diffview.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
-    -- Add  persistance to files
-    use({
-        "folke/persistence.nvim",
-        event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    })
-    -- Lazy git
+    -- Git kit
     use({
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
@@ -102,25 +105,27 @@ return require("packer").startup(function(use)
             "nvim-lua/plenary.nvim",
         },
     })
-    -- Vim LSP
-    use("prabirshrestha/vim-lsp")
-    -- LSP navigator
-    --use({
-    --"ray-x/navigator.lua",
-    --requires = {
-    --{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
-    --{ "neovim/nvim-lspconfig" },
-    --},
-    --})
-    -- Signature help
+    use("tpope/vim-fugitive")
+    use("APZelos/blamer.nvim")
+    use 'lewis6991/gitsigns.nvim'
+    use({ "sindrets/diffview.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            -- OR 'ibhagwan/fzf-lua',
+            'nvim-tree/nvim-web-devicons',
+        },
+    }
+
+    -- Add  persistance to files
     use({
-        "ray-x/lsp_signature.nvim",
+        "folke/persistence.nvim",
+        event = "BufReadPre", -- this will only start session saving when an actual file was opened
     })
-    -- Trouble diagnostics
-    use({ "folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
-    -- Fidget notifications
-    --use({ "j-hui/fidget.nvim" })
-    -- DAP -debbuger
+
+    -- DAP-debbuger
     use({
         "mfussenegger/nvim-dap",
         requires = {
@@ -132,46 +137,38 @@ return require("packer").startup(function(use)
             { "theHamsta/nvim-dap-virtual-text" },
         },
     })
+
     -- Zen mode (focus on window)
     use("folke/zen-mode.nvim")
-    -- Catpccin colorscheme
-    use { 'catppuccin/vim', as = 'catppuccin' }
-    -- Clipboard on telescope
-    use {
-        "AckslD/nvim-neoclip.lua",
-        requires = {
-            -- you'll need at least one of these
-            -- {'nvim-telescope/telescope.nvim'},
-            -- {'ibhagwan/fzf-lua'},
-        },
-        config = function()
-            require('neoclip').setup()
-        end,
-    }
+
     -- Markdown preview
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
-    -- Lsp upgrades
-    use({
-        'nvimdev/lspsaga.nvim',
-    })
-    -- Github issues plugins
-    use {
-        'pwntester/octo.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
-            -- OR 'ibhagwan/fzf-lua',
-            'nvim-tree/nvim-web-devicons',
-        },
-    }
+
     -- Buffer line plugin
     use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
-    -- Add git signs
-    use 'lewis6991/gitsigns.nvim'
+
     -- Find and replace tool
-    use 'nvim-lua/plenary.nvim'
+    --use 'nvim-lua/plenary.nvim'
     use 'nvim-pack/nvim-spectre'
+
+    -- Copilot
+    use { "zbirenbaum/copilot.lua" }
+    -- Status line
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- Gpt Integration
+    use({
+        "jackMort/ChatGPT.nvim",
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
 end)

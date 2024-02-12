@@ -329,6 +329,6 @@ require("nvim-tree").setup({
     },
 })
 VKSN("<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree" })
-WHICH_KEY_MAP({
+WHICH_KEY({
     ["<leader>e"] = { name = "+Nvim Tree" },
 })

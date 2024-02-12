@@ -55,25 +55,25 @@ require("trouble").setup({
 })
 
 -- Lua
-vim.keymap.set("n", "<leader>ntt", function()
+VKSN("<leader>ltt", function()
     require("trouble").toggle()
 end, { desc = "Toggle Trouble" })
-vim.keymap.set("n", "<leader>ntw", function()
+VKSN("<leader>ltw", function()
     require("trouble").toggle("workspace_diagnostics")
 end, { desc = "Toggle Trouble workspace_diagnostics" })
-vim.keymap.set("n", "<leader>ntd", function()
+VKSN("<leader>ltd", function()
     require("trouble").toggle("document_diagnostics")
 end, { desc = "Toggle Trouble document_diagnostics" })
-vim.keymap.set("n", "<leader>ntq", function()
+VKSN("<leader>ltq", function()
     require("trouble").toggle("quickfix")
 end, { desc = "Toggle Trouble quickfix" })
-vim.keymap.set("n", "<leader>ntl", function()
+VKSN("<leader>ltl", function()
     require("trouble").toggle("loclist")
 end, { desc = "Toggle Trouble loclist" })
-vim.keymap.set("n", "gR", function()
+VKSN("gR", function()
     require("trouble").toggle("lsp_references")
 end, { desc = "Toggle Trouble lsp_references" })
 
-WHICH_KEY_MAP({
-    ["<leader>nt"] = { name = "+Trouble diagnostics" }
+WHICH_KEY({
+    ["<leader>lt"] = { name = "+Trouble diagnostics" }
 })

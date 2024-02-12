@@ -7,9 +7,9 @@ fi
 
 # Source files
 source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
-source $(dirname $(gem which colorls))/tab_complete.sh
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
+source ~/.powerlevel10k/powerlevel10k.zsh-theme # Powerlevel10k theme
+source ~/.credentials.sh # Export credentials
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

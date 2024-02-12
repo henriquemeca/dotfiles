@@ -171,18 +171,18 @@ require('lspsaga').setup({
 --diagnostic
 VKSN("[d", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Diagnostic jump next" })
 VKSN("]d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Diagnostic jump previous" })
-VKSN("<leader>na", "<cmd>Lspsaga code_action<cr>", { desc = "Code Actions" })
-VKSN("<leader>nf", "<cmd>Lspsaga finder<cr>", { desc = "Finder" })
-VKSN("<leader>nd", "<cmd>Lspsaga goto_definition<cr>", { desc = "Go to definition" })
-VKSN("<leader>nD", "<cmd>vsplit<cr><cmd>Lspsaga goto_definition<cr>", { desc = "Go to type definition" })
-VKSN("<leader>np", "<cmd>Lspsaga peek_definition<cr>", { desc = "Peek definition" })
-VKSN("<leader>nP", "<cmd>Lspsaga peek_type_definition<cr>", { desc = "Peek type definition" })
-VKSN("<leader>nr", "<cmd>Lspsaga rename<cr>", { desc = "Rename" })
-VKSN("<leader>no", "<cmd>Lspsaga outline<cr>", { desc = "Outline" })
-VKSN("<leader>nci", "<cmd>Lspsaga incoming_calls<cr>", { desc = "Incoming calls" })
-VKSN("<leader>nco", "<cmd>Lspsaga outgoing_calls<cr>", { desc = "Outcoming calls" })
+VKSN("<leader>la", "<cmd>Lspsaga code_action<cr>", { desc = "Code Actions" })
+VKSN("<leader>lf", "<cmd>Lspsaga finder<cr>", { desc = "Finder" })
+VKSN("<leader>ld", "<cmd>Lspsaga goto_definition<cr>", { desc = "Go to definition" })
+VKSN("<leader>lD", "<cmd>vsplit<cr><cmd>Lspsaga goto_definition<cr>", { desc = "Go to type definition" })
+VKSN("<leader>lp", "<cmd>Lspsaga peek_definition<cr>", { desc = "Peek definition" })
+VKSN("<leader>lP", "<cmd>Lspsaga peek_type_definition<cr>", { desc = "Peek type definition" })
+VKSN("<leader>lr", "<cmd>Lspsaga rename<cr>", { desc = "Rename" })
+VKSN("<leader>lo", "<cmd>Lspsaga outline<cr>", { desc = "Outline" })
+VKSN("<leader>lci", "<cmd>Lspsaga incoming_calls<cr>", { desc = "Incoming calls" })
+VKSN("<leader>lco", "<cmd>Lspsaga outgoing_calls<cr>", { desc = "Outcoming calls" })
 VKSN('K', '<cmd>Lspsaga hover_doc', { desc = "Hover doc" })
-WHICH_KEY_MAP({
-    ["<leader>n"] = { name = "+Lsp Navigator" },
-    ["<leader>nc"] = { name = "Call Hierarchy" },
+WHICH_KEY({
+    ["<leader>l"] = { name = "+Lsp Navigator" },
+    ["<leader>lc"] = { name = "Call Hierarchy" },
 })

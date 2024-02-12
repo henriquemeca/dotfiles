@@ -202,96 +202,113 @@ require "octo".setup({
     },
     mappings = remappings
 })
-octo_maps = require("octo.mappings")
+local octo_maps = require("octo.mappings")
 
 -- Movements
-VKSN("]f", function()
-    octo_maps.select_next_entry()
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
-end, { desc = "Move to next file" })
-VKSN("[f", function()
-    octo_maps.select_prev_entry()
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
-end, { desc = "Move to previous file" })
-VKSN("]F", function()
-    octo_maps.select_last_entry()
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
-end, { desc = "Move to first file" })
-VKSN("[F", function()
-    octo_maps.select_first_entry()
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
-end, { desc = "Move to last file" })
--- Actions
-VKSN("<leader>oa", "<cmd>Octo actions<cr>", { desc = "Show octo actions" })
--- PRs
-VKSN("<leader>opl", "<cmd>Octo pr list<cr>", { desc = "List PRs" })
-VKSN("<leader>ops", "<cmd>Octo pr search<cr>", { desc = "Search PRs" })
-VKSN("<leader>ope", "<cmd>Octo pr edit", { desc = "Open PR by number" })
-VKSN("<leader>opu", "<cmd>Octo pr ", { desc = "Open PR by URL" })
-VKSN("<leader>opC", "<cmd>Octo pr create<cr>", { desc = "Create PR" })
--- Threads
-VKSN("<leader>otr", "<cmd>Octo thread resolve<cr>", { desc = "Thread resolve" })
-VKSN("<leader>otu", "<cmd>Octo thread unresolve<cr>", { desc = "Thread unresolve" })
--- Reviews
-VKSN("<leader>ors", "<cmd>Octo review submit<cr><cmd>BlamerShow<cr>", { desc = "Submit a review" })
-VKSN("<leader>orr", function()
-    if not pcall(vim.cmd("Octo review resume")) then
-        vim.cmd("Octo review start")
-    end
-    vim.cmd("BlamerHide")
-end, { desc = "Start/Resume pending review" })
-VKSN("<leader>ord", "<cmd>Octo review discard<cr><cmd>BlamerShow<cr>", { desc = "Discard review" })
-VKSN("<leader>orc", "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", { desc = "Close window review" })
+WHICH_KEY({
+    ["]f"] = {
+        function()
+            octo_maps.select_next_entry()
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+        end, "Move to next file" },
+    ["[f"] = {
+        function()
+            octo_maps.select_prev_entry()
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+        end, "Move to previous file" },
+    ["]F"] = {
+        function()
+            octo_maps.select_last_entry()
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+        end, "Move to first file" },
+    ["[F"] = {
+        function()
+            octo_maps.select_first_entry()
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-w>w", true, true, true), 'n')
+        end, "Move to last file" },
+})
+
+WHICH_KEY(
+    {
+        o = {
+            name = "Octo",
+            a = { "<cmd>Octo actions<cr>", "Show octo actions" },
+            p = {
+                name = "PR",
+                l = { "<cmd>Octo pr list<cr>", "List PRs" },
+                s = { "<cmd>Octo pr search<cr>", "Search PRs" },
+                e = { "<cmd>Octo pr edit", "Open PR by number" },
+                u = { "<cmd>Octo pr ", "Open PR by URL" },
+                C = { "<cmd>Octo pr create<cr>", "Create PR" },
+            },
+            t = {
+                name = "Thread",
+                r = { "<cmd>Octo thread resolve<cr>", "Thread resolve" },
+                u = { "<cmd>Octo thread unresolve<cr>", "Thread unresolve" },
+            },
+            r = {
+                name = "Review",
+                s = { "<cmd>Octo review submit<cr><cmd>BlamerShow<cr>", "Submit a review" },
+                d = { "<cmd>Octo review discard<cr><cmd>BlamerShow<cr>", "Discard review" },
+                c = { "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", "Close window review" },
+                r = {
+                    function()
+                        if not pcall(vim.cmd("Octo review resume")) then
+                            vim.cmd("Octo review start")
+                        end
+                        vim.cmd("BlamerHide")
+                    end, "Start/Resume pending review" },
+            },
+        }
+    },
+    { prefix = "<leader>" }
+)
 
 -- Comments
-local function custom_comment(remap, keys, description)
-    VKSN(remap, function()
+local function custom_comment(map, keys, description)
+    VKSN(map, function()
         octo_maps.add_review_comment()
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), 'n')
     end, { desc = description })
 end
-local function custom_suggestion(remap, keys, description)
-    VKSN(remap, function()
+
+local function custom_suggestion(map, keys, description)
+    VKSN(map, function()
         octo_maps.add_review_suggestion()
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<ESC>kkko" .. keys, true, true, true), 'n')
     end, { desc = description })
 end
 
-custom_suggestion("<leader>ocs", "", "Add suggestion")
-
----- Question
+-- Question
 custom_comment("<leader>ocq", "question:", "Add question comment")
 custom_suggestion("<leader>ocQ", "question:", "Add question suggestion")
----- ToDo
+-- ToDo
 custom_comment("<leader>oct", "toDo:", "Add toDo comment")
 custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
----- Suggestion
+-- Suggestion
+custom_suggestion("<leader>ocs", "", "Add suggestion")
 custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
 custom_suggestion("<leader>ocG", "suggestion:", "Add 'suggestion' suggestion")
----- Prase
+-- Prase
 custom_comment("<leader>ocp", "praise:", "Add suggestion comment")
----- Thought
+-- Thought
 custom_comment("<leader>och", "thought:", "Add thought comment")
 custom_suggestion("<leader>ocH", "thought:", "Add thought suggestion")
----- Note
+-- Note
 custom_comment("<leader>ocn", "note:", "Add note comment")
 custom_suggestion("<leader>ocN", "note:", "Add note suggestion")
 
 for _, mapping in pairs(flatted_mapping) do
-    WHICH_KEY_MAP({ [mapping.lhs] = { name = mapping.desc } })
+    WHICH_KEY({ [mapping.lhs] = { name = mapping.desc } })
 end
 
-WHICH_KEY_MAP({
-    ["<leader>o"] = { name = "+Octo" },
-    ["<leader>op"] = { name = "+PR" },
+-- Enforce which-key
+WHICH_KEY({
     ["<leader>opa"] = { name = "+assigne" },
     ["<leader>opi"] = { name = "+issue" },
     ["<leader>opr"] = { name = "+reaction" },
     ["<leader>opv"] = { name = "+viewer" },
-    ["<leader>op"] = { name = "+PR" },
     ["<leader>oc"] = { name = "+comment" },
-    ["<leader>or"] = { name = "+Review" },
-    ["<leader>ot"] = { name = "+Thread" },
     ["<leader>otc"] = { name = "+comment" },
     ["<leader>ots"] = { name = "+sugestion" },
     ["<leader>oi"] = { name = "+Issue" },
@@ -301,83 +318,3 @@ WHICH_KEY_MAP({
     ["<leader>oil"] = { name = "+label" },
     ["<leader>oir"] = { name = "+reaction" },
 })
-
-
-
--- Create picker for octo mappings
-local telescope_conf = require("telescope.config").values
-local actions = require("telescope.actions")
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local entry_display = require("telescope.pickers.entry_display")
-
-
-
-local make_display = function(entry)
-    -- print("called make_display", vim.inspect(entry))
-    if not entry then
-        return nil
-    end
-
-    local columns = {
-        { entry.object.topic, "TelescopeResultsNumber" },
-        { entry.object.func,  "TelescopeResultsFunction" },
-        { entry.object.desc,  "TelescopeResultsNumber" },
-        { entry.object.lhs,   "TelescopeResultsNumber" },
-        -- { entry.ordinal, "TelescopeResultsNumber" },
-    }
-
-    local displayer = entry_display.create({
-        separator = " | ",
-        items = {
-            { width = 20 },
-            { width = 25 },
-            { width = 50 },
-            { remaining = true },
-        },
-    })
-
-    return displayer(columns)
-end
-
-local entry_maker = function(entry)
-    -- print("called entry_maker", (entry))
-    return {
-        display = make_display,
-        value = entry.desc,
-        ordinal = entry.topic .. entry.func .. entry.desc, -- text use for filter
-        object = entry,
-    }
-end
-
-local close_picker = function(prompt_bufnr)
-    local selection = require("telescope.actions.state").get_selected_entry()
-    actions.close(prompt_bufnr)
-    local func_to_call = selection.object.func
-    local m = require("octo.mappings")
-    m[func_to_call]()
-end
-
-local function create_picker()
-    pickers
-        .new({}, {
-            prompt_title = "Octo operations",
-            finder = finders.new_table({
-                results = flatted_mapping, -- The result set, find by the finder
-                entry_maker = entry_maker, -- formating the result
-            }),
-            sorter = telescope_conf.generic_sorter(),
-            attach_mappings = function(prompt_bufnr, map)
-                -- <CR> will close the picker
-                map("i", "<CR>", close_picker)
-                map("n", "<CR>", close_picker)
-                return true
-            end,
-        })
-        :find()
-end
-
-VKSN("<leader>O", function()
-    vim.fn.bufnr()
-    create_picker()
-end, { desc = "Open Octo operations" })

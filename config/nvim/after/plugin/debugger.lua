@@ -141,6 +141,6 @@ VKSN("<leader>de", function() require("dapui").list_breakpoints() end, { desc = 
 VKSN("<leader>de", function() require("dapui").clear_breakpoints() end, { desc = "Clear breakpoints" })
 VKSN("<leader>dv", function() require('dap.ext.vscode').load_launchjs() end, { desc = "Load .vscode/.launch.json" })
 
-WHICH_KEY_MAP({
+WHICH_KEY({
     ["<leader>d"] = { name = "+debbug" }
 })

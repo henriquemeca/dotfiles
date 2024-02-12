@@ -29,4 +29,4 @@ VKSN("<leader>gf", ":AgitFile<CR>", { desc = "File Git History - Agit" })
 VKSN("<leader>gF", ":DiffviewFileHistory %<CR>", { desc = "File Git History - Diffview" })
 VKSN("<leader>gl", "<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
 
-WHICH_KEY_MAP({ ["<leader>g"] = { name = "+git" } })
+WHICH_KEY({ ["<leader>g"] = { name = "+git" } })

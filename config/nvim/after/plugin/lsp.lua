@@ -20,17 +20,26 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "luasnip",          option = { show_autosnippets = true } },
-        { name = "path" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "buffer" },
-        { name = "friendly-snippets" },
+        { name = "luasnip", option = { show_autosnippets = true } },
+        --{ name = "path" },
+        --{ name = "nvim_lsp" },
+        --{ name = "nvim_lua" },
+        --{ name = "buffer" },
+        --{ name = "friendly-snippets" },
     },
     mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
     }),
 })
+
+-- Copilot setup
+cmp.event:on("menu_opened", function()
+    vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+    vim.b.copilot_suggestion_hidden = false
+end)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
