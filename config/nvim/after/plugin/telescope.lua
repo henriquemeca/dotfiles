@@ -46,7 +46,7 @@ require("telescope").setup({
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
         mappings = {
-            n = { ["q"] = require("telescope.actions").close },
+             n = { ["q"] = require("telescope.actions").close },
         },
     },
 
@@ -73,4 +73,4 @@ WHICH_KEY({
     },
 }, { prefix = "<leader>" })
 WHICH_KEY({
-    ["<C-p>"] = { builtin.git_files, "Search files" } })
+   ["<C-p>"] = { builtin.git_files, "Search files" } })

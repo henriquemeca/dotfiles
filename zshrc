@@ -36,6 +36,9 @@ alias gcm="git commit -m"
 alias gco="git checkout"
 alias gst="git status"
 
+# Python
+alias poetry_activate="source $(poetry env info --path)/bin/activate"
+
 
 # Functions
 cdf() {

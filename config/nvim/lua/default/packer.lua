@@ -23,7 +23,7 @@ return require("packer").startup(function(use)
 
     -- Trees
     use("nvim-tree/nvim-tree.lua")
-    --use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("mbbill/undotree")
 
     -- Harppon
@@ -65,7 +65,6 @@ return require("packer").startup(function(use)
     use({
         "ray-x/lsp_signature.nvim",
     })
-    --
 
     -- Which key
     use({
@@ -73,11 +72,6 @@ return require("packer").startup(function(use)
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            })
         end,
     })
     -- Tmux navigator
@@ -97,7 +91,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Git kit
+    --Git kit
     use({
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
@@ -127,14 +121,14 @@ return require("packer").startup(function(use)
 
     -- DAP-debbuger
     use({
-        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui",
         requires = {
-            { "rcarriga/nvim-dap-ui" },
-            { "williamboman/mason.nvim" },
-            { "jbyuki/one-small-step-for-vimkind" },
-            { "jay-babu/mason-nvim-dap.nvim" },
-            { "leoluz/nvim-dap-go" },
-            { "theHamsta/nvim-dap-virtual-text" },
+            { "mfussenegger/nvim-dap" },
+            --{ "williamboman/mason.nvim" },
+            --{ "jbyuki/one-small-step-for-vimkind" },
+            --{ "jay-babu/mason-nvim-dap.nvim" },
+            --{ "leoluz/nvim-dap-go" },
+            --{ "theHamsta/nvim-dap-virtual-text" },
         },
     })
 
