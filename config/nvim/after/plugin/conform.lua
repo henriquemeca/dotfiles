@@ -1,4 +1,5 @@
-require("conform").setup({
+local conform = require("conform")
+conform.setup({
     -- Map of filetype to formatters
     formatters_by_ft = {
         lua = { "stylua" },
@@ -24,6 +25,7 @@ require("conform").setup({
 })
 
 VKSN("<leader>s", function()
-    vim.lsp.buf.format({ async = true })
+    --vim.lsp.buf.format({ async = true })
+    conform.format()
     vim.cmd("w")
 end, { desc = "saves current file" })

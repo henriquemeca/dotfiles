@@ -1,16 +1,47 @@
 local dap = require("dap")
 
+function os.capture(cmd, raw)
+    local handle = assert(io.popen(cmd, 'r'))
+    local output = assert(handle:read('*a'))
+
+    handle:close()
+
+    if raw then
+        return output
+    end
+
+    output = string.gsub(
+        string.gsub(
+            string.gsub(output, '^%s+', ''),
+            '%s+$',
+            ''
+        ),
+        '[\n\r]+',
+        ' '
+    )
+
+    return output
+end
+
 -- Python config
-local python_path = function()
+local get_python_path = function()
     local cwd = vim.fn.getcwd()
-    if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+
+    local poetry_path = os.capture('poetry env info --path', false)
+    poetry_path = poetry_path .. '/bin/python3'
+
+    if vim.fn.executable(cwd .. '/venv/bin/python3') == 1 then
         return cwd .. '/venv/bin/python3'
-    elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+    elseif vim.fn.executable(cwd .. '/.venv/bin/python3') == 1 then
         return cwd .. '/.venv/bin/python3'
+    elseif vim.fn.executable(poetry_path) == 1 then
+        return poetry_path
     else
         return '/opt/homebrew/bin/python3'
     end
 end
+
+local python_path = get_python_path()
 
 dap.adapters.python = function(cb, config)
     if config.request == 'attach' then
@@ -29,7 +60,7 @@ dap.adapters.python = function(cb, config)
     else
         cb({
             type = 'executable',
-            command = python_path(),
+            command = python_path,
             args = { '-m', 'debugpy.adapter' },
             options = {
                 source_filetype = 'python',
@@ -45,7 +76,7 @@ dap.configurations.python = {
         request = 'launch',
         name = "Launch file",
         program = "${file}",
-        pythonPath = python_path(),
+        pythonPath = python_path,
         args = { '-degug', 'true' },
     },
 }
@@ -56,6 +87,27 @@ dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({})
 end
+
+require("mason").setup()
+require("mason-nvim-dap").setup({
+    ensure_installed = { "python" },
+    handlers = {
+        function(config)
+            require('mason-nvim-dap').default_setup(config)
+        end,
+        python = function(config)
+            --config.adapters = {
+            --type = "executable",
+            --command = python_path,
+            --args = {
+            --"-m",
+            --"debugpy.adapter",
+            --},
+            --}
+            require('mason-nvim-dap').default_setup(config) -- don't forget this!
+        end,
+    }
+})
 
 WHICH_KEY({
     d = {

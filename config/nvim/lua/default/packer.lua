@@ -124,10 +124,9 @@ return require("packer").startup(function(use)
         "rcarriga/nvim-dap-ui",
         requires = {
             { "mfussenegger/nvim-dap" },
-            --{ "williamboman/mason.nvim" },
+            { "williamboman/mason.nvim" },
             --{ "jbyuki/one-small-step-for-vimkind" },
-            --{ "jay-babu/mason-nvim-dap.nvim" },
-            --{ "leoluz/nvim-dap-go" },
+            { "jay-babu/mason-nvim-dap.nvim" },
             --{ "theHamsta/nvim-dap-virtual-text" },
         },
     })
