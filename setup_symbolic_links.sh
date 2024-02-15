@@ -24,7 +24,7 @@ done
 
 
 ### Add .files
-files=("vimrc" "tmux" "tmux.conf" "powerlevel10k" "zshrc" "p10k.zsh")
+files=("vimrc" "tmux" "tmux.conf" "powerlevel10k" "zshrc" "p10k.zsh" "config/gh-dash/config.yml")
 
 for file in "${files[@]}"; do
 	source="$(pwd)/$file"
