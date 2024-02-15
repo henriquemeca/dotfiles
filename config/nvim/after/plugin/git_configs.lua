@@ -1,30 +1,43 @@
 -- Git commands
-VKSN("<leader>gs", vim.cmd.Git, { desc = "git status" })
-VKSN("<leader>gaa", ":Git add .<CR>", { desc = "git add ." })
-VKSN("<leader>gaf", ":Git add ", { desc = "git add - specific files" })
-VKSN("<leader>gcc", ":Git commit -m ''<Left>", { desc = "git commit - short message" })
-VKSN("<leader>gcm", ":Git commit ", { desc = "git commit - page message" })
-VKSN("<leader>gca", ":Git commit --amend --no-edit<CR>", { desc = "git commit ammend" })
-VKSN("<leader>gco", ":Git checkout ", { desc = "git checkout" })
-VKSN("<leader>gcO", ":Git checkout origin/", { desc = "git checkout origin " })
 VKSN("<leader>gcf", function()
-    vim.cmd("Git stash")
-    vim.cmd("Git fecth")
-    vim.cmd("Git checkout main")
-    vim.cmd("Git reset --hard origin/main")
+	vim.cmd("Git stash")
+	vim.cmd("Git fecth")
+	vim.cmd("Git checkout main")
+	vim.cmd("Git reset --hard origin/main")
 end, { desc = "Force sync with main" })
-VKSN("<leader>gcl", ":Git clean -f ", { desc = "git clean" })
-VKSN("<leader>gps", ":Git push<CR>", { desc = "git push" })
-VKSN("<leader>gpl", ":Git pull<CR>", { desc = "git pull" })
 
--- Git tools
-VKSN("<leader>go", ":GBrowse<CR>", { desc = "Open on Browser" })
-VKSN("<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
-VKSN("<leader>gd", ":DiffviewOpen<CR>", { desc = "Open Diffview Tool" })
-VKSN("<leader>gD", ":DiffviewOpen origin/", { desc = "Open Diffview Tool on commit" })
-VKSN("<leader>gm", ":Git mergetool<CR>", { desc = "Git Merge Tool" })
-VKSN("<leader>gh", ":DiffviewFileHistory<CR>", { desc = "Git History - Diffview" })
-VKSN("<leader>gf", ":DiffviewFileHistory %<CR>", { desc = "File Git History - Diffview" })
-VKSN("<leader>gl", "<cmd>LazyGit<cr>", { desc = "Open Lazygit" })
+WHICH_KEY({
+	g = {
+		name = "git",
+		s = { vim.cmd.Git, "git status" },
+		a = {
+			name = "add",
+			a = { ":Git add .<CR>", "git add ." },
+			f = { ":Git add ", "git add - specific files" },
+		},
+		cc = { ":Git commit -m ''<Left>", "git commit - short message" },
+		c = {
+			name = "commit/checkout",
+			m = { ":Git commit ", "git commit - page message" },
+			a = { ":Git commit --amend --no-edit<CR>", "git commit ammend" },
+			o = { ":Git checkout ", "git checkout" },
+			O = { ":Git checkout origin/", "git checkout origin " },
+		},
+		p = {
+			name = "push/pull",
+			s = { ":Git push<CR>", "git push" },
+			l = { ":Git pull<CR>", "git pull" },
+		},
+		x = { ":Git clean -f ", "git clean" },
 
-WHICH_KEY({ ["<leader>g"] = { name = "+git" } })
+		-- Git tools
+		o = { ":GBrowse<CR>", "Open on Browser" },
+		b = { ":Git blame<CR>", "Git blame" },
+		d = { ":DiffviewOpen<CR>", "Open Diffview Tool" },
+		D = { ":DiffviewOpen origin/", "Open Diffview Tool on commit" },
+		m = { ":Git mergetool<CR>", "Git Merge Tool" },
+		h = { ":DiffviewFileHistory<CR>", "Git History - Diffview" },
+		f = { ":DiffviewFileHistory %<CR>", "File Git History - Diffview" },
+		l = { "<cmd>LazyGit<cr>", "Open Lazygit" },
+	},
+}, { prefix = "<leader>" })
