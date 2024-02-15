@@ -164,4 +164,16 @@ return require("packer").startup(function(use)
             "nvim-telescope/telescope.nvim"
         }
     })
+    -- Movements upgrade
+    use "ggandor/leap.nvim"
+    -- Help with vim best practices
+    use { "m4xshen/hardtime.nvim",
+        requires = {
+            { "MunifTanjim/nui.nvim" },
+            { "nvim-lua/plenary.nvim" } },
+        confg = function()
+            require("hardtime").setup()
+            vim.cmd("Hardtime enable")
+        end
+    }
 end)
