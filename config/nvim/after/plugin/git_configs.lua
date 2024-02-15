@@ -1,10 +1,4 @@
 -- Git commands
-VKSN("<leader>gcf", function()
-	vim.cmd("Git stash")
-	vim.cmd("Git fecth")
-	vim.cmd("Git checkout main")
-	vim.cmd("Git reset --hard origin/main")
-end, { desc = "Force sync with main" })
 
 WHICH_KEY({
 	g = {
@@ -15,13 +9,22 @@ WHICH_KEY({
 			a = { ":Git add .<CR>", "git add ." },
 			f = { ":Git add ", "git add - specific files" },
 		},
-		cc = { ":Git commit -m ''<Left>", "git commit - short message" },
 		c = {
 			name = "commit/checkout",
 			m = { ":Git commit ", "git commit - page message" },
+			c = { ":Git commit -m ''<Left>", "git commit - short message" },
 			a = { ":Git commit --amend --no-edit<CR>", "git commit ammend" },
 			o = { ":Git checkout ", "git checkout" },
 			O = { ":Git checkout origin/", "git checkout origin " },
+			f = {
+				function()
+					vim.cmd("Git stash")
+					vim.cmd("Git fetch")
+					vim.cmd("Git checkout main")
+					vim.cmd("Git reset --hard origin/main")
+				end,
+				"Force sync with main",
+			},
 		},
 		p = {
 			name = "push/pull",

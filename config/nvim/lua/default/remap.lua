@@ -7,6 +7,8 @@ VKSN("<leader>Qf", "<cmd>qa!<cr>", { desc = "Quit all (Force)" })
 VKSN("gt", "<c-t>", { desc = "Go back on tagstask" })
 
 -- Navigation
+VKSN("<C-[>", "10k", { desc = "Half Page up" })
+VKSN("<C-]>", "10j", { desc = "Halg Page down" })
 VKSN("<C-d>", "<C-d>zz", { desc = "Page down" })
 VKSN("<C-u>", "<C-u>zz", { desc = "Page up" })
 VKSN("<leader>a", "ggVG", { desc = "Page up" })
@@ -22,19 +24,20 @@ VKSN("x", '"_x', { desc = "delete single character without copying into register
 --vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set({ "v", "n" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
 VKSN("<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
+VKSN("./", "<Esc>", { desc = "Press <Esc>" })
 VKSN("<leader>W", "qa", { desc = "Record macro on 'a'" })
 VKSN("<leader><leader>", function()
-    vim.cmd("w")
-    vim.cmd("so")
+	vim.cmd("w")
+	vim.cmd("so")
 end, { desc = "save file and sources to vim" })
 
 -- Quick changes
 VKSN('c"', 'ci"', { desc = 'Change between "' })
 VKSN("c'", "ci'", { desc = "Change between '" })
-VKSN('c{', 'ci{', { desc = 'Change between {}' })
-VKSN('c(', 'ci(', { desc = 'Change between ()' })
-VKSN('c[', 'ci[', { desc = 'Change between []' })
-VKSN('c<', 'ci<', { desc = 'Change between <>' })
+VKSN("c{", "ci{", { desc = "Change between {}" })
+VKSN("c(", "ci(", { desc = "Change between ()" })
+VKSN("c[", "ci[", { desc = "Change between []" })
+VKSN("c<", "ci<", { desc = "Change between <>" })
 
 -- window management
 VKSN("<leader>wv", "<C-w>v", { desc = "split window vertically" })

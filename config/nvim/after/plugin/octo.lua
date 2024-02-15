@@ -270,6 +270,7 @@ WHICH_KEY({
 						vim.cmd("Octo review start")
 					end
 					vim.cmd("BlamerHide")
+					FEEDKEYS("<C-w>w")
 				end,
 				"Start/Resume pending review",
 			},
@@ -307,11 +308,11 @@ custom_suggestion("<leader>ocQ", "question:", "Add question suggestion")
 custom_comment("<leader>oct", "toDo:", "Add toDo comment")
 custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
 -- Suggestion
-custom_suggestion("<leader>ocs", "", "Add suggestion")
+custom_suggestion("<leader>ocs", "", "Add suggestion (only)")
 custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
 custom_suggestion("<leader>ocG", "suggestion:", "Add 'suggestion' suggestion")
 -- Prase
-custom_comment("<leader>ocp", "praise:", "Add suggestion comment")
+custom_comment("<leader>ocp", "praise:", "Add praise comment")
 -- Thought
 custom_comment("<leader>och", "thought:", "Add thought comment")
 custom_suggestion("<leader>ocH", "thought:", "Add thought suggestion")
