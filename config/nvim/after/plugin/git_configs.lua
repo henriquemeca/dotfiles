@@ -21,7 +21,9 @@ WHICH_KEY({
 					vim.cmd("Git stash")
 					vim.cmd("Git fetch")
 					vim.cmd("Git checkout main")
+					FEEDKEYS("<CR>")
 					vim.cmd("Git reset --hard origin/main")
+					FEEDKEYS("<CR>")
 				end,
 				"Force sync with main",
 			},
