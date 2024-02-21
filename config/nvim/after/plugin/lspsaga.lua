@@ -202,6 +202,7 @@ WHICH_KEY({
 		D = {
 			function()
 				vim.cmd("vsplit")
+				vim.cmd("Lspsaga goto_definition")
 			end,
 			"Go to type definition",
 		},
@@ -237,7 +238,7 @@ WHICH_KEY({
 		},
 		n = {
 			function()
-				vim.diagnostic.disable()
+				vim.diagnostic.enable()
 			end,
 			"Enable diagnostic",
 		},

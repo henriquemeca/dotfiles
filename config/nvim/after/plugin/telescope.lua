@@ -66,7 +66,7 @@ WHICH_KEY({
 		x = {
 			function()
 				require("telescope").extensions.live_grep_args.live_grep_args()
-				FEEDKEYS('"" -t<Esc>_3li')
+				FEEDKEYS('"" -t sql <Esc>_3li')
 			end,
 			"find string with args",
 		},
@@ -74,7 +74,7 @@ WHICH_KEY({
 			function()
 				vim.cmd("vs")
 				require("telescope").extensions.live_grep_args.live_grep_args()
-				FEEDKEYS('"" -t<Esc>_3li')
+				FEEDKEYS('"" -t <Esc>_3li')
 			end,
 			"find string with args - new buffer",
 		},
@@ -85,6 +85,21 @@ WHICH_KEY({
 		T = { "<cmd> Telescope<cr>", "Open Telescope" },
 		y = { "<cmd> Telescope neoclip<cr>", "yanks" },
 		m = { "<cmd> Telescope macroscope<cr>", "macros" },
+		o = {
+			function()
+				vim.cmd("tabnew")
+				vim.cmd("Telescope find_files")
+			end,
+			"macros",
+		},
+		O = {
+			function()
+				vim.cmd("tabnew")
+				require("telescope").extensions.live_grep_args.live_grep_args()
+				FEEDKEYS('"" -t sql <Esc>_3li')
+			end,
+			"macros",
+		},
 	},
 }, { prefix = "<leader>" })
 WHICH_KEY({

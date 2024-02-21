@@ -12,6 +12,7 @@ VKSN("<C-]>", "10j", { desc = "Halg Page down" })
 VKSN("<C-d>", "<C-d>zz", { desc = "Page down" })
 VKSN("<C-u>", "<C-u>zz", { desc = "Page up" })
 VKSN("<leader>a", "ggVG", { desc = "Page up" })
+VKSN("<leader>A", "ggVG<leader>y", { desc = "Page up" })
 
 VKSV("J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines up (on Visual Mode)" })
 VKSV("K", ":m '<-2<CR>gv=gv", { desc = "Move seleted lines down (on Visual Mode)" })

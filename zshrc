@@ -25,7 +25,8 @@ alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
 alias gd='gh dash'
-#
+#alias export_env="export $(grep -v '^#' .env | xargs -0)"
+
 ## tmux
 alias ta="tmux a"
 alias tn="tmux new -s"
@@ -36,16 +37,38 @@ alias gcm="git commit -m"
 alias gco="git checkout"
 alias gst="git status"
 
-# Python
+##########
+# Python #
+##########
 alias poetry_activate="source $(poetry env info --path)/bin/activate"
 
+#setup pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
-# Functions
+
+###########
+#Functions#
+###########
+
+# cd folders with fzf 
 cdf() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf -e +m) && \
   cd "$dir"
+}
+
+# Export env variables from .env file
+export_env(){
+    unamestr=$(uname)
+    if [ "$unamestr" = 'Linux' ]; then
+      export $(grep -v '^#' .env | xargs -d '\n')
+    elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+      export $(grep -v '^#' .env | xargs -0)
+
+    fi
 }
 
 ## remove folders containing only __pycache__ files

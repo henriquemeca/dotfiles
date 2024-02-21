@@ -28,7 +28,7 @@ local remappings = {
 	pull_request = {
 		checkout_pr = { lhs = "<leader>opc", desc = "checkout PR" },
 		merge_pr = { lhs = "<leader>opm", desc = "merge commit PR" },
-		squash_and_merge_pr = { lhs = "<leader>opsm", desc = "squash and merge PR" },
+		squash_and_merge_pr = { lhs = "<leader>opM", desc = "squash and merge PR" },
 		list_commits = { lhs = "<leader>opc", desc = "list PR commits" },
 		list_changed_files = { lhs = "<leader>opf", desc = "list PR changed files" },
 		show_pr_diff = { lhs = "<leader>opd", desc = "show PR diff" },
@@ -308,7 +308,7 @@ custom_suggestion("<leader>ocQ", "question:", "Add question suggestion")
 custom_comment("<leader>oct", "toDo:", "Add toDo comment")
 custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
 -- Suggestion
-custom_suggestion("<leader>ocs", "", "Add suggestion (only)")
+custom_suggestion("<leader>ocs", octo_maps.add_review_suggestion, "Add suggestion (only)")
 custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
 custom_suggestion("<leader>ocG", "suggestion:", "Add 'suggestion' suggestion")
 -- Prase

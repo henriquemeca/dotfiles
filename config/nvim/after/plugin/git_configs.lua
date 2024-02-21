@@ -15,15 +15,14 @@ WHICH_KEY({
 			c = { ":Git commit -m ''<Left>", "git commit - short message" },
 			a = { ":Git commit --amend --no-edit<CR>", "git commit ammend" },
 			o = { ":Git checkout ", "git checkout" },
-			O = { ":Git checkout origin/", "git checkout origin " },
+			O = { ":Git checkout origin/main", "git checkout origin " },
+			b = { ":Git checkout -b ", "git checkout origin " },
 			f = {
 				function()
 					vim.cmd("Git stash")
 					vim.cmd("Git fetch")
 					vim.cmd("Git checkout main")
-					FEEDKEYS("<CR>")
 					vim.cmd("Git reset --hard origin/main")
-					FEEDKEYS("<CR>")
 				end,
 				"Force sync with main",
 			},
