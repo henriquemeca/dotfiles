@@ -3,20 +3,20 @@
 WHICH_KEY({
 	g = {
 		name = "git",
-		s = { vim.cmd.Git, "git status" },
+		s = { vim.cmd.Git, "status" },
 		a = {
 			name = "add",
-			a = { ":Git add .<CR>", "git add ." },
-			f = { ":Git add ", "git add - specific files" },
+			a = { ":Git add .<CR>", "add ." },
+			f = { ":Git add ", "add - specific files" },
 		},
 		c = {
 			name = "commit/checkout",
-			m = { ":Git commit ", "git commit - page message" },
-			c = { ":Git commit -m ''<Left>", "git commit - short message" },
-			a = { ":Git commit --amend --no-edit<CR>", "git commit ammend" },
-			o = { ":Git checkout ", "git checkout" },
-			O = { ":Git checkout origin/main", "git checkout origin " },
-			b = { ":Git checkout -b ", "git checkout origin " },
+			m = { ":Git commit ", "commit - page message" },
+			c = { ":Git commit -m ''<Left>", "commit - short message" },
+			a = { ":Git commit --amend --no-edit<CR>", "commit ammend" },
+			o = { ":Git checkout ", "checkout" },
+			O = { ":Git checkout origin/main", "checkout origin " },
+			b = { ":Git checkout -b ", "checkout origin " },
 			f = {
 				function()
 					vim.cmd("Git stash")
@@ -29,10 +29,12 @@ WHICH_KEY({
 		},
 		p = {
 			name = "push/pull",
-			s = { ":Git push<CR>", "git push" },
-			l = { ":Git pull<CR>", "git pull" },
+			s = { ":Git push<CR>", "push" },
+			l = { ":Git pull<CR>", "pull" },
 		},
-		x = { ":Git clean -f ", "git clean" },
+		x = { ":Git clean -f ", "clean" },
+		t = { ":Git stash<CR>", "Stash" },
+		T = { ":Git stash pop <CR>", "Stash Pop" },
 
 		-- Git tools
 		o = { ":GBrowse<CR>", "Open on Browser" },

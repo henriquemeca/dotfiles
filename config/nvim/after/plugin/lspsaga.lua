@@ -171,13 +171,13 @@ require("lspsaga").setup({
 --diagnostic
 VKSN("[d", function()
 	vim.cmd("Lspsaga diagnostic_jump_next")
-end, { desc = "Diagnostic jump next" })
+end, "Diagnostic jump next")
 VKSN("]d", function()
 	vim.cmd("Lspsaga diagnostic_jump_prev")
-end, { desc = "Diagnostic jump previous" })
+end, "Diagnostic jump previous")
 VKSN("K", function()
 	vim.cmd("Lspsaga hover_doc")
-end, { desc = "Hover doc" })
+end, "Hover doc")
 WHICH_KEY({
 	l = {
 		name = "+Lsp Navigator",

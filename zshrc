@@ -24,7 +24,6 @@ alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
-alias gd='gh dash'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
@@ -36,16 +35,14 @@ alias ga="git add"
 alias gcm="git commit -m"
 alias gco="git checkout"
 alias gst="git status"
+alias gd='gh dash'
+alias gf='gh fzrepo'
+
 
 ##########
 # Python #
 ##########
 alias poetry_activate="source $(poetry env info --path)/bin/activate"
-
-#setup pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
 
 
 ###########
@@ -70,6 +67,27 @@ export_env(){
 
     fi
 }
+#setup pyenv
+pyenv_seup() {
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+}
+
+#Query json from GCS and prints it with `JQ`
+failed_indicators() {
+    gsutil cp $1/failed_indicators.json - | jq
+}
+failed_indicators_today() {
+    local current_date=$(date +'%Y-%m-%d')
+    local indicator_types=("analytics" "contractual" "regulatory" "securitization")
+    
+    for type in "${indicator_types[@]}"; do
+        echo $type
+        gsutil cp "gs://kanastra-production-datalake-cleaned/koruja/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
+    done
+}
+
 
 ## remove folders containing only __pycache__ files
 function rm-pycache() {
@@ -83,7 +101,7 @@ function rm-pycache() {
 }
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '~/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

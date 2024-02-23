@@ -36,18 +36,9 @@ repoPaths:
   Kanastra-Tech/cloud-composer-repo: ~/github/cloud-composer-repo
 keybindings:
   prs:
-    - key: c
+    - key: l
       command: >
         tmux new-window -c {{.RepoPath}} '
           gh pr checkout {{.PrNumber}} &&
           nvim -c ":Octo pr edit {{.PrNumber}}"
         '
-      #command: >
-      #cd {{.RepoPath}} &&
-      #code . &&
-      #gh pr checkout {{.PrNumber}}
-    #- key: v
-
-#theme: # optional, see more info below
-#pager:
-#diff: less # or delta for example

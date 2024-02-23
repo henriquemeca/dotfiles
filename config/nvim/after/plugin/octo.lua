@@ -291,14 +291,14 @@ local function custom_comment(map, keys, description)
 	VKSN(map, function()
 		octo_maps.add_review_comment()
 		vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), "n")
-	end, { desc = description })
+	end, description)
 end
 
 local function custom_suggestion(map, keys, description)
 	VKSN(map, function()
 		octo_maps.add_review_suggestion()
 		vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<ESC>kkko" .. keys, true, true, true), "n")
-	end, { desc = description })
+	end, description)
 end
 
 -- Question
@@ -308,7 +308,9 @@ custom_suggestion("<leader>ocQ", "question:", "Add question suggestion")
 custom_comment("<leader>oct", "toDo:", "Add toDo comment")
 custom_suggestion("<leader>ocT", "toDo:", "Add toDo suggestion")
 -- Suggestion
-custom_suggestion("<leader>ocs", octo_maps.add_review_suggestion, "Add suggestion (only)")
+VKSN("<leader>ocs", function()
+	octo_maps.add_review_suggestion()
+end, "Add suggestion (only)")
 custom_comment("<leader>ocg", "suggestion:", "Add suggestion comment")
 custom_suggestion("<leader>ocG", "suggestion:", "Add 'suggestion' suggestion")
 -- Prase
