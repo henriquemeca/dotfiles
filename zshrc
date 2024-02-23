@@ -81,7 +81,7 @@ failed_indicators_on_date() {
         echo $type
         gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
     done
-}
+
 ####################
 # Python functions #
 ####################
