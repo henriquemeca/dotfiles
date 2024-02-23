@@ -39,10 +39,6 @@ alias gd='gh dash'
 alias gf='gh fzrepo'
 
 
-##########
-# Python #
-##########
-alias poetry_activate="source $(poetry env info --path)/bin/activate"
 
 
 ###########
@@ -67,26 +63,38 @@ export_env(){
 
     fi
 }
+
+#Query json from GCS and prints it with `JQ`
+failed_indicators() {
+    gsutil cp $1/failed_indicators.json - | jq
+}
+failed_indicators_on_date() {
+    if [ -z "$1" ]; then
+        local current_date=$(date +'%Y-%m-%d')
+    else
+        local current_date=$1
+    fi
+    
+    local indicator_types=("analytics" "contractual" "regulatory" "securitization")
+    
+    for type in "${indicator_types[@]}"; do
+        echo $type
+        gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
+    done
+}
+####################
+# Python functions #
+####################
 #setup pyenv
 pyenv_seup() {
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 }
+poetry_activate () {
+    source $(poetry env info --path)/bin/activate
+}
 
-#Query json from GCS and prints it with `JQ`
-failed_indicators() {
-    gsutil cp $1/failed_indicators.json - | jq
-}
-failed_indicators_today() {
-    local current_date=$(date +'%Y-%m-%d')
-    local indicator_types=("analytics" "contractual" "regulatory" "securitization")
-    
-    for type in "${indicator_types[@]}"; do
-        echo $type
-        gsutil cp "gs://kanastra-production-datalake-cleaned/koruja/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
-    done
-}
 
 
 ## remove folders containing only __pycache__ files
