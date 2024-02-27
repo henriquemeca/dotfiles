@@ -31,4 +31,4 @@ require("vscode").setup({
 	},
 })
 require("vscode").load()
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme codedark")

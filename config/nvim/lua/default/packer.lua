@@ -40,24 +40,14 @@ return require("packer").startup(function(use)
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 
-			----Formatters and linters
-			--{ "jose-elias-alvarez/null-ls.nvim" },
-			--{ "mhartington/formatter.nvim" },
-			--{ "mfussenegger/nvim-lint" },
-
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			--{ "hrsh7th/cmp-nvim-lsp" },
-			--{ "hrsh7th/cmp-buffer" },
-			--{ "hrsh7th/cmp-path" },
-			--{ "hrsh7th/cmp-cmdline" },
-			--{ "hrsh7th/nvim-cmp" },
 
 			-- Lua snipets
 			{ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } },
 			{ "cohama/lexima.vim" },
-			--{ "saadparwaiz1/cmp_luasnip" },
+			{ "saadparwaiz1/cmp_luasnip" },
 		},
 	})
 	use({

@@ -74,7 +74,7 @@ WHICH_KEY({
 			function()
 				vim.cmd("vs")
 				require("telescope").extensions.live_grep_args.live_grep_args()
-				FEEDKEYS('"" -t <Esc>_3li')
+				FEEDKEYS('"" -t sql <Esc>_3li')
 			end,
 			"find string with args - new buffer",
 		},

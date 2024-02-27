@@ -81,6 +81,7 @@ failed_indicators_on_date() {
         echo $type
         gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
     done
+}
 
 ####################
 # Python functions #
@@ -108,7 +109,7 @@ function rm-pycache() {
     fi
 }
 
-# The next line updates PATH for the Google Cloud SDK.
+# The next line updates PATH for the Google Coud SDK.
 if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.

@@ -105,27 +105,6 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open({})
 end
 
-require("mason").setup()
-require("mason-nvim-dap").setup({
-	ensure_installed = { "python" },
-	handlers = {
-		function(config)
-			require("mason-nvim-dap").default_setup(config)
-		end,
-		python = function(config)
-			--config.adapters = {
-			--type = "executable",
-			--command = python_path,
-			--args = {
-			--"-m",
-			--"debugpy.adapter",
-			--},
-			--}
-			require("mason-nvim-dap").default_setup(config) -- don't forget this!
-		end,
-	},
-})
-
 WHICH_KEY({
 	d = {
 		name = "Debbug",
