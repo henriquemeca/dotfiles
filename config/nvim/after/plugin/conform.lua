@@ -9,9 +9,9 @@ conform.setup({
 		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },
-		yaml = { "prettier" },
+		--yaml = { "prettier" },
 		sql = { "sqlfluff" },
-		markdown = { "prettier" },
+		--markdown = { "prettier" },
 	},
 	--format_on_save = {
 	--lsp_fallback = false,

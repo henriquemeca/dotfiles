@@ -8,10 +8,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Source files
-source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
-source ~/.credentials.sh # Export credentials
 
 # Paths
 export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -24,6 +20,8 @@ alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lA --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
+alias get_news='curl getnews.tech'
+alias get_news_business='curl gr.getnews.tech/category=business'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
@@ -87,6 +85,13 @@ failed_indicators_on_date() {
 # Python functions #
 ####################
 #setup pyenv
+
+if [ -d .venv ]; then
+  source ".venv/bin/activate"
+  echo "Virtual environment activated"
+fi
+
+
 pyenv_seup() {
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -109,8 +114,15 @@ function rm-pycache() {
     fi
 }
 
-# The next line updates PATH for the Google Coud SDK.
-if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+################
+# Source files #
+#$##############
+source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
+source ~/.credentials.sh # Export credentials
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc'; fi

@@ -1,8 +1,8 @@
 prSections:
   - title: Review Pending - Composer
-    filters: is:open -reviewed-by:@me repo:Kanastra-Tech/cloud-composer-repo
+    filters: is:open -is:draft -reviewed-by:@me repo:Kanastra-Tech/cloud-composer-repo -author:@me
   - title: Involved - Composer
-    filters: is:open repo:Kanastra-Tech/cloud-composer-repo involves:@me
+    filters: is:open repo:Kanastra-Tech/cloud-composer-repo involves:@me -author:@me
   - title: MyPRs - Composer
     filters: is:open author:@me repo:Kanastra-Tech/cloud-composer-repo
     #layout:
@@ -38,7 +38,7 @@ keybindings:
   prs:
     - key: l
       command: >
-        tmux new-window -c {{.RepoPath}} '
+        tmux new-window -n {{.HeadRefName}} -c {{.RepoPath}} '
           gh pr checkout {{.PrNumber}} &&
           nvim -c ":Octo pr edit {{.PrNumber}}"
         '

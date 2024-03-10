@@ -254,7 +254,7 @@ WHICH_KEY({
 		},
 		t = {
 			name = "Thread",
-			r = { "<cmd>Octo thread resolve<cr>", "Thread resolve" },
+			R = { "<cmd>Octo thread resolve<cr>", "Thread resolve" },
 			u = { "<cmd>Octo thread unresolve<cr>", "Thread unresolve" },
 			c = { name = "+comment" },
 			s = { name = "+sugestion" },
@@ -266,8 +266,8 @@ WHICH_KEY({
 			c = { "<cmd>Octo review close<cr><cmd>BlamerShow<cr>", "Close window review" },
 			r = {
 				function()
-					if not pcall(vim.cmd("Octo review resume")) then
-						vim.cmd("Octo review start")
+					if pcall(vim.cmd, "Octo review start") then
+						vim.cmd("Octo review resume")
 					end
 					vim.cmd("BlamerHide")
 					FEEDKEYS("<C-w>w")
@@ -288,17 +288,17 @@ WHICH_KEY({
 
 -- Comments
 local function custom_comment(map, keys, description)
-	VKSN(map, function()
+	vim.keymap.set({ "v", "n" }, map, function()
 		octo_maps.add_review_comment()
-		vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), "n")
-	end, description)
+		FEEDKEYS(keys)
+	end, { desc = description })
 end
 
 local function custom_suggestion(map, keys, description)
-	VKSN(map, function()
+	vim.keymap.set({ "v", "n" }, map, function()
 		octo_maps.add_review_suggestion()
-		vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<ESC>kkko" .. keys, true, true, true), "n")
-	end, description)
+		FEEDKEYS("<ESC>kkko" .. keys)
+	end, { desc = description })
 end
 
 -- Question

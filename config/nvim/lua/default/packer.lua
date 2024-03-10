@@ -141,7 +141,7 @@ return require("packer").startup(function(use)
 	--use 'nvim-lua/plenary.nvim'
 	use("nvim-pack/nvim-spectre")
 
-	-- Copilot
+	--Copilot
 	use({ "zbirenbaum/copilot.lua" })
 	-- Status line
 	use({

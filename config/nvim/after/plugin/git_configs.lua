@@ -40,7 +40,7 @@ WHICH_KEY({
 		o = { ":GBrowse<CR>", "Open on Browser" },
 		b = { ":Git blame<CR>", "Git blame" },
 		d = { ":DiffviewOpen<CR>", "Open Diffview Tool" },
-		D = { ":DiffviewOpen origin/", "Open Diffview Tool on commit" },
+		D = { ":DiffviewOpen origin/main...HEAD<CR>", "Open Diffview Tool - origin/main<>HEAD" },
 		m = { ":Git mergetool<CR>", "Git Merge Tool" },
 		h = { ":DiffviewFileHistory<CR>", "Git History - Diffview" },
 		f = { ":DiffviewFileHistory %<CR>", "File Git History - Diffview" },
