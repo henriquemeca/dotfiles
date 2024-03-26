@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Cmp config
 local cmp = require("cmp")
-require("luasnip.loaders.from_vscode").load()
+--require("luasnip.loaders.from_vscode").load()
 local luasnip = require("luasnip")
 luasnip.config.setup({})
 
@@ -20,11 +20,11 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "luasnip", option = { show_autosnippets = true } },
-		--{ name = "path" },
-		--{ name = "nvim_lsp" },
-		--{ name = "nvim_lua" },
-		--{ name = "buffer" },
-		--{ name = "friendly-snippets" },
+		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "buffer" },
+		{ name = "friendly-snippets" },
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),

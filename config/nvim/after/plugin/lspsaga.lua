@@ -64,7 +64,7 @@ require("lspsaga").setup({
 	},
 	request_timeout = 2000,
 	finder = {
-		max_height = 0.5,
+		max_height = 0.8,
 		left_width = 0.4,
 		methods = {},
 		default = "ref+imp",

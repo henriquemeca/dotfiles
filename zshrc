@@ -43,6 +43,7 @@ alias gf='gh fzrepo'
 #Functions#
 ###########
 
+
 # cd folders with fzf 
 cdf() {
   local dir
@@ -80,7 +81,25 @@ failed_indicators_on_date() {
         gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
     done
 }
+####################
+#   GPT functions  #
+####################
 
+g() {
+  sgpt "$*"
+}
+
+gc() {
+  sgpt --chat tmp "$*"
+}
+
+go() {
+  sgpt --code "$*"
+}
+
+gco() {
+  sgpt --code --chat tmp "$*"
+}
 ####################
 # Python functions #
 ####################

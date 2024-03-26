@@ -2,7 +2,7 @@ prSections:
   - title: Review Pending - Composer
     filters: is:open -is:draft -reviewed-by:@me repo:Kanastra-Tech/cloud-composer-repo -author:@me
   - title: Involved - Composer
-    filters: is:open repo:Kanastra-Tech/cloud-composer-repo involves:@me -author:@me
+    filters: is:open repo:Kanastra-Tech/cloud-composer-repo involves:@me -author:@me -is:draft
   - title: MyPRs - Composer
     filters: is:open author:@me repo:Kanastra-Tech/cloud-composer-repo
     #layout:

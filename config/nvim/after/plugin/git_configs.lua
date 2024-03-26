@@ -41,7 +41,7 @@ WHICH_KEY({
 		b = { ":Git blame<CR>", "Git blame" },
 		d = { ":DiffviewOpen<CR>", "Open Diffview Tool" },
 		D = { ":DiffviewOpen origin/main...HEAD<CR>", "Open Diffview Tool - origin/main<>HEAD" },
-		m = { ":Git mergetool<CR>", "Git Merge Tool" },
+		m = { ":Git mergetool<CR>", "Git Merge Tool" }, -- todo implement gmm to merge on main and gmM to open merge tool
 		h = { ":DiffviewFileHistory<CR>", "Git History - Diffview" },
 		f = { ":DiffviewFileHistory %<CR>", "File Git History - Diffview" },
 		l = { "<cmd>LazyGit<cr>", "Open Lazygit" },

@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
 	use({ "tomasiser/vim-code-dark", as = "code-dark" })
 	use("Mofiqul/vscode.nvim")
 	use({ "catppuccin/vim", as = "catppuccin" })
+	use("rebelot/kanagawa.nvim")
 
 	-- Trees
 	use("nvim-tree/nvim-tree.lua")
@@ -43,6 +44,12 @@ return require("packer").startup(function(use)
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			--{ "deoplete-plugins/deoplete-jedi" },
+			--{ "Shougo/ddc.vim" },
+			--{ "vim-denops/denops.vim" },
+			{ "Shougo/deoplete.nvim" },
+			--{ "ncm2/ncm2" },
+			--{ "davidhalter/jedi-vim" },
 
 			-- Lua snipets
 			{ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } },
@@ -160,16 +167,6 @@ return require("packer").startup(function(use)
 	})
 	-- Movements upgrade
 	use("ggandor/leap.nvim")
-	-- Help with vim best practices
-	use({
-		"m4xshen/hardtime.nvim",
-		requires = {
-			{ "MunifTanjim/nui.nvim" },
-			{ "nvim-lua/plenary.nvim" },
-		},
-		confg = function()
-			require("hardtime").setup()
-			vim.cmd("Hardtime enable")
-		end,
-	})
+	-- Leet code
+	--use("kawre/leetcode.nvim")
 end)

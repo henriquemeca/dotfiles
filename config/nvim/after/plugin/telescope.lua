@@ -81,7 +81,7 @@ WHICH_KEY({
 		c = { "<cmd>Telescope grep_string<cr>", "find string under cursor in current working directory" },
 		b = { "<cmd>Telescope buffers<cr>", "buffers" },
 		h = { "<cmd>Telescope help_tags<cr>", "help tags" },
-		t = { "<cmd>Telescope tagstack<cr>", "Open Tagstack" },
+		t = { "<cmd>Telescope jumplist<cr>", "Open jumplist" },
 		T = { "<cmd> Telescope<cr>", "Open Telescope" },
 		y = { "<cmd> Telescope neoclip<cr>", "yanks" },
 		m = { "<cmd> Telescope macroscope<cr>", "macros" },
