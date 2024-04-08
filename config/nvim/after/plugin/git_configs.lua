@@ -26,6 +26,13 @@ WHICH_KEY({
 				end,
 				"Force sync with main",
 			},
+			s = {
+				function()
+					vim.cmd("Git fetch")
+					vim.cmd("Git merge origin/main -m 'merged with main' --no-ff")
+				end,
+				"Sync branch with main",
+			},
 		},
 		p = {
 			name = "push/pull",

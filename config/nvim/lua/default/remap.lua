@@ -76,3 +76,9 @@ VKSN("<leader><tab>x", "<cmd>tabclose<cr>", "close current tab")
 VKSN("<leader><tab>n", "<cmd>tabn<cr>", "go to next tab")
 VKSN("<leader><tab><tab>", "<cmd>tabn<cr>", "go to next tab")
 VKSN("<leader><tab>p", "<cmd>tabp<cr>", "go to previous tab")
+
+-- Disable movement with shift
+vim.api.nvim_set_keymap("n", "<S-Right>", "<Right>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<S-Left>", "<Left>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<S-Up>", "<Up>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<S-Down>", "<Down>", { noremap = true })

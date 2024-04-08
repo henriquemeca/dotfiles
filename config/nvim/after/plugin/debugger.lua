@@ -38,21 +38,11 @@ end
 
 -- Python config
 local get_python_path = function()
-	local cwd = vim.fn.getcwd()
+	--local cwd = vim.fn.getcwd()
 
-	if vim.fn.executable(cwd .. "/venv/bin/python3") == 1 then
-		return cwd .. "/venv/bin/python3"
-	elseif vim.fn.executable(cwd .. "/.venv/bin/python3") == 1 then
-		return cwd .. "/.venv/bin/python3"
-	elseif existsInCWD("poetry.lock") then
-		local poetry_path = os.capture("poetry env info --path", false)
-		poetry_path = poetry_path .. "/bin/python3"
-		if vim.fn.executable(poetry_path) == 1 then
-			return poetry_path
-		else
-			print("Poetry path not found: " .. poetry_path)
-			return "/opt/homebrew/bin/python3"
-		end
+	local which_python = os.capture("which python3", false)
+	if vim.fn.executable(which_python) == 1 then
+		return which_python
 	else
 		return "/opt/homebrew/bin/python3"
 	end

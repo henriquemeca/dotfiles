@@ -29,14 +29,12 @@ alias ta="tmux a"
 alias tn="tmux new -s"
 
 ## Git
-alias ga="git add"
-alias gcm="git commit -m"
-alias gco="git checkout"
-alias gst="git status"
+#alias ga="git add"
+#alias gcm="git commit -m"
+#alias gco="git checkout"
+#alias gst="git status"
 alias gd='gh dash'
-alias gf='gh fzrepo'
-
-
+#alias gf='gh fzrepo'
 
 
 ###########
@@ -107,6 +105,7 @@ gco() {
 
 if [ -d .venv ]; then
   source ".venv/bin/activate"
+  export PYTHONPATH="$(pwd):$PYTHONPATH"
   echo "Virtual environment activated"
 fi
 
@@ -145,3 +144,8 @@ if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+################
+# Git Functions#
+################
