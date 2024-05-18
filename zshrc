@@ -103,12 +103,6 @@ gco() {
 ####################
 #setup pyenv
 
-if [ -d .venv ]; then
-  source ".venv/bin/activate"
-  export PYTHONPATH="$(pwd):$PYTHONPATH"
-  echo "Virtual environment activated"
-fi
-
 
 pyenv_seup() {
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -123,15 +117,27 @@ poetry_activate () {
 
 ## remove folders containing only __pycache__ files
 function rm-pycache() {
-    files=$(find . | grep -E '(/__pycache__$|\.pyc$|\.pyo$)')
-    if [[ -z $files ]]; then
-        echo "No files to be removed."
-    else
-        echo "Files to be removed: $files"
-        echo $files | xargs rm -rf
-    fi
-}
+    # Define the white-listed directories (directories to exclude)
+    white_list=( ".git" )
 
+    # Convert the white_list array into a string of -path exclusion arguments for find
+    prune_args=""
+    for dir in "${white_list[@]}"; do
+        prune_args+=" -path ./$dir -prune -o"
+    done
+
+    # Find and remove __pycache__ directories and .pyc/.pyo files, excluding white-listed directories
+    eval "find . ${prune_args} -type f \( -name '*.pyc' -o -name '*.pyo' \) -print -o -type d -name '__pycache__' -print" | while read -r file; do
+        echo "File to be removed: $file"
+        rm -rf "$file"
+    done
+
+    # Find and remove empty directories
+    eval "find . ${prune_args} -type d -empty -print" | while read -r dir; do
+        echo "Empty directory to be removed: $dir"
+        rmdir "$dir"
+    done
+}
 ################
 # Source files #
 #$##############

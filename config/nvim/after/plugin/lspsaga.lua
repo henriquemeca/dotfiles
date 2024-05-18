@@ -195,7 +195,8 @@ WHICH_KEY({
 		},
 		d = {
 			function()
-				vim.cmd("Lspsaga goto_definition")
+				vim.lsp.buf.definition() --vim.cmd("Lspsaga goto_definition")
+				FEEDKEYS("zz")
 			end,
 			"Go to definition",
 		},
@@ -203,6 +204,7 @@ WHICH_KEY({
 			function()
 				vim.cmd("vsplit")
 				vim.cmd("Lspsaga goto_definition")
+				FEEDKEYS("zz")
 			end,
 			"Go to type definition",
 		},
