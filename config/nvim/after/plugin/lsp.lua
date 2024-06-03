@@ -111,14 +111,7 @@ require("mason-lspconfig").setup({
 			})
 		end,
 		["tsserver"] = function()
-			require("lspconfig").tsserver.setup({
-				capabilities = capabilities,
-				init_options = {
-					preferences = {
-						--importModuleSpecifierPreference = "relative",
-					},
-				},
-			})
+			require("lspconfig").tsserver.setup({})
 		end,
 	},
 })
