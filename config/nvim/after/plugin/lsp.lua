@@ -1,8 +1,16 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
+	callback = function(args)
 		-- Enable completion triggered by <c-x><c-o>lsp
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		--vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client.server_capabilities.completionProvider then
+			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+		end
+		if client.server_capabilities.definitionProvider then
+			vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+		end
 	end,
 })
 
