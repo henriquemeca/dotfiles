@@ -129,7 +129,7 @@ return require("packer").startup(function(use)
 		requires = {
 			{ "mfussenegger/nvim-dap" },
 			{ "williamboman/mason.nvim" },
-            { "nvim-neotest/nvim-nio" },
+			{ "nvim-neotest/nvim-nio" },
 			--{ "jbyuki/one-small-step-for-vimkind" },
 			{ "jay-babu/mason-nvim-dap.nvim" },
 			--{ "theHamsta/nvim-dap-virtual-text" },
