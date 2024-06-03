@@ -25,3 +25,10 @@ end, "Go to file 6 in harpoon")
 VKSN("<leader>7", function()
 	ui.nav_file(7)
 end, "Go to file 7 in harpoon")
+
+-- Lua
+--vim.keymap.set("n", "<leader>Ll", require("grapple").toggle)
+--vim.keymap.set("n", "<leader>LL", require("grapple").toggle_tags)
+
+---- User command
+--vim.keymap.set("n", "<leader>1", "<cmd>Grapple select index=1<cr>")

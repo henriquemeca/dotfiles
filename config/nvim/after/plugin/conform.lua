@@ -25,7 +25,27 @@ conform.setup({
 })
 
 VKSN("<leader>s", function()
-	--vim.lsp.buf.format({ async = true })
-	conform.format()
 	vim.cmd("w")
 end, { desc = "saves current file" })
+
+vim.api.nvim_create_augroup("AutoFormat", {})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.py",
+	group = "AutoFormat",
+	callback = function()
+		vim.cmd("PyrightOrganizeImports")
+		conform.format()
+		vim.cmd("PyrightOrganizeImports")
+		conform.format()
+	end,
+}, {
+	pattern = "*.tsx",
+	group = "AutoFormat",
+	callback = function()
+		vim.cmd("TSServerOrganizeImports")
+		conform.format()
+		vim.cmd("TSServerOrganizeImports")
+		conform.format()
+	end,
+})

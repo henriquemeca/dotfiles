@@ -118,7 +118,7 @@ poetry_activate () {
 ## remove folders containing only __pycache__ files
 function rm-pycache() {
     # Define the white-listed directories (directories to exclude)
-    white_list=( ".git" )
+    white_list=( ".git" ".venv" "venv" )
 
     # Convert the white_list array into a string of -path exclusion arguments for find
     prune_args=""

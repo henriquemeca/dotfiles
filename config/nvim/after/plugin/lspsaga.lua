@@ -178,6 +178,16 @@ end, "Diagnostic jump previous")
 VKSN("K", function()
 	vim.cmd("Lspsaga hover_doc")
 end, "Hover doc")
+VKSN("gd", function()
+	vim.lsp.buf.definition() --vim.cmd("Lspsaga goto_definition")
+	FEEDKEYS("zz")
+end, "Signature help")
+VKSN("gD", function()
+	vim.cmd("vsplit")
+	vim.cmd("Lspsaga goto_definition")
+	FEEDKEYS("zz")
+end, "Signature help")
+
 WHICH_KEY({
 	l = {
 		name = "+Lsp Navigator",

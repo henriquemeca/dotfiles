@@ -32,6 +32,11 @@ return require("packer").startup(function(use)
 
 	-- Harppon
 	use("theprimeagen/harpoon")
+	-- Harpoon alternative
+	--use({
+	--"cbochs/grapple.nvim",
+	--requires = { "nvim-tree/nvim-web-devicons" },
+	--})
 
 	-- LSP
 	use({
@@ -124,10 +129,17 @@ return require("packer").startup(function(use)
 		requires = {
 			{ "mfussenegger/nvim-dap" },
 			{ "williamboman/mason.nvim" },
+			--{ "nvim-neotest/nvim-nio" },
 			--{ "jbyuki/one-small-step-for-vimkind" },
 			{ "jay-babu/mason-nvim-dap.nvim" },
 			--{ "theHamsta/nvim-dap-virtual-text" },
+			{ "mxsdev/nvim-dap-vscode-js" },
 		},
+	})
+	use({
+		"microsoft/vscode-js-debug",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 	})
 
 	-- Zen mode (focus on window)

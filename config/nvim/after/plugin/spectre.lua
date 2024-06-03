@@ -24,7 +24,7 @@ require("spectre").setup({
 			desc = "open file",
 		},
 		["send_to_qf"] = {
-			map = "<leader>q",
+			map = "<leader>C",
 			cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
 			desc = "send all items to quickfix",
 		},

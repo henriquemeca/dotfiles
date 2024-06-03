@@ -55,6 +55,10 @@ require("mason-lspconfig").setup({
 		"marksman", --markdown
 		"sqlls",
 		"taplo", --TOML
+		"tsserver", --typescript
+		"eslint-lsp",
+		"prettier",
+		"js-debug-adapter",
 	},
 	handlers = {
 		-- Default handler
@@ -93,6 +97,16 @@ require("mason-lspconfig").setup({
 							autoImportCompletions = true,
 							diagnosticMode = "openFilesOnly",
 						},
+					},
+				},
+			})
+		end,
+		["tsserver"] = function()
+			require("lspconfig").tsserver.setup({
+				capabilities = capabilities,
+				init_options = {
+					preferences = {
+						--importModuleSpecifierPreference = "relative",
 					},
 				},
 			})
