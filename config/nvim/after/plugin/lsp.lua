@@ -67,6 +67,7 @@ require("mason-lspconfig").setup({
 		"eslint-lsp",
 		"prettier",
 		"js-debug-adapter",
+		"php-cs-fixer",
 	},
 	handlers = {
 		-- Default handler
