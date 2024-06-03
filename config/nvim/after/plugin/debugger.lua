@@ -109,37 +109,15 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			program = "${file}",
 			cwd = vim.fn.getcwd(),
 		},
-		--{
-		--type = "pwa-node",
-		--request = "attach",
-		--name = "Attach",
-		--processId = require("dap.utils").pick_process,
-		--cwd = vim.fn.getcwd(),
-		--},
+		{
+			type = "pwa-node",
+			request = "attach",
+			name = "Attach",
+			processId = require("dap.utils").pick_process,
+			cwd = vim.fn.getcwd(),
+		},
 	}
 end
---dap.adapters["pwa-node"] = {
---type = "server",
---host = "localhost",
---port = "${port}",
---executable = {
---command = "js-debug-adapter",
---},
---}
-
---for _, language in ipairs({ "typescript", "javascript" }) do
---dap.configurations[language] = {
---{
---type = "pwa-node",
---request = "launch",
---name = "Launch file",
---program = "${file}",
---cwd = vim.fn.getcwd(),
---runtimeExecutable = "node",
---sourceMaps = true,
---},
---}
---end
 
 local dapui = require("dapui")
 dapui.setup({
