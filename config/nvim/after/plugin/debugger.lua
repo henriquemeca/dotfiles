@@ -155,11 +155,7 @@ dapui.setup({
 			{
 				elements = {
 					{
-						id = "scopes",
-						size = 0.25,
-					},
-					{
-						id = "breakpoints",
+						id = "watches",
 						size = 0.25,
 					},
 					{
@@ -167,7 +163,11 @@ dapui.setup({
 						size = 0.25,
 					},
 					{
-						id = "watches",
+						id = "scopes",
+						size = 0.25,
+					},
+					{
+						id = "breakpoints",
 						size = 0.25,
 					},
 				},
@@ -178,11 +178,11 @@ dapui.setup({
 				elements = {
 					{
 						id = "repl",
-						size = 0.5,
+						size = 0.9,
 					},
 					{
 						id = "console",
-						size = 0.5,
+						size = 0.1,
 					},
 				},
 				position = "bottom",
