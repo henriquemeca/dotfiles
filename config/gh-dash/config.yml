@@ -1,10 +1,10 @@
 prSections:
-  - title: Review Pending - Composer
-    filters: is:open -is:draft -reviewed-by:@me repo:Kanastra-Tech/cloud-composer-repo -author:@me
-  - title: Involved - Composer
-    filters: is:open repo:Kanastra-Tech/cloud-composer-repo involves:@me -author:@me -is:draft
-  - title: MyPRs - Composer
-    filters: is:open author:@me repo:Kanastra-Tech/cloud-composer-repo
+  - title: Review Pending
+    filters: is:open -is:draft -reviewed-by:@me repo:Kanastra-Tech/cloud-composer-repo repo:Kanastra-Tech/python-report-builder -author:@me
+  - title: Involved
+    filters: is:open repo:Kanastra-Tech/cloud-composer-repo repo:Kanastra-Tech/python-report-builder involves:@me -author:@me -is:draft
+  - title: MyPRs
+    filters: is:open author:@me repo:Kanastra-Tech/cloud-composer-repo repo:Kanastra-Tech/python-report-builder
     #layout:
     #author:
     #hidden: true
@@ -34,6 +34,7 @@ defaults:
   refetchIntervalMinutes: 30 # will refetch all sections every 30 minutes
 repoPaths:
   Kanastra-Tech/cloud-composer-repo: ~/github/cloud-composer-repo
+  Kanastra-Tech/python-report-builder: ~/github/python-report-builder
 keybindings:
   prs:
     - key: l

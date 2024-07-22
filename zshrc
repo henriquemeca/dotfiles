@@ -9,6 +9,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+#Setup Modules
+source /opt/homebrew/opt/modules/init/zsh
+
+
 # Setup NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -24,10 +28,9 @@ export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 alias v="nvim"
 alias lzd="lazydocker"
 alias l='colorls -A --sd'
-alias la='colorls -lA --sd'
+alias la='colorls -lAh --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
-alias get_news='curl getnews.tech'
-alias get_news_business='curl gr.getnews.tech/category=business'
+alias cdd='cd ~/.dotfiles && nvim .'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
@@ -85,6 +88,23 @@ failed_indicators_on_date() {
         gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
     done
 }
+
+funds() {
+    bq query --use_legacy_sql=false 'SELECT id, name, slug FROM hub.funds ORDER BY 1'
+}
+
+download_reports() {
+    DESTINATION_DIR="$HOME/fund-reports/"
+    if [ ! -d "$DESTINATION_DIR" ]; then
+        mkdir -p "$DESTINATION_DIR"
+        echo "Directory $DESTINATION_DIR created."
+    else
+        echo "Directory $DESTINATION_DIR already exists."
+    fi
+
+    gsutil -m rsync -d -r "gs://kanastra-tech-hub-production/fund-reports/" "$DESTINATION_DIR"
+}
+
 ####################
 #   GPT functions  #
 ####################
@@ -107,14 +127,13 @@ gco() {
 ####################
 # Python functions #
 ####################
+
 #setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 
-pyenv_seup() {
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-}
 poetry_activate () {
     source $(poetry env info --path)/bin/activate
 }
@@ -150,14 +169,10 @@ function rm-pycache() {
 source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 source ~/.credentials.sh # Export credentials
+source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-################
-# Git Functions#
-################

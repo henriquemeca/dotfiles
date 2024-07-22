@@ -4,6 +4,7 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		javascript = { "prettier" },
+		typescript = { "prettier" },
 		-- You can use a function here to determine the formatters dynamically
 		python = { "black" },
 		css = { "prettier" },
@@ -11,6 +12,7 @@ conform.setup({
 		json = { "prettier" },
 		--yaml = { "prettier" },
 		sql = { "sqlfluff" },
+		php = { "pint" },
 		--markdown = { "prettier" },
 	},
 	--format_on_save = {
@@ -27,8 +29,6 @@ conform.setup({
 VKSN("<leader>s", function()
 	local extension = vim.fn.expand("%:e")
 	if extension == "py" then
-		vim.cmd("PyrightOrganizeImports")
-		conform.format()
 		vim.cmd("PyrightOrganizeImports")
 	end
 	conform.format()

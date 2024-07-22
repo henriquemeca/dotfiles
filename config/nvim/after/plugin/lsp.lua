@@ -64,10 +64,10 @@ require("mason-lspconfig").setup({
 		"sqlls",
 		"taplo", --TOML
 		"tsserver", --typescript
-		"eslint-lsp",
-		"prettier",
-		"js-debug-adapter",
-		"php-cs-fixer",
+		--"eslint-lsp",
+		--"prettier",
+		--"js-debug-adapter",
+		--"php-cs-fixer",
 	},
 	handlers = {
 		-- Default handler
@@ -112,6 +112,9 @@ require("mason-lspconfig").setup({
 		end,
 		["tsserver"] = function()
 			require("lspconfig").tsserver.setup({})
+		end,
+		["intelephense"] = function()
+			require("lspconfig").intelephense.setup({})
 		end,
 	},
 })

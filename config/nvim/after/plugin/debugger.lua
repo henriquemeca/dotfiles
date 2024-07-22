@@ -16,26 +16,6 @@ function os.capture(cmd, raw)
 	return output
 end
 
--- Check if file or directory exists in the current working directory
-local existsInCWD = function(nameToCheck)
-	local cwDir = vim.fn.getcwd()
-
-	-- Get all files and directories in CWD
-	local cwdContent = vim.split(vim.fn.glob(cwDir .. "/*"), "\n", { trimempty = true })
-
-	-- Check if specified file or directory exists
-	local fullNameToCheck = cwDir .. "/" .. nameToCheck
-	--print('Checking for: "' .. fullNameToCheck .. '"')
-	for _, cwdItem in pairs(cwdContent) do
-		if cwdItem == fullNameToCheck then
-			--print(fullNameToCheck .. "found")
-			return true
-		end
-	end
-	--print(fullNameToCheck .. " not found")
-	return false
-end
-
 -- Python config
 local get_python_path = function()
 	--local cwd = vim.fn.getcwd()
