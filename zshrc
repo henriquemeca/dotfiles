@@ -105,6 +105,30 @@ download_reports() {
     gsutil -m rsync -d -r "gs://kanastra-tech-hub-production/fund-reports/" "$DESTINATION_DIR"
 }
 
+python_details() {
+    echo "About python3"
+    which python3
+    python3 --version
+
+    command_exists() {
+        command -v "$1" >/dev/null 2>&1
+    }
+
+    if command_exists pyenv; then
+        echo -e "\nAbout pyenv"
+        pyenv versions
+    fi
+
+    if command_exists poetry; then
+        echo -e "\nAbout poetry"
+        poetry --version
+        which poetry
+        poetry env list
+        poetry env info
+    fi
+
+}
+
 ####################
 #   GPT functions  #
 ####################
@@ -170,6 +194,7 @@ source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athit
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 source ~/.credentials.sh # Export credentials
 source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
+source /Users/henriquebrito/github/python-report-builder/.report_hub_source.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi

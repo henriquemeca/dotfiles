@@ -181,4 +181,7 @@ return require("packer").startup(function(use)
 	use("ggandor/leap.nvim")
 	-- Leet code
 	--use("kawre/leetcode.nvim")
+
+	-- Resurrect
+	use("tpope/vim-obsession")
 end)
