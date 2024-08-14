@@ -90,7 +90,7 @@ WHICH_KEY({
 				vim.cmd("tabnew")
 				vim.cmd("Telescope find_files")
 			end,
-			"macros",
+			"Open tab and search files",
 		},
 		O = {
 			function()

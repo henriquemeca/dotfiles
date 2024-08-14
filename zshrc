@@ -194,7 +194,7 @@ source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athit
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 source ~/.credentials.sh # Export credentials
 source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
-source /Users/henriquebrito/github/python-report-builder/.report_hub_source.sh
+source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
