@@ -10,7 +10,7 @@ return require("packer").startup(function(use)
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
+		--tag = "0.1.5",
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-live-grep-args.nvim" },
@@ -77,6 +77,7 @@ return require("packer").startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
+        tag="v2.1.0"
 	})
 	-- Tmux navigator
 	use({
