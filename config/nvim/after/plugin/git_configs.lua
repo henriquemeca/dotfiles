@@ -26,13 +26,6 @@ WHICH_KEY({
 				end,
 				"Force sync with main",
 			},
-			s = {
-				function()
-					vim.cmd("Git fetch")
-					vim.cmd("Git merge origin/main -m 'merged with main' --no-ff")
-				end,
-				"Sync branch with main",
-			},
 		},
 		p = {
 			name = "push/pull",
@@ -58,5 +51,13 @@ WHICH_KEY({
 		h = { ":DiffviewFileHistory<CR>", "Git History - Diffview" },
 		f = { ":DiffviewFileHistory %<CR>", "File Git History - Diffview" },
 		l = { "<cmd>LazyGit<cr>", "Open Lazygit" },
+		r = {
+			function()
+				vim.cmd("Git stash")
+				vim.cmd("Git fetch")
+				vim.cmd("Git reset --hard @{u}")
+			end,
+			"Fetches and merges origin/main",
+		},
 	},
 }, { prefix = "<leader>" })
