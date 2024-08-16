@@ -179,12 +179,12 @@ require("spectre").setup({
 	},
 })
 
-VKSN("<leader>P", '<cmd>lua require("spectre").toggle()<CR>', "Toggle Spectre")
-VKSN("<leader>pw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Search current word")
+VKSN("<leader>Pt", '<cmd>lua require("spectre").toggle()<CR>', "Toggle Spectre")
+VKSN("<leader>Pw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Search current word")
 vim.keymap.set(
 	"v",
-	"<leader>pw",
+	"<leader>Pw",
 	'<esc><cmd>lua require("spectre").open_visual()<CR>',
 	{ desc = "Search current word" }
 )
-VKSN("<leader>pp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', "Search on current file")
+VKSN("<leader>Pp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', "Search on current file")

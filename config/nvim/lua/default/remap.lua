@@ -21,8 +21,8 @@ VKSN("<C-m>", ":nohl<CR>", "clear search highlights")
 VKSN("x", '"_x', "delete single character without copying into register")
 
 -- Miscellaneous
---vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
---vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste and preserve buffer" })
+vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "delete and preserve buffer" })
 vim.keymap.set({ "v", "n" }, "<leader>y", [["+y]], { desc = "yank do clipboard" })
 VKSN("<leader>Y", '"+Y', "yank all to clipboard")
 VKSN("<leader>W", "qa", "Record macro on 'a'")
