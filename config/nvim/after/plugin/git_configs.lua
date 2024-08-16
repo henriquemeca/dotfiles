@@ -59,5 +59,22 @@ WHICH_KEY({
 			end,
 			"Fetches and merges origin/main",
 		},
+        w = {
+            name = "Worktree",
+            a = {
+                    ":Git worktree add ../"..
+                    os.capture("basename `git rev-parse --show-toplevel`") .. "_fix "
+                    .. "main"
+                    , "Create worktree" },
+            b = {
+                    ":Git worktree add -b "..
+                    "new-branch ../"..
+                    os.capture("baename `git rev-parse --show-toplevel`") .. "_fix"
+                    , "Create worktree in new branch" },
+            l = {   ":Git worktree list<CR>", "List worktrees" },
+            d = {   ":Git worktree remove "..
+                    os.capture("basename `git rev-parse --show-toplevel`").. "_fix"
+                    , "Delete worktree" },
+        }
 	},
 }, { prefix = "<leader>" })
