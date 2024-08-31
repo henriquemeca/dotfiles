@@ -63,17 +63,17 @@ WHICH_KEY({
             name = "Worktree",
             a = {
                     ":Git worktree add ../"..
-                    os.capture("basename `git rev-parse --show-toplevel`") .. "_fix "
+                    os.capture("basename `git rev-parse --show-toplevel`") .. "_main "
                     .. "main"
                     , "Create worktree" },
             b = {
                     ":Git worktree add -b "..
                     "new-branch ../"..
-                    os.capture("baename `git rev-parse --show-toplevel`") .. "_fix"
+                    os.capture("basename `git rev-parse --show-toplevel`") .. "_main"
                     , "Create worktree in new branch" },
             l = {   ":Git worktree list<CR>", "List worktrees" },
             d = {   ":Git worktree remove "..
-                    os.capture("basename `git rev-parse --show-toplevel`").. "_fix"
+                    os.capture("basename `git rev-parse --show-toplevel`").. "_main"
                     , "Delete worktree" },
         }
 	},

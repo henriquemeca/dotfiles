@@ -34,6 +34,7 @@ alias cdd='cd ~/.dotfiles && nvim .'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
+alias t="tmux"
 alias ta="tmux a"
 alias tn="tmux new -s"
 
@@ -187,9 +188,15 @@ function rm-pycache() {
         rmdir "$dir"
     done
 }
+
+################
+# Miscelaneous #
+#$##############
+eval "$(zoxide init zsh)"
+
 ################
 # Source files #
-#$##############
+################
 source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 source ~/.credentials.sh # Export credentials

@@ -40,6 +40,21 @@ dap.adapters.python = function(cb, config)
 			type = "server",
 			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
 			host = host,
+			enrich_config = function(config, on_config)
+				local current_file = vim.api.nvim_buf_get_name(0)
+				local relative_file = current_file:gsub(vim.loop.cwd(), ".")
+
+				local docker_cmd = string.format(
+					"nohup docker run -d -p 5678:5678 -v .:/app --rm --name debug-test debug %s &> /dev/null &",
+					relative_file
+				)
+				os.execute("docker kill debug-test &> /dev/null || true")
+				os.execute("docker rm debug-test &> /dev/null || true")
+				os.execute(docker_cmd)
+				vim.defer_fn(function()
+					on_config(config) -- Continue with the original config
+				end, 2000) -- Adjust delay as needed for your Docker container to start
+			end,
 			options = {
 				source_filetype = "python",
 			},
@@ -64,7 +79,31 @@ dap.configurations.python = {
 		cwd = vim.fn.getcwd(),
 		program = "${file}",
 		pythonPath = python_path,
-		args = { "-degug", "true" },
+	},
+	{
+		type = "python",
+		request = "launch",
+		name = "Launch file - Full Code",
+		cwd = vim.fn.getcwd(),
+		program = "${file}",
+		pythonPath = python_path,
+		justMyCode = false,
+		--args = { "-degug", "true" },
+	},
+	{
+		name = "Python: Remote Attach",
+		type = "python",
+		request = "attach",
+		connect = {
+			host = "localhost",
+			port = 5678,
+		},
+		pathMappings = { {
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = ".",
+		} },
+
+		justMyCode = true,
 	},
 }
 
@@ -325,3 +364,7 @@ end, "Step Into")
 VKSN("L", function()
 	dap.step_out()
 end, "Step Out")
+
+VKSN("k", function()
+	dap.step_over()
+end, "Step Over")
