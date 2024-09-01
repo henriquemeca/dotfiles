@@ -22,8 +22,8 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
-\Brewfile
-\Makefile
-\setup_symbolic_links.sh
+Brewfile
+Makefile
+setup_symbolic_links.sh
 
 

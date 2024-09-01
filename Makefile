@@ -15,3 +15,5 @@ up_astrovim:
   	cd /root/.config/nvim && \
   	sh \
 	'
+stow:
+	stow --adopt --dotfiles .

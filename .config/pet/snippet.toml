@@ -1,0 +1,21 @@
+
+[[Snippets]]
+  Description = "Says 'oi"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "echo 'oi'"
+
+[[Snippets]]
+  Description = "File Navigator"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "ranger"
+
+[[Snippets]]
+  Description = "Disk usage"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "ncdu"
