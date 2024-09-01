@@ -174,6 +174,7 @@ eval "$(zoxide init zsh)"
 ################
 #Setup Modules
 source /opt/homebrew/opt/modules/init/zsh
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
@@ -189,8 +190,7 @@ source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
 source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
 # Paths
-
-_setups(){
+extra_setups(){
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -199,5 +199,4 @@ if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; th
 
 }
 
-export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 

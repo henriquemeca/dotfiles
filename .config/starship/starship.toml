@@ -7,14 +7,16 @@ $directory\
 [  ](fg:#909090 bg:#444444)\
 $git_branch\
 [](fg:#444444)\
+
 $fill\
+
+[](fg:#444444)\
 $singularity\
 $kubernetes\
 $vcsh\
 $fossil_branch\
 $pijul_channel\
 $docker_context\
-$package\
 $c\
 $cmake\
 $cobol\
@@ -211,7 +213,7 @@ detect_folders = ["node_modules"]
 detect_extensions = []
 
 [python]
-format = "[](fg:#444444)[ ${version}  ]($style)[  ](fg:#909090 bg:#444444)"
+format = "[${version}  ]($style)[  ](fg:#909090 bg:#444444)"
 version_format = "${raw}"
 style = "fg:#01afaf bg:#444444"
 
@@ -227,11 +229,14 @@ symbol = "⊃ "
 version_format = "${raw}"
 style = "bold red"
 
-[package]
-format = " [pkg](italic dimmed) [$symbol$version]($style)"
-version_format = "${raw}"
-symbol = "◨ "
-style = "dimmed yellow italic bold"
+# Shows package version. https://starship.rs/config/#package-version
+# Ex: poetry -> The poetry package version is extracted from the pyproject.toml
+# Ex: npm -> The npm package version is extracted from the package.json present in the current directory
+#[package] 
+#format = " [pkg](italic dimmed) [$symbol$version]($style)"
+#version_format = "${raw}"
+#symbol = "◨ "
+#style = "red"
 
 [swift]
 format = " [sw](italic) [${symbol}${version}]($style)"
@@ -314,5 +319,5 @@ format = " spack [$symbol$environment]($style)"
 disabled = false
 time_format = '%T'
 style = "fg:#01afaf bg:#444444"
-format = '[[](fg:#444444)[$time  ](fg:#5f8787 bg:#444444)]($style)'
+format = '[[$time  ](fg:#5f8787 bg:#444444)]($style)'
 
