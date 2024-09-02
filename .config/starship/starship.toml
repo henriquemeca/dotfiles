@@ -16,7 +16,6 @@ $kubernetes\
 $vcsh\
 $fossil_branch\
 $pijul_channel\
-$docker_context\
 $c\
 $cmake\
 $cobol\
@@ -267,9 +266,9 @@ format = " conda [$symbol$environment]($style)"
 symbol = "◁◅ "
 format = " dart [$symbol($version )]($style)"
 
-[docker_context]
-symbol = "◧ "
-format = " docker [$symbol$context]($style)"
+#[docker_context]
+#symbol = "󰡨"
+#format = "[$symbol$context]($style)"
 
 [elixir]
 symbol = "△ "

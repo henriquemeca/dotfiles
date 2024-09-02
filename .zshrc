@@ -5,7 +5,7 @@ alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lAh --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
-alias cdd='cd ~/.dotfiles && nvim .'
+alias cdd='cd ~/dotfiles && nvim .'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
