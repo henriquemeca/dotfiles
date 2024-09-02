@@ -126,7 +126,7 @@ format = '[[$symbol $branch]($style)]($style)'
 [php]
 symbol = ""
 style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+format = '[[$symbol ($version)](fg:#769ff0 bg:#444444)]($style)[  ](fg:#909090 bg:#444444)'
 
 [fill]
 symbol = '─'
@@ -206,11 +206,12 @@ symbol = "⨀ "
 style = "bold bright-yellow"
 
 [nodejs]
-format = " [node](italic) [◫ ($version)](bold bright-green)"
+format = "[$symbol($version)]($style)[  ](fg:#909090 bg:#444444)"
+symbol =" "
 version_format = "${raw}"
 detect_files = ["package-lock.json", "yarn.lock"]
 detect_folders = ["node_modules"]
-detect_extensions = []
+style = "fg:#64B749 bg:#444444"
 
 [python]
 format = "[${version}  ]($style)[  ](fg:#909090 bg:#444444)"
