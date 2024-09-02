@@ -26,8 +26,22 @@ alias gd='gh dash'
 #Functions#
 ###########
 
+# Pet
+function p() {
+    pet exec
+}
 
-# cd folders with fzf 
+function pf() {
+    pet exec -q $1
+}
+function add_previous_command() {
+    last_command=$(fc -rln | head -n 1)
+    BUFFER="pet new $last_command"
+}
+
+zle -N add_previous_command
+bindkey '^p' add_previous_command
+
 cdf() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \

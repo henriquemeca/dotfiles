@@ -1,11 +1,3 @@
-
-[[Snippets]]
-  Description = "Says 'oi"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
-  Output = ""
-  Tag = []
-  command = "echo 'oi'"
-
 [[Snippets]]
   Description = "File Navigator"
   Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
@@ -19,3 +11,10 @@
   Output = ""
   Tag = []
   command = "ncdu"
+
+[[Snippets]]
+  Description = "Docker Kafka"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "docker compose -f ./docker-compose.kafka.yml <action=up>"
