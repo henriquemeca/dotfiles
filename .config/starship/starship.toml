@@ -321,3 +321,7 @@ time_format = '%T'
 style = "fg:#01afaf bg:#444444"
 format = '[[$time  ](fg:#5f8787 bg:#444444)]($style)'
 
+[pulumi]
+symbol = ' '
+style = "fg:#673EB0 bg:#444444"
+format = '[$symbol(@$username)$stack]($style)[  ](fg:#909090 bg:#444444)'

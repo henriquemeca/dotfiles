@@ -55,26 +55,37 @@ WHICH_KEY({
 			function()
 				vim.cmd("Git stash")
 				vim.cmd("Git fetch")
+				vim.cmd("Git rebase origin/main")
+				vim.cmd("Git rebase --continue")
+			end,
+			"Rebase with main origin/main",
+		},
+		R = {
+			function()
+				vim.cmd("Git stash")
+				vim.cmd("Git fetch")
 				vim.cmd("Git reset --hard @{u}")
 			end,
-			"Fetches and merges origin/main",
+			"Fetches and resets origin/main",
 		},
-        w = {
-            name = "Worktree",
-            a = {
-                    ":Git worktree add ../"..
-                    os.capture("basename `git rev-parse --show-toplevel`") .. "_main "
-                    .. "main"
-                    , "Create worktree" },
-            b = {
-                    ":Git worktree add -b "..
-                    "new-branch ../"..
-                    os.capture("basename `git rev-parse --show-toplevel`") .. "_main"
-                    , "Create worktree in new branch" },
-            l = {   ":Git worktree list<CR>", "List worktrees" },
-            d = {   ":Git worktree remove "..
-                    os.capture("basename `git rev-parse --show-toplevel`").. "_main"
-                    , "Delete worktree" },
-        }
+		w = {
+			name = "Worktree",
+			a = {
+				":Git worktree add ../" .. os.capture("basename `git rev-parse --show-toplevel`") .. "_main " .. "main",
+				"Create worktree",
+			},
+			b = {
+				":Git worktree add -b "
+					.. "new-branch ../"
+					.. os.capture("basename `git rev-parse --show-toplevel`")
+					.. "_main",
+				"Create worktree in new branch",
+			},
+			l = { ":Git worktree list<CR>", "List worktrees" },
+			d = {
+				":Git worktree remove " .. os.capture("basename `git rev-parse --show-toplevel`") .. "_main",
+				"Delete worktree",
+			},
+		},
 	},
 }, { prefix = "<leader>" })

@@ -1,9 +1,10 @@
+
 [[Snippets]]
   Description = "File Navigator"
   Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
-  command = "ranger"
+  command = "yazi"
 
 [[Snippets]]
   Description = "Disk usage"
@@ -18,3 +19,10 @@
   Output = ""
   Tag = []
   command = "docker compose -f ./docker-compose.kafka.yml <action=up>"
+
+[[Snippets]]
+  Description = "Find duplicate entries in executive report df"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "echo \"self.df[self.df.duplicated(subset=[*index, columns], keep=False)]\""

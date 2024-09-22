@@ -142,10 +142,6 @@ gco() {
 # Python functions #
 ####################
 
-#setup pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 
 poetry_activate () {
@@ -181,13 +177,19 @@ function rm-pycache() {
 ################
 # Miscelaneous #
 #$##############
+# Setup zsh
+source /opt/homebrew/opt/modules/init/zsh
+# Setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# Setup zoxide
 eval "$(zoxide init zsh)"
 
 ################
 # Source files #
 ################
 #Setup Modules
-source /opt/homebrew/opt/modules/init/zsh
 export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -203,14 +205,10 @@ source ~/.credentials.sh # Export credentials
 source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
 source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
-# Paths
-extra_setups(){
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc'; fi
-
-}
 
 
