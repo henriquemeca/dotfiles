@@ -26,3 +26,17 @@
   Output = ""
   Tag = []
   command = "echo \"self.df[self.df.duplicated(subset=[*index, columns], keep=False)]\""
+
+[[Snippets]]
+  Description = "List available GH Actions"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "act --list"
+
+[[Snippets]]
+  Description = "Load laravel php modules"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "composer dump-autoload"

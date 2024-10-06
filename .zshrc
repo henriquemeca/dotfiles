@@ -205,10 +205,10 @@ source ~/.credentials.sh # Export credentials
 source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
 source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
+
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.gsutil/google-cloud-sdk/completion.zsh.inc'; fi
-
-
+if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

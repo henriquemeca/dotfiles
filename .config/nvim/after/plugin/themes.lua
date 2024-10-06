@@ -31,4 +31,5 @@ require("vscode").setup({
 	},
 })
 require("vscode").load()
+
 vim.cmd("colorscheme codedark")

@@ -6,14 +6,21 @@ conform.setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		-- You can use a function here to determine the formatters dynamically
-		python = { "black" },
+		--python = { "pyright" },
+		python = function(bufnr)
+			if require("conform").get_formatter_info("ruff_format", bufnr).available then
+				return { "ruff_format", "ruff_organize_imports" }
+			else
+				return { "black" }
+			end
+		end,
 		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },
-        yaml = { "prettier" },
+		yaml = { "prettier" },
 		sql = { "sqlfluff" },
 		php = { "pint" },
-        markdown = { "prettier" },
+		markdown = { "prettier" },
 	},
 	--format_on_save = {
 	--lsp_fallback = false,
@@ -28,9 +35,9 @@ conform.setup({
 
 VKSN("<leader>s", function()
 	local extension = vim.fn.expand("%:e")
-	if extension == "py" then
-		vim.cmd("PyrightOrganizeImports")
-	end
+	--if extension == "py" then
+	--vim.cmd("PyrightOrganizeImports")
+	--end
 	conform.format()
 	vim.cmd("w")
 end, "saves current file")

@@ -1,4 +1,7 @@
-VKSN("<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", "Markdown Preview Toggle")
 WHICH_KEY({
-	["<leader>m"] = { name = "misc" },
-})
+	m = {
+		name = "markdown",
+		p = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown Preview Toggle" },
+		t = { "<cmd>RenderMarkdown toggle<cr>", "Markdown Preview" },
+	},
+}, { prefix = "<leader>" })

@@ -1,7 +1,7 @@
 local copilot = require("copilot")
 copilot.setup({
 	panel = {
-		enabled = true,
+		enabled = false,
 		auto_refresh = true,
 		keymap = {
 			jump_prev = "[[",
@@ -16,7 +16,7 @@ copilot.setup({
 		},
 	},
 	suggestion = {
-		enabled = true,
+		enabled = false,
 		auto_trigger = true,
 		debounce = 75,
 		keymap = {

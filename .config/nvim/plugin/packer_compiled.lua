@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["avante.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/avante.nvim",
+    url = "https://github.com/yetone/avante.nvim"
+  },
   ["blamer.nvim"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/blamer.nvim",
@@ -114,11 +119,25 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/code-dark",
     url = "https://github.com/tomasiser/vim-code-dark"
   },
+  ["codecompanion.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18codecompanion\frequire\0" },
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/codecompanion.nvim",
+    url = "https://github.com/olimorris/codecompanion.nvim"
+  },
   ["conform.nvim"] = {
     config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0" },
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
+  },
+  ["copilot-cmp"] = {
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16copilot_cmp\frequire\0" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
+    url = "https://github.com/zbirenbaum/copilot-cmp"
   },
   ["copilot.lua"] = {
     loaded = true,
@@ -135,10 +154,25 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
+  fd = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/fd",
+    url = "https://github.com/sharkdp/fd"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["gh-actions.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/gh-actions.nvim",
+    url = "https://github.com/topaxi/gh-actions.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -150,10 +184,23 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
   },
+  ["img-clip.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/img-clip.nvim",
+    url = "https://github.com/HakonHarnes/img-clip.nvim"
+  },
   ["kanagawa.nvim"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
+  },
+  ["laravel.nvim"] = {
+    commands = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/opt/laravel.nvim",
+    url = "https://github.com/adalessa/laravel.nvim"
   },
   ["lazygit.nvim"] = {
     loaded = true,
@@ -174,6 +221,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
     url = "https://github.com/ray-x/lsp_signature.nvim"
+  },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -205,10 +257,21 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["mini.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/opt/mini.nvim",
+    url = "https://github.com/echasnovski/mini.nvim"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
+  },
+  ["none-ls.nvim"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
+    url = "https://github.com/nvimtools/none-ls.nvim"
   },
   ["nui.nvim"] = {
     loaded = true,
@@ -292,6 +355,14 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["render-markdown.nvim"] = {
+    config = { "\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/opt/render-markdown.nvim",
+    url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+  },
   ["rose-pine"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/rose-pine",
@@ -317,6 +388,11 @@ _G.packer_plugins = {
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-dotenv"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/vim-dotenv",
+    url = "https://github.com/tpope/vim-dotenv"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -331,6 +407,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/Users/henriquebrito/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
+    url = "https://github.com/mg979/vim-visual-multi"
   },
   ["vscode-js-debug"] = {
     loaded = false,
@@ -361,10 +442,76 @@ time([[Defining packer_plugins]], false)
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\nD\0\0\2\0\4\0\t6\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0)\1,\1=\1\3\0K\0\1\0\15timeoutlen\ftimeout\6o\bvim\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
+-- Config for: codecompanion.nvim
+time([[Config for codecompanion.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18codecompanion\frequire\0", "config", "codecompanion.nvim")
+time([[Config for codecompanion.nvim]], false)
 -- Config for: conform.nvim
 time([[Config for conform.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0", "config", "conform.nvim")
 time([[Config for conform.nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd copilot.lua ]]
+vim.cmd [[ packadd copilot-cmp ]]
+
+-- Config for: copilot-cmp
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16copilot_cmp\frequire\0", "config", "copilot-cmp")
+
+vim.cmd [[ packadd nvim-treesitter ]]
+vim.cmd [[ packadd render-markdown.nvim ]]
+
+-- Config for: render-markdown.nvim
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0", "config", "render-markdown.nvim")
+
+time([[Sequenced loading]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Laravel', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Laravel', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Laravel ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Sail', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Sail', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Sail ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Artisan', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Artisan', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Artisan ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Composer', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Composer', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Composer ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Npm', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Npm', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Npm ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Yarn', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Yarn', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Yarn ', 'cmdline')
+      end})
+time([[Defining lazy-load commands]], false)
+
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads

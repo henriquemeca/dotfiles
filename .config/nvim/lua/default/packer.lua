@@ -14,6 +14,9 @@ return require("packer").startup(function(use)
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-live-grep-args.nvim" },
+			{ "sharkdp/fd" },
+			{ "nvim-treesitter/nvim-treesitter" },
+			{ "nvim-tree/nvim-web-devicons" },
 		},
 	})
 	use({ "AckslD/nvim-neoclip.lua" })
@@ -49,6 +52,7 @@ return require("packer").startup(function(use)
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "onsails/lspkind.nvim" },
 			--{ "deoplete-plugins/deoplete-jedi" },
 			--{ "Shougo/ddc.vim" },
 			--{ "vim-denops/denops.vim" },
@@ -77,7 +81,7 @@ return require("packer").startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-        tag="v2.1.0"
+		tag = "v2.1.0",
 	})
 	-- Tmux navigator
 	use({
@@ -117,6 +121,7 @@ return require("packer").startup(function(use)
 			"nvim-tree/nvim-web-devicons",
 		},
 	})
+	use("topaxi/gh-actions.nvim")
 
 	-- Add  persistance to files
 	use({
@@ -153,6 +158,16 @@ return require("packer").startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
+		requires = { "echasnovski/mini.nvim", opt = true }, -- if you use the mini.nvim suite
+		-- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
+		-- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
+		config = function()
+			require("render-markdown").setup({})
+		end,
+	})
 
 	-- Buffer line plugin
 	use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
@@ -163,12 +178,19 @@ return require("packer").startup(function(use)
 
 	--Copilot
 	use({ "zbirenbaum/copilot.lua" })
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	})
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
 	})
-	-- Gpt Integration
+	-- AI Integration
 	use({
 		"jackMort/ChatGPT.nvim",
 		requires = {
@@ -178,6 +200,35 @@ return require("packer").startup(function(use)
 			"nvim-telescope/telescope.nvim",
 		},
 	})
+	use({
+		"olimorris/codecompanion.nvim",
+		config = function()
+			require("codecompanion").setup()
+		end,
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
+			"nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+			"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+		},
+	})
+	use({
+		"yetone/avante.nvim",
+		branch = "main",
+		run = "make",
+		requires = {
+			"nvim-treesitter/nvim-treesitter",
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			"HakonHarnes/img-clip.nvim",
+			"MeanderingProgrammer/render-markdown.nvim",
+		},
+	})
+
 	-- Movements upgrade
 	use("ggandor/leap.nvim")
 	-- Leet code
@@ -185,4 +236,30 @@ return require("packer").startup(function(use)
 
 	-- Resurrect
 	use("tpope/vim-obsession")
+
+	-- Multi Cursor
+	use({
+		"mg979/vim-visual-multi",
+		--config = function()
+		--vim.g.VM_maps["Add Cursor Down"] = "<S-Up>"
+		--vim.g.VM_maps["Add Cursor Up"] = "<S-Down>"
+		--vim.g.VM_maps = 0
+		--end x
+	})
+
+	-- Database
+	--use("tpope/vim-dadbod")
+
+	-- Laravel - not working on packer
+	--use({
+	--"adalessa/laravel.nvim",
+	--requires = {
+	--"nvim-telescope/telescope.nvim",
+	--"tpope/vim-dotenv",
+	--"MunifTanjim/nui.nvim",
+	--"nvimtools/none-ls.nvim",
+	--},
+	--tag = "v2.2.1",
+	--cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+	--})
 end)

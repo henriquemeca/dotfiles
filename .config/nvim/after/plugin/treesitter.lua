@@ -16,6 +16,8 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"luadoc",
 		"php",
+		"php_only",
+		"phpdoc",
 		"rasi",
 		"ruby",
 		"rust",

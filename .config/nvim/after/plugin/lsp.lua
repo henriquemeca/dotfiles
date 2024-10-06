@@ -19,6 +19,16 @@ local cmp = require("cmp")
 --require("luasnip.loaders.from_vscode").load()
 local luasnip = require("luasnip")
 luasnip.config.setup({})
+local lspkind = require("lspkind")
+vim.opt.completeopt = "menu,menuone,noselect"
+
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
 
 cmp.setup({
 	snippet = {
@@ -26,17 +36,47 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	sources = {
+	-- sources for autocompletion
+	sources = cmp.config.sources({
+		{ name = "copilot", group_index = 2 },
+		{ name = "nvim_lsp" }, -- lsp
+		{ name = "buffer" }, -- text within current buffer
+		{ name = "path" }, -- file system paths
 		{ name = "luasnip", option = { show_autosnippets = true } },
-		{ name = "path" },
-		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "buffer" },
 		{ name = "friendly-snippets" },
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
+	mapping = cmp.mapping.preset.insert({
+		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+		["<C-e>"] = cmp.mapping.abort(), -- close completion window
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<Tab>"] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
+			end
+		end),
+	}),
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol", -- show only symbol annotations
+			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+			-- can also be a function to dynamically calculate max width such as
+			-- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+			ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+		}),
+	},
+})
+cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+	sources = {
+		{ name = "dap" },
+	},
 })
 
 -- Copilot setup
@@ -63,7 +103,9 @@ require("mason-lspconfig").setup({
 		"marksman", --markdown
 		"sqlls",
 		"taplo", --TOML
-		"tsserver", --typescript
+		"intelephense",
+		"phpactor",
+		--"tsserver", --typescript
 		--"eslint-lsp",
 		--"prettier",
 		--"js-debug-adapter",
@@ -89,6 +131,24 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
+		["ruff"] = function()
+			local lspconfig = require("lspconfig")
+			lspconfig.ruff.setup({
+				capabilities = capabilities,
+				trace = "messages",
+				init_options = {
+					settings = {
+						logLevel = "debug",
+					},
+				},
+			})
+		end,
+		["ruff_lsp"] = function()
+			local lspconfig = require("lspconfig")
+			lspconfig.ruff_lsp.setup({
+				capabilities = capabilities,
+			})
+		end,
 		["pyright"] = function()
 			require("lspconfig").pyright.setup({
 				capabilities = capabilities,
@@ -96,10 +156,12 @@ require("mason-lspconfig").setup({
 					single_file_support = true,
 					pyright = {
 						disableLanguageServices = false,
-						disableOrganizeImports = false,
+						disableOrganizeImports = true,
 					},
 					python = {
 						analysis = {
+							ignoredFiles = { ".*" },
+							logLevel = "Trace",
 							typeCheckingMode = "basic",
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
@@ -110,11 +172,14 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		["tsserver"] = function()
-			require("lspconfig").tsserver.setup({})
-		end,
+		--["tsserver"] = function()
+		--require("lspconfig").tsserver.setup({})
+		--end,
 		["intelephense"] = function()
 			require("lspconfig").intelephense.setup({})
+		end,
+		["phpactor"] = function()
+			require("lspconfig").phpactor.setup({})
 		end,
 	},
 })
