@@ -21,6 +21,7 @@ conform.setup({
 		sql = { "sqlfluff" },
 		php = { "pint" },
 		markdown = { "prettier" },
+		terraform = { "terraform_fmt" },
 	},
 	--format_on_save = {
 	--lsp_fallback = false,

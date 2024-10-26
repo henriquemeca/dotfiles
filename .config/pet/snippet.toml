@@ -40,3 +40,31 @@
   Output = ""
   Tag = []
   command = "composer dump-autoload"
+
+[[Snippets]]
+  Description = "Clean hub schema"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "docker compose run --rm -e XDEBUG_MODE=coverage php php artisan schema:dump"
+
+[[Snippets]]
+  Description = "Disable containers restart"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "docker ps -q | xargs -I {} docker update --restart=no {}"
+
+[[Snippets]]
+  Description = "Generate UUID lowered"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "uuidgen | tr '[:upper:]' '[:lower:]'"
+
+[[Snippets]]
+  Description = "Generate UUDI upper"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "uuidgen"

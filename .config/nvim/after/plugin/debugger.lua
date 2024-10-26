@@ -60,6 +60,7 @@ dap.adapters.python = function(cb, config)
 			},
 		})
 	else
+		print(python_path)
 		cb({
 			type = "executable",
 			command = python_path,

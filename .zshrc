@@ -120,29 +120,8 @@ python_details() {
 }
 
 ####################
-#   GPT functions  #
-####################
-
-g() {
-  sgpt "$*"
-}
-
-gc() {
-  sgpt --chat tmp "$*"
-}
-
-go() {
-  sgpt --code "$*"
-}
-
-gco() {
-  sgpt --code --chat tmp "$*"
-}
-####################
 # Python functions #
 ####################
-
-
 
 poetry_activate () {
     source $(poetry env info --path)/bin/activate
@@ -175,18 +154,6 @@ function rm-pycache() {
 }
 
 ################
-# Miscelaneous #
-#$##############
-# Setup zsh
-source /opt/homebrew/opt/modules/init/zsh
-# Setup pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# Setup zoxide
-eval "$(zoxide init zsh)"
-
-################
 # Source files #
 ################
 #Setup Modules
@@ -199,16 +166,32 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 #[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 #[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-source $(dirname $(gem which colorls))/tab_complete.sh #https://github.com/athityakumar/colorls - Colors on ls command
+################
+# Miscelaneous #
+#$##############
+# Setup zsh
+#source /opt/homebrew/opt/modules/init/zsh
+# Setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+ #Setup zoxide
+eval "$(zoxide init zsh)"
+
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
+#[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 source ~/.credentials.sh # Export credentials
 source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
 source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
+# Python repositories
+if [ -f ".env" ]; then
+    source .env
+fi
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/.google/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.google/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/henriquebrito/.google/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.google/google-cloud-sdk/completion.zsh.inc'; fi

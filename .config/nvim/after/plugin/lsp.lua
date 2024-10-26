@@ -105,6 +105,7 @@ require("mason-lspconfig").setup({
 		"taplo", --TOML
 		"intelephense",
 		"phpactor",
+		"terraformls",
 		--"tsserver", --typescript
 		--"eslint-lsp",
 		--"prettier",

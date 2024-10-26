@@ -248,6 +248,13 @@ return require("packer").startup(function(use)
 	})
 
 	-- Database
+	use({
+		"kristijanhusak/vim-dadbod-ui",
+		requires = {
+			{ "tpope/vim-dadbod", opt = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, opt = true },
+		},
+	})
 	--use("tpope/vim-dadbod")
 
 	-- Laravel - not working on packer

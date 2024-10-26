@@ -325,3 +325,7 @@ format = '[[$time  ](fg:#5f8787 bg:#444444)]($style)'
 symbol = ' '
 style = "fg:#673EB0 bg:#444444"
 format = '[$symbol(@$username)$stack]($style)[  ](fg:#909090 bg:#444444)'
+
+[terraform]
+style = "fg:#673EB0 bg:#444444"
+format = '[$symbol$workspace]($style)[  ](fg:#909090 bg:#444444)'
