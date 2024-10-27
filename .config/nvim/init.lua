@@ -5,31 +5,37 @@ vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, { command = "checktime" })
 
 function VKSN(map, func, description)
-	vim.keymap.set("n", map, func, { desc = description })
+    vim.keymap.set("n", map, func, { desc = description })
 end
 
 function VKSI(map, func, description)
-	vim.keymap.set("i", map, func, { desc = description })
+    vim.keymap.set("i", map, func, { desc = description })
 end
 
 function VKSV(map, func, description)
-	vim.keymap.set("v", map, func, { desc = description })
+    vim.keymap.set("v", map, func, { desc = description })
 end
 
 function FEEDKEYS(keys)
-	vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), "n")
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), "n")
 end
-
-require("default")
 
 function WHICH_KEY(mappings, opts)
-	require("which-key").register(mappings, opts)
+    require("which-key").register(mappings, opts)
 end
 
-function PACKER_SYNC()
-	vim.cmd("w")
-	vim.cmd("so")
-	vim.cmd("PackerSync")
-end
+require("config.lazy")
+require("config.remap")
+require("config.set")
 
-vim.cmd([[ command! Psync lua PACKER_SYNC() ]])
+-- require("default")
+
+
+
+-- function PACKER_SYNC()
+-- 	vim.cmd("w")
+-- 	vim.cmd("so")
+-- 	vim.cmd("PackerSync")
+-- end
+
+-- vim.cmd([[ command! Psync lua PACKER_SYNC() ]])
