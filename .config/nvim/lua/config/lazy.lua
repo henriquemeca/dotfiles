@@ -222,15 +222,6 @@ local plugins = {
 
 	-- Multi Cursor
 	"mg979/vim-visual-multi",
-
-	-- Database
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		dependencies = {
-			{ "tpope/vim-dadbod", optional = true },
-			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, optional = true },
-		},
-	},
 }
 
 require("lazy").setup(plugins, {
