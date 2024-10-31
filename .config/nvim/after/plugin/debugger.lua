@@ -30,31 +30,270 @@ end
 
 local python_path = get_python_path()
 
+local function get_services()
+	local handle = io.popen("nohup docker compose config --services 2>/dev/null")
+	if not handle then
+		vim.notify("Failed to execute docker-compose command", vim.log.levels.ERROR)
+		return nil
+	end
+	local result = handle:read("*a")
+	handle:close()
+	return vim.split(result, "\n", { trimempty = true })
+end
+
+local function pick_services()
+	local actions = require("telescope.actions")
+	local action_state = require("telescope.actions.state")
+	local pickers = require("telescope.pickers")
+	local finders = require("telescope.finders")
+	local conf = require("telescope.config").values
+	local co = coroutine.running()
+	local services = get_services()
+
+	pickers
+		.new({}, {
+			prompt_title = "Select a service",
+			finder = finders.new_table({
+				results = services,
+			}),
+			sorter = conf.generic_sorter({}),
+			attach_mappings = function(prompt_bufnr, map)
+				actions.select_default:replace(function()
+					actions.close(prompt_bufnr)
+					local selection = action_state.get_selected_entry()
+					if selection then
+						coroutine.resume(co, selection.value)
+					end
+				end)
+				return true
+			end,
+		})
+		:find()
+
+	return coroutine.yield()
+end
+
+local function get_images()
+	local handle = io.popen("nohup docker compose config --images 2>/dev/null")
+	if not handle then
+		vim.notify("Failed to execute docker-compose command", vim.log.levels.ERROR)
+		return nil
+	end
+	local result = handle:read("*a")
+	handle:close()
+	return vim.split(result, "\n", { trimempty = true })
+end
+
+local function pick_images()
+	local actions = require("telescope.actions")
+	local action_state = require("telescope.actions.state")
+	local pickers = require("telescope.pickers")
+	local finders = require("telescope.finders")
+	local conf = require("telescope.config").values
+	local co = coroutine.running()
+	local images = get_images()
+
+	pickers
+		.new({}, {
+			prompt_title = "Select a service",
+			finder = finders.new_table({
+				results = images,
+			}),
+			sorter = conf.generic_sorter({}),
+			attach_mappings = function(prompt_bufnr, map)
+				actions.select_default:replace(function()
+					actions.close(prompt_bufnr)
+					local selection = action_state.get_selected_entry()
+					if selection then
+						coroutine.resume(co, selection.value)
+					end
+				end)
+				return true
+			end,
+		})
+		:find()
+
+	return coroutine.yield()
+end
+
+--# Get the workdir from the image
+--WORKDIR=$(docker inspect cloud-composer-repo-airflow-cli --format '{{.Config.WorkingDir}}')
+
+--# Use this variable in the subsequent docker run command
+--docker run -it -p 5678:5678 --entrypoint=/bin/bash -v "$(pwd):${WORKDIR}" -w "${WORKDIR}" cloud-composer-repo-airflow-cli
+
+--local current_file = vim.api.nvim_buf_get_name(0)
+--local cwd = vim.loop.cwd()
+
+---- Normalize paths to ensure consistency
+--current_file = vim.fn.fnamemodify(current_file, ":p")  -- Absolute path
+--cwd = vim.fn.fnamemodify(cwd, ":p")  -- Absolute path trimmed of trailing slash
+
+---- Escape any special characters in cwd for pattern matching without ending with %
+--local escaped_cwd = cwd:gsub('([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1')
+
+---- Substitute `cwd` with `.` if it matches the start of the `current_file`
+--local relative_file = current_file:gsub("^" .. escaped_cwd, ".")
+
+--local docker_cmd = string.format(
+--"nohup docker compose exec -d %s python3 -m debugpy --wait-for-client --listen 0.0.0.0:5678 %s &> /dev/null &",
+--service,
+--relative_file
+--)
+
+--pickers.new({}, {
+--prompt_title = 'Select a Service',
+--finder = finders.new_table {
+--results = services,
+--},
+--sorter = conf.generic_sorter({}),
+--attach_mappings = function(prompt_bufnr)
+--actions.select_default:replace(function()
+--actions.close(prompt_bufnr)
+--local selection = action_state.get_selected_entry()
+--local service = selection.value
+
+--local current_file = vim.api.nvim_buf_get_name(0)
+--local cwd = vim.loop.cwd()
+
+---- Normalize paths to ensure consistency
+--current_file = vim.fn.fnamemodify(current_file, ":p")  -- Absolute path
+--cwd = vim.fn.fnamemodify(cwd, ":p")  -- Absolute path trimmed of trailing slash
+
+---- Escape any special characters in cwd for pattern matching without ending with %
+--local escaped_cwd = cwd:gsub('([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1')
+
+---- Substitute `cwd` with `.` if it matches the start of the `current_file`
+--local relative_file = current_file:gsub("^" .. escaped_cwd, ".")
+
+--local docker_cmd = string.format(
+--"nohup docker compose exec -d %s python3 -m debugpy --wait-for-client --listen 0.0.0.0:5678 %s &> /dev/null &",
+--service,
+--relative_file
+--)
+
+--os.execute(docker_cmd)
+----vim.fn.system(docker_cmd)
+--print(docker_cmd)
+
+---- Wait or check if it's ready
+--vim.defer_fn(function()
+--cb({
+--type = "server",
+--port = assert(port, "`connect.port` is required for a python `attach` configuration"),
+--host = host,
+--options = {
+--source_filetype = "python",
+--},
+--enrich_config = function(config, on_config)
+--local current_file = vim.api.nvim_buf_get_name(0)
+--local relative_file = current_file:gsub(vim.loop.cwd(), ".")
+
+--local docker_cmd = string.format(
+--"nohup docker run -d -p 5678:5678 -v .:/app --rm --name debug-test debug %s &> /dev/null &",
+--relative_file
+--)
+----os.execute("docker kill debug-test &> /dev/null || true")
+----os.execute("docker rm debug-test &> /dev/null || true")
+----os.execute(docker_cmd)
+--vim.defer_fn(function()
+--on_config(config) -- Continue with the original config
+--end, 2000) -- Adjust delay as needed for your Docker container to start
+--end,
+--})
+--end, 3000)
+--end)
+--return true
+--end,
+--}):find()
+
+local function get_docker_host(service)
+	local command =
+		"docker inspect $(docker ps --filter \"name=%s\" --quiet) | jq '.[0].NetworkSettings.Networks | .[] | .Gateway'"
+	command = string.format(command, service)
+
+	return os.capture(command)
+end
+
 dap.adapters.python = function(cb, config)
-	if config.request == "attach" then
-		---@diagnostic disable-next-line: undefined-field
+	if string.find(config.name, "Exec") then
 		local port = (config.connect or config).port
-		---@diagnostic disable-next-line: undefined-field
 		local host = (config.connect or config).host or "127.0.0.1"
+		local current_file = vim.api.nvim_buf_get_name(0)
+		local cwd = vim.loop.cwd()
+		local service = pick_services()
+		--local host = get_docker_host(service)
+		print(host)
+
+		-- Normalize paths to ensure consistency
+		current_file = vim.fn.fnamemodify(current_file, ":p") -- Absolute path
+		cwd = vim.fn.fnamemodify(cwd, ":p") -- Absolute path trimmed of trailing slash
+		local escaped_cwd = cwd:gsub("([%.%+%-%*%?%[%]%^%$%(%)%%])", "%%%1")
+		local relative_file = current_file:gsub("^" .. escaped_cwd, "")
+
+		local docker_cmd = string.format(
+			"nohup docker compose exec -d %s python3 -m debugpy --wait-for-client --listen 0.0.0.0:5678 %s &> /dev/null &",
+			service,
+			relative_file
+		)
+
+		--os.execute(docker_cmd)
+		--vim.fn.system(docker_cmd)
+		print(docker_cmd)
+		vim.cmd.sleep(8)
+
 		cb({
 			type = "server",
 			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
 			host = host,
-			enrich_config = function(config, on_config)
-				local current_file = vim.api.nvim_buf_get_name(0)
-				local relative_file = current_file:gsub(vim.loop.cwd(), ".")
+			options = {
+				source_filetype = "python",
+			},
+		})
+	elseif string.find(config.name, "Run") then
+		local port = (config.connect or config).port
+		local host = (config.connect or config).host or "127.0.0.1"
+		local current_file = vim.api.nvim_buf_get_name(0)
+		local cwd = vim.loop.cwd()
+		local image = pick_images()
+		local workdir =
+			os.capture("docker inspect cloud-composer-repo-airflow-cli --format '{{.Config.WorkingDir}}'", false)
 
-				local docker_cmd = string.format(
-					"nohup docker run -d -p 5678:5678 -v .:/app --rm --name debug-test debug %s &> /dev/null &",
-					relative_file
-				)
-				--os.execute("docker kill debug-test &> /dev/null || true")
-				--os.execute("docker rm debug-test &> /dev/null || true")
-				--os.execute(docker_cmd)
-				vim.defer_fn(function()
-					on_config(config) -- Continue with the original config
-				end, 2000) -- Adjust delay as needed for your Docker container to start
-			end,
+		-- Normalize paths to ensure consistency
+		current_file = vim.fn.fnamemodify(current_file, ":p") -- Absolute path
+		cwd = vim.fn.fnamemodify(cwd, ":p") -- Absolute path trimmed of trailing slash
+		local escaped_cwd = cwd:gsub("([%.%+%-%*%?%[%]%^%$%(%)%%])", "%%%1")
+		local relative_file = current_file:gsub("^" .. escaped_cwd, "")
+
+		local docker_cmd = string.format(
+			"nohup docker run -d -p 5678:5678 -v .:%s -w %s --entrypoint=/bin/bash %s -c 'python3 -m debugpy --wait-for-client --listen 0.0.0.0:5678 %s' &> /dev/null &",
+			workdir,
+			workdir,
+			image,
+			relative_file
+		)
+
+		os.execute(docker_cmd)
+		--vim.fn.system(docker_cmd)
+		print(docker_cmd)
+		vim.cmd.sleep(8)
+
+		cb({
+			type = "server",
+			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
+			host = host,
+			options = {
+				source_filetype = "python",
+			},
+		})
+	elseif config.request == "attach" then
+		local port = (config.connect or config).port
+		local host = (config.connect or config).host or "127.0.0.1"
+		print(host)
+		cb({
+			type = "server",
+			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
+			host = host,
 			options = {
 				source_filetype = "python",
 			},
@@ -93,6 +332,36 @@ dap.configurations.python = {
 	},
 	{
 		name = "Python: Remote Attach",
+		type = "python",
+		request = "attach",
+		connect = {
+			host = "127.0.0.1",
+			port = 5678,
+		},
+		pathMappings = { {
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = ".",
+		} },
+
+		justMyCode = true,
+	},
+	{
+		name = "Python: Remote Attach - Exec container",
+		type = "python",
+		request = "attach",
+		connect = {
+			host = "127.0.0.1",
+			port = 5678,
+		},
+		pathMappings = { {
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = ".",
+		} },
+
+		justMyCode = true,
+	},
+	{
+		name = "Python: Remote Attach - Run container",
 		type = "python",
 		request = "attach",
 		connect = {

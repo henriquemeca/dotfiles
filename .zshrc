@@ -6,6 +6,7 @@ alias l='colorls -A --sd'
 alias la='colorls -lAh --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
 alias cdd='cd ~/dotfiles && nvim .'
+alias aider='$HOME/.local/pipx/venvs/aider-chat/bin/aider'
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
@@ -186,7 +187,15 @@ source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
 # Python repositories
 if [ -f ".env" ]; then
-    source .env
+  while IFS= read -r line || [ -n "$line" ]; do
+    # Skip empty lines and comments
+    if [[ -z "$line" || "$line" == \#* ]]; then
+      continue
+    fi
+
+    # Export the variable
+    export "$line"
+  done < $ENV_FILE
 fi
 
 
