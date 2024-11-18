@@ -237,10 +237,8 @@ dap.adapters.python = function(cb, config)
 			relative_file
 		)
 
-		--os.execute(docker_cmd)
-		--vim.fn.system(docker_cmd)
 		print(docker_cmd)
-		vim.cmd.sleep(8)
+		os.execute(docker_cmd)
 
 		cb({
 			type = "server",
@@ -289,7 +287,6 @@ dap.adapters.python = function(cb, config)
 	elseif config.request == "attach" then
 		local port = (config.connect or config).port
 		local host = (config.connect or config).host or "127.0.0.1"
-		print(host)
 		cb({
 			type = "server",
 			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
@@ -346,6 +343,21 @@ dap.configurations.python = {
 		justMyCode = true,
 	},
 	{
+		name = "Python: Remote Attach - Full Code",
+		type = "python",
+		request = "attach",
+		connect = {
+			host = "127.0.0.1",
+			port = 5678,
+		},
+		pathMappings = { {
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = ".",
+		} },
+
+		justMyCode = false,
+	},
+	{
 		name = "Python: Remote Attach - Exec container",
 		type = "python",
 		request = "attach",
@@ -359,6 +371,21 @@ dap.configurations.python = {
 		} },
 
 		justMyCode = true,
+	},
+	{
+		name = "Python: Remote Attach - Exec container - Full code",
+		type = "python",
+		request = "attach",
+		connect = {
+			host = "127.0.0.1",
+			port = 5678,
+		},
+		pathMappings = { {
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = ".",
+		} },
+
+		justMyCode = false,
 	},
 	{
 		name = "Python: Remote Attach - Run container",
