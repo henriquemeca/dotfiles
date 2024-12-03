@@ -173,9 +173,9 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		--["tsserver"] = function()
-		--require("lspconfig").tsserver.setup({})
-		--end,
+		["ts_ls"] = function()
+			require("lspconfig").ts_ls.setup({})
+		end,
 		["intelephense"] = function()
 			require("lspconfig").intelephense.setup({})
 		end,

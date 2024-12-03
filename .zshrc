@@ -14,6 +14,9 @@ alias t="tmux"
 alias ta="tmux a"
 alias tn="tmux new -s"
 
+## docker
+alias dc="docker compose"
+
 ## Git
 #alias ga="git add"
 #alias gcm="git commit -m"

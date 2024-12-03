@@ -1,10 +1,13 @@
 local conform = require("conform")
+local prettier = { "prettierd", "prettier", stop_after_first = true }
 conform.setup({
 	-- Map of filetype to formatters
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier" },
-		typescript = { "prettier" },
+		javascript = prettier,
+		typescript = prettier,
+		typescriptreact = prettier,
+		javascriptreact = prettier,
 		-- You can use a function here to determine the formatters dynamically
 		--python = { "pyright" },
 		python = function(bufnr)
@@ -14,13 +17,13 @@ conform.setup({
 				return { "black" }
 			end
 		end,
-		css = { "prettier" },
-		html = { "prettier" },
-		json = { "prettier" },
-		yaml = { "prettier" },
+		css = prettier,
+		html = prettier,
+		json = prettier,
+		yaml = prettier,
 		sql = { "sqlfluff" },
 		php = { "pint" },
-		markdown = { "prettier" },
+		markdown = prettier,
 		terraform = { "terraform_fmt" },
 	},
 	--format_on_save = {
