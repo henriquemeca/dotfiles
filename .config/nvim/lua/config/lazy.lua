@@ -38,6 +38,12 @@ local plugins = {
 	"Mofiqul/vscode.nvim",
 	{ "catppuccin/vim", name = "catppuccin" },
 	"rebelot/kanagawa.nvim",
+	--{
+	--"lukas-reineke/indent-blankline.nvim",
+	--dependencies = {
+	--"TheGLander/indent-rainbowline.nvim",
+	--},
+	--},
 
 	-- Trees
 	"nvim-tree/nvim-tree.lua",
@@ -161,14 +167,14 @@ local plugins = {
 	"nvim-pack/nvim-spectre",
 
 	-- Copilot
-	"zbirenbaum/copilot.lua",
-	{
-		"zbirenbaum/copilot-cmp",
-		dependencies = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+	--"zbirenbaum/copilot.lua",
+	--{
+	--"zbirenbaum/copilot-cmp",
+	--dependencies = { "copilot.lua" },
+	--config = function()
+	--require("copilot_cmp").setup()
+	--end,
+	--},
 
 	-- Status line
 	{
@@ -208,7 +214,7 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			"nvim-tree/nvim-web-devicons",
-			"zbirenbaum/copilot.lua",
+			--"zbirenbaum/copilot.lua",
 			"HakonHarnes/img-clip.nvim",
 			"MeanderingProgrammer/render-markdown.nvim",
 		},
@@ -221,7 +227,7 @@ local plugins = {
 	"tpope/vim-obsession",
 
 	-- Multi Cursor
-	"mg979/vim-visual-multi",
+	--"mg979/vim-visual-multi",
 }
 
 require("lazy").setup(plugins, {

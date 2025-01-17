@@ -125,7 +125,7 @@ WHICH_KEY({
 				vim.cmd("Git fetch")
 				vim.cmd("Git reset --hard @{u}")
 			end,
-			"Fetches and resets origin/main",
+			"Fetches and resets origin/{branch}",
 		},
 		w = {
 			name = "Worktree",

@@ -51,7 +51,7 @@ require("lspsaga").setup({
 		},
 	},
 	lightbulb = {
-		enable = true,
+		enable = false, -- deactivated
 		sign = true,
 		debounce = 10,
 		sign_priority = 40,
@@ -64,10 +64,10 @@ require("lspsaga").setup({
 	},
 	request_timeout = 2000,
 	finder = {
-		max_height = 0.8,
-		left_width = 0.4,
+		max_height = 0.9,
+		left_width = 0.5,
 		methods = {},
-		default = "ref+imp",
+		default = "def+ref+imp",
 		layout = "float",
 		silent = false,
 		filter = {},

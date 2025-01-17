@@ -7,6 +7,7 @@ alias la='colorls -lAh --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
 alias cdd='cd ~/dotfiles && nvim .'
 alias aider='$HOME/.local/pipx/venvs/aider-chat/bin/aider'
+alias dj='python manage.py' # django
 #alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
@@ -15,7 +16,10 @@ alias ta="tmux a"
 alias tn="tmux new -s"
 
 ## docker
-alias dc="docker compose"
+alias dc="docker-compose"
+
+## laravel
+alias pa="php artisan"
 
 ## Git
 #alias ga="git add"
@@ -198,7 +202,7 @@ if [ -f ".env" ]; then
 
     # Export the variable
     export "$line"
-  done < $ENV_FILE
+  done < ".env"
 fi
 
 
