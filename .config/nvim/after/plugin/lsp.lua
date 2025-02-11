@@ -104,8 +104,8 @@ require("mason-lspconfig").setup({
 		"sqlls",
 		"taplo", --TOML
 		"intelephense",
-		"terraformls",
-		"emmet-language-server",
+		--"terraformls",
+		--"emmet-language-server",
 		--"tsserver", --typescript
 		--"eslint-lsp",
 		--"prettier",
@@ -132,24 +132,24 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		["ruff"] = function()
-			local lspconfig = require("lspconfig")
-			lspconfig.ruff.setup({
-				capabilities = capabilities,
-				trace = "messages",
-				init_options = {
-					settings = {
-						logLevel = "debug",
-					},
-				},
-			})
-		end,
-		["ruff_lsp"] = function()
-			local lspconfig = require("lspconfig")
-			lspconfig.ruff_lsp.setup({
-				capabilities = capabilities,
-			})
-		end,
+		--["ruff"] = function()
+		--local lspconfig = require("lspconfig")
+		--lspconfig.ruff.setup({
+		--capabilities = capabilities,
+		--trace = "messages",
+		--init_options = {
+		--settings = {
+		--logLevel = "debug",
+		--},
+		--},
+		--})
+		--end,
+		--["ruff_lsp"] = function()
+		--local lspconfig = require("lspconfig")
+		--lspconfig.ruff_lsp.setup({
+		--capabilities = capabilities,
+		--})
+		--end,
 		["pyright"] = function()
 			require("lspconfig").pyright.setup({
 				capabilities = capabilities,

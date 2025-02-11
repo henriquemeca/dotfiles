@@ -185,33 +185,9 @@ dap.adapters.python = function(cb, config)
 				source_filetype = "python",
 			},
 		})
-	elseif string.find(config.name, "Django") then
-		local port = (config.connect or config).port
+	elseif string.find(config.name, "Remote") then
+		local port = vim.fn.input("Remote port to connect: ", (config.connect or config).port)
 		local host = (config.connect or config).host or "127.0.0.1"
-		local current_file = vim.api.nvim_buf_get_name(0)
-		local cwd = vim.loop.cwd()
-		local image = pick_images()
-		local workdir =
-			os.capture("docker inspect cloud-composer-repo-airflow-cli --format '{{.Config.WorkingDir}}'", false)
-
-		-- Normalize paths to ensure consistency
-		current_file = vim.fn.fnamemodify(current_file, ":p") -- Absolute path
-		cwd = vim.fn.fnamemodify(cwd, ":p") -- Absolute path trimmed of trailing slash
-		local escaped_cwd = cwd:gsub("([%.%+%-%*%?%[%]%^%$%(%)%%])", "%%%1")
-		local relative_file = current_file:gsub("^" .. escaped_cwd, "")
-
-		local docker_cmd = string.format(
-			"nohup docker-compose run -d -p 5678:5678 --rm application -v .:%s -w %s --entrypoint=/bin/bash %s -c 'poetry run debugpy --wait-for-client --listen 0.0.0.0:5678 -m manage test --noinput --parallel=4 --shuffle  --debug-mode %s' &> /dev/null &",
-			workdir,
-			workdir,
-			image,
-			relative_file
-		)
-
-		os.execute(docker_cmd)
-		print(docker_cmd)
-		vim.cmd.sleep(8)
-
 		cb({
 			type = "server",
 			port = assert(port, "`connect.port` is required for a python `attach` configuration"),

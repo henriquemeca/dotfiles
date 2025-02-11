@@ -14,9 +14,9 @@ create_link() {
 }
 
 ### Add symlinks to all "./config" subfolders
-for dir in $(find "config" -maxdepth 1 -mindepth 1 -type d); do
+for dir in $(find ".config" -maxdepth 1 -mindepth 1 -type d); do
 	source_dir="$(pwd)/$dir"
-	target_dir="$HOME/.$dir"
+	target_dir="$HOME/$dir"
 
 	create_link $source_dir $target_dir
 

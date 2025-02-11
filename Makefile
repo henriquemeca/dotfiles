@@ -16,4 +16,4 @@ up_astrovim:
   	sh \
 	'
 stow:
-	stow --adopt --dotfiles .
+	stow --dotfiles .

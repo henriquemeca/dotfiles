@@ -68,41 +68,6 @@ export_env(){
     fi
 }
 
-#Query json from GCS and prints it with `JQ`
-failed_indicators() {
-    gsutil cp $1/failed_indicators.json - | jq
-}
-failed_indicators_on_date() {
-    if [ -z "$1" ]; then
-        local current_date=$(date +'%Y-%m-%d')
-    else
-        local current_date=$1
-    fi
-    
-    local indicator_types=("analytics" "contractual" "regulatory" "securitization")
-    
-    for type in "${indicator_types[@]}"; do
-        echo $type
-        gsutil cp "$KORUJA_LOGS_PATH/at=$current_date/indicator_type=$type/failed_indicators.json" - | jq
-    done
-}
-
-funds() {
-    bq query --use_legacy_sql=false 'SELECT id, name, slug FROM hub.funds ORDER BY 1'
-}
-
-download_reports() {
-    DESTINATION_DIR="$HOME/fund-reports/"
-    if [ ! -d "$DESTINATION_DIR" ]; then
-        mkdir -p "$DESTINATION_DIR"
-        echo "Directory $DESTINATION_DIR created."
-    else
-        echo "Directory $DESTINATION_DIR already exists."
-    fi
-
-    gsutil -m rsync -d -r "gs://kanastra-tech-hub-production/fund-reports/" "$DESTINATION_DIR"
-}
-
 python_details() {
     echo "About python3"
     which python3
@@ -125,6 +90,19 @@ python_details() {
         poetry env info
     fi
 
+}
+dataproc_batch_logs() {
+  if [[ -z "$1" ]]; then
+    echo "You must provide a batch ID."
+    return 1
+  fi
+
+  local BATCH_ID=$1
+  local PROJECT_ID=$GOOGLE_CLOUD_PROJECT
+  local REGION=$GOOGLE_CLOUD_REGION
+
+  # Describe the Dataproc batch using the provided ID
+  gcloud dataproc batches describe $BATCH_ID --region=$REGION --project=$PROJECT_ID
 }
 
 ####################
@@ -180,17 +158,17 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # Setup zsh
 #source /opt/homebrew/opt/modules/init/zsh
 # Setup pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
- #Setup zoxide
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+##Setup zoxide
 eval "$(zoxide init zsh)"
 
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 #[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 source ~/.credentials.sh # Export credentials
-source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
-source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
+#source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh
+#source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
 # Python repositories
 if [ -f ".env" ]; then
@@ -205,9 +183,16 @@ if [ -f ".env" ]; then
   done < ".env"
 fi
 
+if [ -d ".venv" ]; then
+    source .venv/bin/activate
+    export PYTHONPATH="$(pwd):$PYTHONPATH"
+    echo "venv initialized"
+fi
+
+source /Users/henrique.brito/github/cloud-composer-repo/.cloud_composer_source.sh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/henriquebrito/.google/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henriquebrito/.google/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/henriquebrito/.google/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henriquebrito/.google/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/completion.zsh.inc'; fi

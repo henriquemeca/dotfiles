@@ -1,6 +1,5 @@
 tap "dbt-labs/dbt"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "microsoft/git"
 # Zstandard is a real-time compression algorithm
 brew "zstd"

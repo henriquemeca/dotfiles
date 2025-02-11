@@ -11,7 +11,7 @@ VKSN("<C-[>", "10k", "Half Page up")
 VKSN("<C-]>", "10j", "Halg Page down")
 VKSN("<C-d>", "<C-d>zz", "Page down")
 VKSN("<C-u>", "<C-u>zz", "Page up")
-VKSN("<leader>a", "ggVG", "Highlight path")
+--VKSN("<leader>a", "ggVG", "Highlight path")
 VKSN("<leader>A", 'ggVG"+y', "Copy page")
 
 VKSV("J", ":m '>+1<CR>gv=gv", "Move selected lines up (on Visual Mode)")
