@@ -68,3 +68,32 @@
   Output = ""
   Tag = []
   command = "uuidgen"
+
+[[Snippets]]
+  Description = "Go test bench pprof"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "go test -bench=. -cpuprofile=cpu.prof -memprofile=mem.prof -trace trace.out"
+
+[[Snippets]]
+  Description = "Go pprof server"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "go tool pprof -http=:8080 "
+
+
+[[Snippets]]
+  Description = "Go diplay compiler optmization"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "go build -gcflags=-m "
+  
+[[Snippets]]
+  Description = "Go diplay trace"
+  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "go tool trace trace.out"

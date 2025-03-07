@@ -104,6 +104,7 @@ require("mason-lspconfig").setup({
 		"sqlls",
 		"taplo", --TOML
 		"intelephense",
+		"gopls",
 		--"terraformls",
 		--"emmet-language-server",
 		--"tsserver", --typescript
@@ -178,6 +179,23 @@ require("mason-lspconfig").setup({
 		end,
 		["intelephense"] = function()
 			require("lspconfig").intelephense.setup({})
+		end,
+		["gopls"] = function()
+			require("lspconfig").gopls.setup({
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = require("lspconfig/util").root_pattern("gowork", "gomod", ".git"),
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
+			})
 		end,
 		["emmet_ls"] = function()
 			require("lspconfig").emmet_ls.setup({

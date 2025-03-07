@@ -16,7 +16,7 @@
   Format = "[$description]: $command $tags"
   SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
   SnippetDirs = []
-  SnippetFile = "/Users/henriquebrito/.config/pet/snippet.toml"
+  SnippetFile = "/Users/henrique.brito/.config/pet/snippet.toml"
   SortBy = ""
 
 [Gist]

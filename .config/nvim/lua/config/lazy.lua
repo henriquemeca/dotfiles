@@ -135,6 +135,7 @@ local plugins = {
 			"nvim-neotest/nvim-nio",
 			"jay-babu/mason-nvim-dap.nvim",
 			"mxsdev/nvim-dap-vscode-js",
+			"leoluz/nvim-dap-go",
 		},
 	},
 	{
@@ -251,6 +252,13 @@ local plugins = {
 				ft = { "markdown", "Avante" },
 			},
 		},
+	},
+	-- Go features
+	{
+		"olexsmir/gopher.nvim",
+		build = function()
+			vim.cmd([[silent! GoInstallDeps]])
+		end,
 	},
 
 	-- Movements upgrade

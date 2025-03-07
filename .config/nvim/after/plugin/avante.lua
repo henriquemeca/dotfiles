@@ -1,4 +1,3 @@
--- deps:
 require("img-clip").setup({
 	embed_image_as_base64 = false,
 	prompt_for_file_name = false,
@@ -27,6 +26,7 @@ require("avante").setup({
 		temperature = 0,
 		max_tokens = 4096,
 	},
+	claude = nil,
 	---Specify the special dual_boost mode
 	---1. enabled: Whether to enable dual_boost mode. Default to false.
 	---2. first_provider: The first provider to generate response. Default to "openai".

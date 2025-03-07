@@ -168,6 +168,24 @@ require("lspsaga").setup({
 	},
 })
 
+local function goto_definition_with_telescope()
+	local params = vim.lsp.util.make_position_params()
+	vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, ctx, _)
+		if not result or vim.tbl_isempty(result) then
+			print("No definition found")
+			return
+		end
+
+		-- If only one definition exists, jump directly
+		if #result == 1 then
+			vim.lsp.util.jump_to_location(result[1])
+			return
+		end
+
+		vim.cmd("Telescope lsp_definitions")
+	end)
+end
+
 --diagnostic
 VKSN("[d", function()
 	vim.cmd("Lspsaga diagnostic_jump_next")
@@ -179,14 +197,15 @@ VKSN("K", function()
 	vim.cmd("Lspsaga hover_doc")
 end, "Hover doc")
 VKSN("gd", function()
-	vim.lsp.buf.definition() --vim.cmd("Lspsaga goto_definition")
+	goto_definition_with_telescope()
 	FEEDKEYS("zz")
-end, "Signature help")
+end, "Go to definition")
 VKSN("gD", function()
 	vim.cmd("vsplit")
-	vim.cmd("Lspsaga goto_definition")
+	--vim.cmd("Telescope lsp_definitions")
+	goto_definition_with_telescope()
 	FEEDKEYS("zz")
-end, "Signature help")
+end, "Go to definition - Split view")
 
 WHICH_KEY({
 	l = {

@@ -58,6 +58,21 @@
 
 -- Git commands
 
+local default_branch = nil
+
+local function get_default_branch()
+	if default_branch then
+		return default_branch
+	end
+	-- Get the default branch dynamically
+	local handle = io.popen("git remote show origin | grep 'HEAD branch' | awk '{print $NF}'")
+	if handle then
+		default_branch = handle:read("*l")
+		handle:close()
+	end
+	return default_branch or "main" -- Fallback to 'main' if detection fails
+end
+
 WHICH_KEY({
 	g = {
 		name = "git",
@@ -74,16 +89,17 @@ WHICH_KEY({
 			c = { ":Git commit -m ''<Left>", "commit - short message" },
 			a = { ":Git commit --amend --no-edit<CR>", "commit ammend" },
 			o = { ":Git checkout ", "checkout" },
-			O = { ":Git checkout origin/main", "checkout origin " },
+			O = { ":Git checkout origin/" .. get_default_branch(), "checkout origin " },
 			b = { ":Git checkout -b ", "checkout origin " },
 			f = {
 				function()
+					local branch = get_default_branch()
 					vim.cmd("Git stash")
 					vim.cmd("Git fetch")
-					vim.cmd("Git checkout main")
-					vim.cmd("Git reset --hard origin/main")
+					vim.cmd("Git checkout " .. branch)
+					vim.cmd("Git reset --hard origin/" .. branch)
 				end,
-				"Force sync with main",
+				"Force sync with default branch",
 			},
 		},
 		p = {
@@ -105,7 +121,7 @@ WHICH_KEY({
 				vim.cmd("Git fetch")
 				vim.cmd("Git merge origin/main -m 'merge with main' --no-ff")
 			end,
-			"Fetches and merges origin/main",
+			"Fetches and merges origin/ default branch",
 		},
 		h = { ":DiffviewFileHistory<CR>", "Git History - Diffview" },
 		f = { ":DiffviewFileHistory %<CR>", "File Git History - Diffview" },
@@ -114,10 +130,10 @@ WHICH_KEY({
 			function()
 				vim.cmd("Git stash")
 				vim.cmd("Git fetch")
-				vim.cmd("Git rebase origin/main")
+				vim.cmd("Git rebase origin/" .. get_default_branch())
 				vim.cmd("Git rebase --continue")
 			end,
-			"Rebase with main origin/main",
+			"Rebase with main origin/" .. get_default_branch(),
 		},
 		R = {
 			function()
@@ -130,19 +146,27 @@ WHICH_KEY({
 		w = {
 			name = "Worktree",
 			a = {
-				":Git worktree add ../" .. os.capture("basename `git rev-parse --show-toplevel`") .. "_main " .. "main",
+				":Git worktree add ../"
+					.. os.capture("basename `git rev-parse --show-toplevel`")
+					.. "_main "
+					.. ""
+					.. get_default_branch(),
 				"Create worktree",
 			},
 			b = {
 				":Git worktree add -b "
 					.. "new-branch ../"
 					.. os.capture("basename `git rev-parse --show-toplevel`")
-					.. "_main",
+					.. "_"
+					.. get_default_branch(),
 				"Create worktree in new branch",
 			},
 			l = { ":Git worktree list<CR>", "List worktrees" },
 			d = {
-				":Git worktree remove " .. os.capture("basename `git rev-parse --show-toplevel`") .. "_main",
+				":Git worktree remove "
+					.. os.capture("basename `git rev-parse --show-toplevel`")
+					.. "_"
+					.. get_default_branch(),
 				"Delete worktree",
 			},
 		},

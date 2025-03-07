@@ -8,6 +8,7 @@ conform.setup({
 		typescript = prettier,
 		typescriptreact = prettier,
 		javascriptreact = prettier,
+		go = { "gofumpt", "goimports-reviser" },
 		-- You can use a function here to determine the formatters dynamically
 		--python = { "pyright" },
 		python = function(bufnr)

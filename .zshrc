@@ -7,19 +7,21 @@ alias la='colorls -lAh --sd'
 alias cdg='cd ~/github && cd $(find . -type d | fzf)'
 alias cdd='cd ~/dotfiles && nvim .'
 alias aider='$HOME/.local/pipx/venvs/aider-chat/bin/aider'
-alias dj='python manage.py' # django
-#alias export_env="export $(grep -v '^#' .env | xargs -0)"
 
 ## tmux
 alias t="tmux"
 alias ta="tmux a"
 alias tn="tmux new -s"
 
-## docker
+## Programming
 alias dc="docker-compose"
-
-## laravel
+alias dj='python manage.py' # django
 alias pa="php artisan"
+alias gm="go mod"
+alias gr="go run"
+alias gt="go test"
+alias gb="go build"
+
 
 ## Git
 #alias ga="git add"
@@ -36,36 +38,14 @@ alias gd='gh dash'
 
 # Pet
 function p() {
-    pet exec
+    pet clip
 }
-
-function pf() {
-    pet exec -q $1
-}
-function add_previous_command() {
-    last_command=$(fc -rln | head -n 1)
-    BUFFER="pet new $last_command"
-}
-
-zle -N add_previous_command
-bindkey '^p' add_previous_command
 
 cdf() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf -e +m) && \
   cd "$dir"
-}
-
-# Export env variables from .env file
-export_env(){
-    unamestr=$(uname)
-    if [ "$unamestr" = 'Linux' ]; then
-      export $(grep -v '^#' .env | xargs -d '\n')
-    elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
-      export $(grep -v '^#' .env | xargs -0)
-
-    fi
 }
 
 python_details() {
@@ -143,7 +123,7 @@ function rm-pycache() {
 # Source files #
 ################
 #Setup Modules
-export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/go/bin
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
@@ -171,16 +151,12 @@ source ~/.credentials.sh # Export credentials
 #source /Users/henriquebrito/github/report-hub/.report_hub_source.sh
 
 # Python repositories
-if [ -f ".env" ]; then
-  while IFS= read -r line || [ -n "$line" ]; do
-    # Skip empty lines and comments
-    if [[ -z "$line" || "$line" == \#* ]]; then
-      continue
-    fi
+export_env() {
+    export $(grep -v '^#' .env | xargs)
+}
 
-    # Export the variable
-    export "$line"
-  done < ".env"
+if [ -f ".env" ]; then
+    export $(grep -v '^#' .env | xargs)
 fi
 
 if [ -d ".venv" ]; then

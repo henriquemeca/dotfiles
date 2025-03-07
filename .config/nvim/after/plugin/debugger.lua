@@ -228,6 +228,7 @@ dap.configurations.python = {
 		cwd = vim.fn.getcwd(),
 		program = "${file}",
 		pythonPath = python_path,
+		justMyCode = true,
 	},
 	{
 		type = "python",
@@ -376,14 +377,6 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 		},
 	}
 end
-
---dap.adapters.php = {
---type = "executable",
-----command = "php",
-----args = { os.getenv("HOME") .. "/vscode-php-debug/out/phpDebug.js" },
---command = "node",
---args = { os.getenv("HOME") .. "/vscode-php-debug/out/phpDebug.js" },
---}
 
 dap.adapters.php = function(cb, config)
 	if string.find(config.name, "test") then
