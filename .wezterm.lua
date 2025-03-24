@@ -7,10 +7,10 @@ config.hide_tab_bar_if_only_one_tab = true
 config.force_reverse_video_cursor = true
 --config.colors = require("kanagawa")
 config.window_padding = {
-	left = 5,
-	right = 5,
-	top = 5,
-	bottom = 5,
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
 config.initial_rows = 39
 config.initial_cols = 126

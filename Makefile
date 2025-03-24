@@ -15,5 +15,19 @@ up_astrovim:
   	cd /root/.config/nvim && \
   	sh \
 	'
-stow:
+mac-init:
+	export PATH=/opt/homebrew/bin:$PATH
+	touch ~/.credentials.sh
+	if [ ! -d ~/.config ]; then mkdir ~/.config; fi
 	stow --dotfiles .
+	brew install font-hack-nerd-font
+	#gem install colorls
+
+brew-install:
+	brew bundle
+
+brew-update:
+	brew bundle dump --force
+
+brew-fonts:
+

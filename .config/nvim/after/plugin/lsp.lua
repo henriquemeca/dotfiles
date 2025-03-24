@@ -104,7 +104,7 @@ require("mason-lspconfig").setup({
 		"sqlls",
 		"taplo", --TOML
 		"intelephense",
-		"gopls",
+		--"gopls",
 		--"terraformls",
 		--"emmet-language-server",
 		--"tsserver", --typescript
