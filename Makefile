@@ -29,5 +29,8 @@ brew-install:
 brew-update:
 	brew bundle dump --force
 
-brew-fonts:
+tmux-init:
+	tmux source-file ~/.tmux.conf
+	~/.config/tmux/plugins/tpm/bin/install_plugins
+	~/.config/tmux/plugins/tpm/bin/update_plugins all
 
