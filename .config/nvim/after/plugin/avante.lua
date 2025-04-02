@@ -1,32 +1,18 @@
-require("img-clip").setup({
-	embed_image_as_base64 = false,
-	prompt_for_file_name = false,
-	drag_and_drop = {
-		insert_mode = true,
-	},
-})
 require("avante_lib").load()
 require("avante").setup({
-	--@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-	provider = "openai", -- Recommend using Claude
-	auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-	--openai = {
-	--endpoint = "https://api.openai.com/v1",
-	--model = "gpt-4o",
-	--timeout = 30000, -- Timeout in milliseconds
-	--temperature = 0,
-	--max_tokens = 4096,
-	--["local"] = false,
-	--},
-	--@type AvanteSupportedProvider
-	open_ai = {
-		endpoint = "https://api.openai.com/v1",
-		model = "gpt-4o",
-		timeout = 30000, -- Timeout in milliseconds
+	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+	provider = "copilot", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+	-- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
+	-- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
+	-- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
+	auto_suggestions_provider = "copilot",
+	cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
+	claude = {
+		endpoint = "https://api.anthropic.com",
+		model = "claude-3-7-sonnet",
 		temperature = 0,
 		max_tokens = 4096,
 	},
-	claude = nil,
 	---Specify the special dual_boost mode
 	---1. enabled: Whether to enable dual_boost mode. Default to false.
 	---2. first_provider: The first provider to generate response. Default to "openai".
@@ -50,6 +36,9 @@ require("avante").setup({
 		auto_apply_diff_after_generation = false,
 		support_paste_from_clipboard = false,
 		minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+		enable_token_counting = true, -- Whether to enable token counting. Default to true.
+		enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
+		enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
 	},
 	mappings = {
 		--- @class AvanteConflictMappings
@@ -76,11 +65,21 @@ require("avante").setup({
 			normal = "<CR>",
 			insert = "<C-s>",
 		},
+		cancel = {
+			normal = { "<C-c>", "<Esc>", "q" },
+			insert = { "<C-c>" },
+		},
 		sidebar = {
 			apply_all = "A",
 			apply_cursor = "a",
+			retry_user_request = "r",
+			edit_user_request = "e",
 			switch_windows = "<Tab>",
 			reverse_switch_windows = "<S-Tab>",
+			remove_file = "d",
+			add_file = "@",
+			close = { "<Esc>", "q" },
+			close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
 		},
 	},
 	hints = { enabled = true },
@@ -88,7 +87,7 @@ require("avante").setup({
 		---@type "right" | "left" | "top" | "bottom"
 		position = "right", -- the position of the sidebar
 		wrap = true, -- similar to vim.o.wrap
-		width = 30, -- default % based on available width
+		width = 40, -- default % based on available width
 		sidebar_header = {
 			enabled = true, -- true, false to enable/disable the header
 			align = "center", -- left, center, right for title

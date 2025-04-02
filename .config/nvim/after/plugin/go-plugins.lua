@@ -53,7 +53,8 @@ WHICH_KEY({
 		name = "Go plugins",
 		e = {
 			function()
-				vim.cmd("GoIfErr")
+				local keys = "oif err != nil {\n\treturn err\nlog.Fatalf(err)\npanic(err)\n}<ESC>3k"
+				FEEDKEYS(keys)
 			end,
 			"add err template",
 		},

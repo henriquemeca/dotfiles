@@ -1,6 +1,7 @@
 #Aliases
 
 alias v="nvim"
+alias vc="nvim ~/.credentials.sh"
 alias lzd="lazydocker"
 alias l='colorls -A --sd'
 alias la='colorls -lAh --sd'
@@ -29,6 +30,7 @@ alias gb="go build"
 #alias gco="git checkout"
 #alias gst="git status"
 alias gd='gh dash'
+alias gc='git clone'
 #alias gf='gh fzrepo'
 
 
@@ -144,6 +146,10 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 ##Setup zoxide
 eval "$(zoxide init zsh)"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 #[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 source ~/.credentials.sh # Export credentials
@@ -168,7 +174,7 @@ fi
 source /Users/henrique.brito/github/cloud-composer-repo/.cloud_composer_source.sh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/henrique.brito/.gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/henrique.brito/.gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henrique.brito/.config/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/henrique.brito/.gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henrique.brito/.gcloud/google-cloud-sdk/completion.zsh.inc'; fi

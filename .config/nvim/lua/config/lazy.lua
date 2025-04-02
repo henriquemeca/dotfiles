@@ -44,6 +44,7 @@ local plugins = {
 	--"TheGLander/indent-rainbowline.nvim",
 	--},
 	--},
+	"sphamba/smear-cursor.nvim",
 
 	-- Trees
 	"nvim-tree/nvim-tree.lua",
@@ -167,16 +168,6 @@ local plugins = {
 	-- Find and replace tool
 	"nvim-pack/nvim-spectre",
 
-	-- Copilot
-	--"zbirenbaum/copilot.lua",
-	--{
-	--"zbirenbaum/copilot-cmp",
-	--dependencies = { "copilot.lua" },
-	--config = function()
-	--require("copilot_cmp").setup()
-	--end,
-	--},
-
 	-- Status line
 	{
 		"nvim-lualine/lualine.nvim",
@@ -185,53 +176,14 @@ local plugins = {
 
 	-- AI Integration
 	{
-		"jackMort/ChatGPT.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"folke/trouble.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	},
-	{
-		"olimorris/codecompanion.nvim",
-		config = function()
-			require("codecompanion").setup()
-		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"hrsh7th/nvim-cmp",
-			"nvim-telescope/telescope.nvim",
-			"stevearc/dressing.nvim",
-		},
-	},
-	--{
-	--"yetone/avante.nvim",
-	--build = "make",
-	--dependencies = {
-	--"nvim-treesitter/nvim-treesitter",
-	--"stevearc/dressing.nvim",
-	--"nvim-lua/plenary.nvim",
-	--"MunifTanjim/nui.nvim",
-	--"nvim-tree/nvim-web-devicons",
-	----"zbirenbaum/copilot.lua",
-	--"HakonHarnes/img-clip.nvim",
-	--"MeanderingProgrammer/render-markdown.nvim",
-	--},
-	--},
-	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		lazy = false,
-		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-		opts = {
-			-- add any opts here
-		},
+		version = false, -- Never set this value to "*"! Never!
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
 		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
@@ -242,7 +194,6 @@ local plugins = {
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			"HakonHarnes/img-clip.nvim",
 			{
 				-- Make sure to set this up properly if you have lazy=true
 				"MeanderingProgrammer/render-markdown.nvim",
