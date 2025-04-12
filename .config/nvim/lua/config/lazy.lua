@@ -51,9 +51,6 @@ local plugins = {
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"mbbill/undotree",
 
-	-- Harppon
-	"theprimeagen/harpoon",
-
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",
@@ -135,13 +132,8 @@ local plugins = {
 			"williamboman/mason.nvim",
 			"nvim-neotest/nvim-nio",
 			"jay-babu/mason-nvim-dap.nvim",
-			"mxsdev/nvim-dap-vscode-js",
 			"leoluz/nvim-dap-go",
 		},
-	},
-	{
-		"microsoft/vscode-js-debug",
-		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 	},
 
 	-- Zen mode (focus on window)
@@ -166,7 +158,7 @@ local plugins = {
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 
 	-- Find and replace tool
-	"nvim-pack/nvim-spectre",
+	--"MagicDuck/grug-far.nvim",
 
 	-- Status line
 	{
@@ -220,6 +212,14 @@ local plugins = {
 
 	-- Multi Cursor
 	--"mg979/vim-visual-multi",
+	--"terryma/vim-multiple-cursors",
+
+	-- Snippets
+
+	{
+		"chrisgrieser/nvim-scissors",
+		dependencies = "nvim-telescope/telescope.nvim", -- if using telescope
+	},
 }
 
 require("lazy").setup(plugins, {
