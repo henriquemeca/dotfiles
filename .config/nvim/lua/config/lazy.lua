@@ -64,6 +64,7 @@ local plugins = {
 			{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
 			"cohama/lexima.vim",
 			"saadparwaiz1/cmp_luasnip",
+			"honza/vim-snippets",
 		},
 	},
 	"nvimdev/lspsaga.nvim",
@@ -158,7 +159,7 @@ local plugins = {
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 
 	-- Find and replace tool
-	--"MagicDuck/grug-far.nvim",
+	"MagicDuck/grug-far.nvim",
 
 	-- Status line
 	{

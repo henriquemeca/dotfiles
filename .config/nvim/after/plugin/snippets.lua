@@ -32,6 +32,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "friendly-snippets" },
 		{ name = "snippets" },
+		{ name = "vim-snippets" },
 	}),
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
