@@ -89,7 +89,12 @@ WHICH_KEY({
 			c = { ":Git commit -m ''<Left>", "commit - short message" },
 			a = { ":Git commit --amend --no-edit<CR>", "commit ammend" },
 			o = { ":Git checkout ", "checkout" },
-			O = { function() vim.cmd("Git checkout origin/" .. get_default_branch()) end, "checkout origin " },
+			O = {
+				function()
+					vim.cmd("Git checkout origin/" .. get_default_branch())
+				end,
+				"checkout origin ",
+			},
 			b = { ":Git checkout -b ", "checkout origin " },
 			f = {
 				function()
@@ -132,7 +137,7 @@ WHICH_KEY({
 				vim.cmd("Git rebase origin/" .. get_default_branch())
 				vim.cmd("Git rebase --continue")
 			end,
-			"Rebase with origin/main origin"
+			"Rebase with origin/main origin",
 		},
 		R = {
 			function()
@@ -146,30 +151,36 @@ WHICH_KEY({
 			name = "Worktree",
 			a = {
 				function()
-					vim.cmd(":Git worktree add ../" 
-						.. os.capture("basename `git rev-parse --show-toplevel`") 
-						.. "_main "
-						.. get_default_branch())
+					vim.cmd(
+						":Git worktree add ../"
+							.. os.capture("basename `git rev-parse --show-toplevel`")
+							.. "_main "
+							.. get_default_branch()
+					)
 				end,
 				"Create worktree",
 			},
 			b = {
 				function()
-					vim.cmd(":Git worktree add -b "
-						.. "new-branch ../"
-						.. os.capture("basename `git rev-parse --show-toplevel`")
-						.. "_"
-						.. get_default_branch())
+					vim.cmd(
+						":Git worktree add -b "
+							.. "new-branch ../"
+							.. os.capture("basename `git rev-parse --show-toplevel`")
+							.. "_"
+							.. get_default_branch()
+					)
 				end,
 				"Create worktree in new branch",
 			},
 			l = { ":Git worktree list<CR>", "List worktrees" },
 			d = {
 				function()
-					vim.cmd(":Git worktree remove "
-						.. os.capture("basename `git rev-parse --show-toplevel`")
-						.. "_"
-						.. get_default_branch())
+					vim.cmd(
+						":Git worktree remove "
+							.. os.capture("basename `git rev-parse --show-toplevel`")
+							.. "_"
+							.. get_default_branch()
+					)
 				end,
 				"Delete worktree",
 			},

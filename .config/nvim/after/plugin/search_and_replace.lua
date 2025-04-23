@@ -46,7 +46,7 @@ WHICH_KEY({
 			function()
 				require("grug-far").open()
 			end,
-			"Seach Word",
+			"Start grug",
 		},
 	},
 }, { prefix = "<leader>" })

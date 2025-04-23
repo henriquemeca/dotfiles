@@ -1,22 +1,29 @@
 prSections:
   - title: Review Pending
-    filters: | 
+    filters: |
       is:open -is:draft -reviewed-by:@me -author:@me
       repo:Kanastra-Tech/cloud-composer-repo
       repo:Kanastra-Tech/report-hub
       repo:Kanastra-Tech/credit-assets
+      repo:Kanastra-Tech/credit-assets-core
+      repo:Kanastra-Tech/controllership
   - title: Involved
     filters: |
       is:open involves:@me -author:@me -is:draft
       repo:Kanastra-Tech/cloud-composer-repo
       repo:Kanastra-Tech/report-hub
       repo:Kanastra-Tech/credit-assets
+      repo:Kanastra-Tech/credit-assets-core
+      repo:Kanastra-Tech/controllership
+      repo:Kanastra-Tech/hub
   - title: MyPRs
     filters: |
       is:open author:@me
       repo:Kanastra-Tech/cloud-composer-repo
       repo:Kanastra-Tech/report-hub
       repo:Kanastra-Tech/credit-assets
+      repo:Kanastra-Tech/credit-assets-core
+      repo:Kanastra-Tech/controllership
     #layout:
     #author:
     #hidden: true
