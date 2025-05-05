@@ -151,6 +151,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # Zsh autocomplete
 #[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 source ~/.credentials.sh # Export credentials
 #source /Users/henriquebrito/github/cloud-composer-repo/.cloud_composer_source.sh

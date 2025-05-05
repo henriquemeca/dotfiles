@@ -65,6 +65,7 @@ local plugins = {
 			"cohama/lexima.vim",
 			"saadparwaiz1/cmp_luasnip",
 			"honza/vim-snippets",
+			"zbirenbaum/copilot-cmp",
 		},
 	},
 	"nvimdev/lspsaga.nvim",
@@ -131,9 +132,18 @@ local plugins = {
 		dependencies = {
 			"mfussenegger/nvim-dap",
 			"williamboman/mason.nvim",
-			"nvim-neotest/nvim-nio",
 			"jay-babu/mason-nvim-dap.nvim",
 			"leoluz/nvim-dap-go",
+		},
+	},
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-neotest/neotest-jest",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
 		},
 	},
 
@@ -201,6 +211,10 @@ local plugins = {
 			},
 		},
 	},
+	--{
+	--"supermaven-inc/supermaven-nvim",
+	--},
+
 	-- Go features
 	{
 		"olexsmir/gopher.nvim",
@@ -220,7 +234,6 @@ local plugins = {
 	--"terryma/vim-multiple-cursors",
 
 	-- Snippets
-
 	{
 		"chrisgrieser/nvim-scissors",
 		dependencies = "nvim-telescope/telescope.nvim", -- if using telescope

@@ -1,99 +1,90 @@
 
 [[Snippets]]
   Description = "File Navigator"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "yazi"
 
 [[Snippets]]
   Description = "Disk usage"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "ncdu"
 
 [[Snippets]]
   Description = "Docker Kafka"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "docker compose -f ./docker-compose.kafka.yml <action=up>"
 
 [[Snippets]]
   Description = "Find duplicate entries in executive report df"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "echo \"self.df[self.df.duplicated(subset=[*index, columns], keep=False)]\""
 
 [[Snippets]]
   Description = "List available GH Actions"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "act --list"
 
 [[Snippets]]
   Description = "Load laravel php modules"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "composer dump-autoload"
 
 [[Snippets]]
   Description = "Clean hub schema"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "docker compose run --rm -e XDEBUG_MODE=coverage php php artisan schema:dump"
 
 [[Snippets]]
   Description = "Disable containers restart"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "docker ps -q | xargs -I {} docker update --restart=no {}"
 
 [[Snippets]]
   Description = "Generate UUID lowered"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "uuidgen | tr '[:upper:]' '[:lower:]'"
 
 [[Snippets]]
   Description = "Generate UUDI upper"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "uuidgen"
 
 [[Snippets]]
   Description = "Go test bench pprof"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "go test -bench=. -cpuprofile=cpu.prof -memprofile=mem.prof -trace trace.out"
 
 [[Snippets]]
   Description = "Go pprof server"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "go tool pprof -http=:8080 "
 
-
 [[Snippets]]
   Description = "Go diplay compiler optmization"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "go build -gcflags=-m "
-  
+
 [[Snippets]]
   Description = "Go diplay trace"
-  Filename = "/Users/henriquebrito/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "go tool trace trace.out"
+
+[[Snippets]]
+  Description = "k9s clean context"
+  Output = ""
+  Tag = []
+  command = "k9s --context coolCtx"

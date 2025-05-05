@@ -40,6 +40,33 @@ for _, language in ipairs(js_based_languages) do
 			cwd = vim.fn.getcwd(),
 			sourceMaps = true,
 		},
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Jest Current File",
+			runtimeExecutable = "pnpm",
+			runtimeArgs = {
+				"jest",
+				"--runTestsByPath",
+				"${relativeFile}",
+				"--config",
+				"jest.config.js",
+				"--no-cache",
+			},
+			console = "integratedTerminal",
+			internalConsoleOptions = "neverOpen",
+			disableOptimisticBPs = true,
+			cwd = "${workspaceFolder}",
+			env = {
+				NODE_ENV = "test",
+				NODE_OPTIONS = "--enable-source-maps",
+			},
+			sourceMaps = true,
+			skipFiles = {
+				"<node_internals>/**",
+				"**/node_modules/**",
+			},
+		},
 		-- Debug web applications (client side)
 		{
 			type = "pwa-chrome",
