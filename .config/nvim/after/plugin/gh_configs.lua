@@ -110,7 +110,14 @@ WHICH_KEY({
 		p = {
 			name = "push/pull",
 			s = { ":Git push<CR>", "push" },
-			l = { ":Git pull<CR>", "pull" },
+			l = {
+
+				function()
+					vim.cmd("Git fetch")
+					vim.cmd("Git pull")
+				end,
+				"pull",
+			},
 		},
 		x = { ":Git clean -f ", "clean" },
 		t = { ":Git stash<CR>", "Stash" },

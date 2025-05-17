@@ -23,11 +23,6 @@ require("copilot").setup({
 require("copilot_cmp").setup()
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-		end,
-	},
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "copilot", group_index = 2 },
@@ -75,9 +70,12 @@ cmp.setup({
 	--symbol_map = { Supermaven = "💡" },
 	--}),
 	--},
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+	end,
 })
 --
-cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 	sources = {
 		{ name = "dap" },
 	},

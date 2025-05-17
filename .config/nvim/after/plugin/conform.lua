@@ -4,10 +4,10 @@ conform.setup({
 	-- Map of filetype to formatters
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = prettier,
-		typescript = prettier,
-		typescriptreact = prettier,
-		javascriptreact = prettier,
+		javascript = { "eslint_d" },
+		typescript = { "eslint_d" },
+		typescriptreact = { "eslint_d" },
+		javascriptreact = { "eslint_d" },
 		go = { "gofumpt", "goimports-reviser" },
 		-- You can use a function here to determine the formatters dynamically
 		--python = { "pyright" },

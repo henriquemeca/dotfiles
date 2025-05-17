@@ -88,3 +88,9 @@
   Output = ""
   Tag = []
   command = "k9s --context coolCtx"
+
+[[Snippets]]
+  Description = "Doccker image tester"
+  Output = ""
+  Tag = []
+  command = "docker build -t test . && docker run -it test sh"

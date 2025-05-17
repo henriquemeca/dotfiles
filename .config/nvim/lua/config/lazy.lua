@@ -134,7 +134,8 @@ local plugins = {
 			"williamboman/mason.nvim",
 			"jay-babu/mason-nvim-dap.nvim",
 			"leoluz/nvim-dap-go",
-		},
+            "rcarriga/cmp-dap",
+		}
 	},
 	{
 		"nvim-neotest/neotest",

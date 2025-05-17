@@ -170,6 +170,7 @@ WHICH_KEY({
 			"macros",
 		},
 	},
+	F = { "<cmd>Telescope find_files preview={timeout=2000}<cr>", "find files" },
 }, { prefix = "<leader>" })
 WHICH_KEY({
 	["<C-p>"] = { builtin.git_files, "Search files" },

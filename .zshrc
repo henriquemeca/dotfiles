@@ -16,12 +16,16 @@ alias tn="tmux new -s"
 
 ## Programming
 alias dc="docker-compose"
+alias dcr="docker-compose down && docker-compose up -d"
+alias dcu="docker-compose up -d"
+alias dcd="docker-compose down"
 alias dj='python manage.py' # django
 alias pa="php artisan"
 alias gm="go mod"
 alias gr="go run"
 alias gt="go test"
 alias gb="go build"
+alias pn="pnpm"
 
 
 ## Git

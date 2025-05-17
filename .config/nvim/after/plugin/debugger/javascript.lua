@@ -31,15 +31,6 @@ for _, language in ipairs(js_based_languages) do
 			cwd = vim.fn.getcwd(),
 			sourceMaps = true,
 		},
-		-- Debug nodejs processes (make sure to add --inspect when you run the process)
-		{
-			type = "pwa-node",
-			request = "attach",
-			name = "Attach",
-			processId = require("dap.utils").pick_process,
-			cwd = vim.fn.getcwd(),
-			sourceMaps = true,
-		},
 		{
 			type = "pwa-node",
 			request = "launch",
@@ -62,10 +53,51 @@ for _, language in ipairs(js_based_languages) do
 				NODE_OPTIONS = "--enable-source-maps",
 			},
 			sourceMaps = true,
-			skipFiles = {
-				"<node_internals>/**",
-				"**/node_modules/**",
+			-- pnpm paths mapping
+			outFiles = { "!**/node_modules/.pnpm/**/*.js.map" },
+		},
+		{
+			name = "Attach to local Debugger",
+			type = "pwa-node",
+			request = "attach",
+			port = 9229,
+			restart = true, --restart on code change
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
 			},
+			cwd = "${workspaceFolder}",
+			skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+			sourceMaps = true,
+			protocol = "inspector",
+			traces = true,
+		},
+		{
+			name = "Attach to Docker Debugger",
+			type = "pwa-node",
+			request = "attach",
+			port = 9229,
+			restart = true, --restart on code change
+			cwd = "${workspaceFolder}",
+			localRoot = vim.fn.getcwd(),
+			remoteRoot = "/usr/src/app",
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
+			skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+			sourceMaps = true,
+			protocol = "inspector",
+			traces = true,
+		},
+		-- Debug nodejs processes (make sure to add --inspect when you run the process)
+		{
+			type = "pwa-node",
+			request = "attach",
+			name = "Attach to Proccess",
+			processId = require("dap.utils").pick_process,
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
 		},
 		-- Debug web applications (client side)
 		{
