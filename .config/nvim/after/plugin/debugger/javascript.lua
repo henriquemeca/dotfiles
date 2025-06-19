@@ -55,6 +55,32 @@ for _, language in ipairs(js_based_languages) do
 			sourceMaps = true,
 			-- pnpm paths mapping
 			outFiles = { "!**/node_modules/.pnpm/**/*.js.map" },
+			skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+		},
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Jest Current File E2E",
+			runtimeExecutable = "pnpm",
+			runtimeArgs = {
+				"jest",
+				"--runTestsByPath",
+				"${relativeFile}",
+				"--config",
+				"./test/jest-e2e.json",
+				"--no-cache",
+			},
+			console = "integratedTerminal",
+			internalConsoleOptions = "neverOpen",
+			disableOptimisticBPs = true,
+			cwd = "${workspaceFolder}",
+			env = {
+				NODE_ENV = "test",
+				NODE_OPTIONS = "--enable-source-maps",
+			},
+			sourceMaps = true,
+			-- pnpm paths mapping
+			outFiles = { "!**/node_modules/.pnpm/**/*.js.map" },
 		},
 		{
 			name = "Attach to local Debugger",

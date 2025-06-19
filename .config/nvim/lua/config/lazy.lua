@@ -107,6 +107,18 @@ local plugins = {
 		},
 	},
 	"tpope/vim-fugitive",
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+			--"ibhagwan/fzf-lua", -- optional
+			--"echasnovski/mini.pick", -- optional
+			--"folke/snacks.nvim", -- optional
+		},
+	},
 	"APZelos/blamer.nvim",
 	"lewis6991/gitsigns.nvim",
 	{ "sindrets/diffview.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
@@ -134,17 +146,7 @@ local plugins = {
 			"williamboman/mason.nvim",
 			"jay-babu/mason-nvim-dap.nvim",
 			"leoluz/nvim-dap-go",
-            "rcarriga/cmp-dap",
-		}
-	},
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"nvim-neotest/neotest-jest",
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter",
+			"rcarriga/cmp-dap",
 		},
 	},
 
@@ -223,6 +225,7 @@ local plugins = {
 			vim.cmd([[silent! GoInstallDeps]])
 		end,
 	},
+	--"fatih/vim-go",
 
 	-- Movements upgrade
 	"ggandor/leap.nvim",

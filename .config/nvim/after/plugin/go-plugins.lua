@@ -2,9 +2,37 @@ require("dap-go").setup({
 	dap_configurations = {
 		{
 			type = "go",
+			name = "Attach local",
+			mode = "remote",
+			request = "attach",
+			host = "localhost",
+			port = function()
+				local port = vim.fn.input("Port: ", "2345")
+				return tonumber(port)
+			end,
+		},
+		{
+			type = "go",
 			name = "Attach remote",
 			mode = "remote",
 			request = "attach",
+			host = "localhost",
+			apiVersion = 2,
+			port = function()
+				local port = vim.fn.input("Port: ", "2345")
+				return tonumber(port)
+			end,
+			showLog = true,
+			trace = "verbose",
+			logOutput = "rpc",
+			substitutePath = {
+				{
+					from = vim.fn.getcwd(),
+					to = "/app",
+				},
+			},
+			stopOnEntry = false,
+			showGlobalVariables = true,
 		},
 	},
 	-- delve configurations
@@ -79,7 +107,7 @@ WHICH_KEY({
 				"add tests only for exported functions in current file",
 			},
 		},
-		s = {
+		g = {
 			name = "add Tags",
 			j = {
 				function()
@@ -94,20 +122,11 @@ WHICH_KEY({
 				"Add yaml tags",
 			},
 		},
-		S = {
-			name = "remove Tags",
-			j = {
-				function()
-					vim.cmd("GoTagRm json")
-				end,
-				"remove json tags",
-			},
-			y = {
-				function()
-					vim.cmd("GoTagRm yaml")
-				end,
-				"remove yaml tags",
-			},
+		F = {
+			function()
+				vim.cmd("GoFillStruct")
+			end,
+			"Fill Struct",
 		},
 	},
 }, { prefix = "<leader>" })

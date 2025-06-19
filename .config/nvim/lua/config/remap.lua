@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 VKSN("<leader>q", "<cmd>q<cr>", "Quit")
 VKSN("<leader>Qq", "<cmd>qa<cr>", "Quit all")
 VKSN("<leader>Qf", "<cmd>qa!<cr>", "Quit all (Force)")
-VKSN("gt", "<c-t>", "Go back on tagstask")
 
 -- Navigation
 VKSN("<C-[>", "10k", "Half Page up")

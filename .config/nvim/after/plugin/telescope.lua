@@ -149,6 +149,7 @@ WHICH_KEY({
 			"find string under cursor in current working directory",
 		},
 		b = { "<cmd>Telescope buffers<cr>", "buffers" },
+		k = { "<cmd>Telescope keymaps<cr>", "keymaps" },
 		h = { "<cmd>Telescope help_tags<cr>", "help tags" },
 		t = { "<cmd>Telescope jumplist<cr>", "Open jumplist" },
 		T = { "<cmd> Telescope<cr>", "Open Telescope" },
