@@ -147,6 +147,7 @@ local plugins = {
 			"jay-babu/mason-nvim-dap.nvim",
 			"leoluz/nvim-dap-go",
 			"rcarriga/cmp-dap",
+			"nvim-neotest/nvim-nio",
 		},
 	},
 

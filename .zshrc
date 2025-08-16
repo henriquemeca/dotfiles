@@ -1,3 +1,6 @@
+# Start profiler
+#zmodload zsh/zprof
+
 #Aliases
 
 alias v="nvim"
@@ -147,15 +150,25 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # Setup zsh
 #source /opt/homebrew/opt/modules/init/zsh
 # Setup pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 ##Setup zoxide
 eval "$(zoxide init zsh)"
 
+# Old slow nvm setup
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+#[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Lazy load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+init_nvm() {
+    unset -f nvm
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    nvm "$@"
+}
 
 source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # Zsh autocomplete
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # Zsh autocomplete
@@ -186,3 +199,7 @@ if [ -f '/Users/henrique.brito/.gcloud/google-cloud-sdk/path.zsh.inc' ]; then . 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/henrique.brito/.gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/henrique.brito/.gcloud/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# End profiler
+#zprof

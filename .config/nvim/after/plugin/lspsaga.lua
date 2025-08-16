@@ -127,7 +127,7 @@ require("lspsaga").setup({
 		auto_preview = true,
 		detail = true,
 		auto_close = true,
-		close_after_jump = false,
+		close_after_jump = true,
 		layout = "normal",
 		max_height = 0.5,
 		left_width = 0.3,

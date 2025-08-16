@@ -2,6 +2,9 @@
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 vim.o.autoread = true
+--Absolute number
+--vim.o.number = true
+vim.o.relativenumber = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, { command = "checktime" })
 
 function VKSN(map, func, description)
