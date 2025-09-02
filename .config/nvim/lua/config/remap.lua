@@ -77,7 +77,7 @@ VKSN("<leader>w<Left>", "<C-w>h", "Move to left window")
 VKSN("<leader>w<Right>", "<C-w>l", "Move to right window")
 
 -- tab management
-VKSN("<leader><tab>o", "<cmd>tabnew %<cr>", "open new tab")
+VKSN("<leader><tab>o", "<cmd>tabnew %<cr><c-o>", "open new tab")
 VKSN("<leader><tab>O", "<cmd>tabnew %<cr><cmd>Telescope find_files<cr>", "open new tab")
 VKSN("<leader><tab>x", "<cmd>tabclose<cr>", "close current tab")
 VKSN("<leader><tab>n", "<cmd>tabn<cr>", "go to next tab")

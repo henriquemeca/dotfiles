@@ -130,7 +130,7 @@ WHICH_KEY({
 		m = {
 			function()
 				vim.cmd("Git fetch")
-				vim.cmd("Git merge origin/main -m 'merge with main' --no-ff")
+				vim.cmd("Git merge origin/main -m 'chore: merge with main' --no-ff")
 			end,
 			"Fetches and merges origin/ default branch",
 		},

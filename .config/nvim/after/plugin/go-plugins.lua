@@ -1,16 +1,6 @@
-require("dap-go").setup({
+local dap_go = require("dap-go")
+dap_go.setup({
 	dap_configurations = {
-		{
-			type = "go",
-			name = "Attach local",
-			mode = "remote",
-			request = "attach",
-			host = "localhost",
-			port = function()
-				local port = vim.fn.input("Port: ", "2345")
-				return tonumber(port)
-			end,
-		},
 		{
 			type = "go",
 			name = "Attach remote",
