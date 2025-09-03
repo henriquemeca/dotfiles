@@ -179,6 +179,7 @@ local function goto_definition_with_telescope()
 		-- If only one definition exists, jump directly
 		if #result == 1 then
 			vim.lsp.util.jump_to_location(result[1])
+			FEEDKEYS("zz")
 			return
 		end
 
@@ -198,13 +199,10 @@ VKSN("K", function()
 end, "Hover doc")
 VKSN("gd", function()
 	goto_definition_with_telescope()
-	FEEDKEYS("zz")
 end, "Go to definition")
 VKSN("gD", function()
 	vim.cmd("vsplit")
-	--vim.cmd("Telescope lsp_definitions")
 	goto_definition_with_telescope()
-	FEEDKEYS("zz")
 end, "Go to definition - Split view")
 
 WHICH_KEY({
