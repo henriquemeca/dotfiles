@@ -20,6 +20,10 @@ dap_go.setup({
 					from = vim.fn.getcwd(),
 					to = "/app",
 				},
+				{
+					from = vim.fn.system("go env GOROOT"):gsub("\n", "") .. "/src",
+					to = "/usr/local/go/src",
+				},
 			},
 			stopOnEntry = false,
 			showGlobalVariables = true,
