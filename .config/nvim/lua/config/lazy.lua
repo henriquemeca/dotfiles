@@ -235,8 +235,12 @@ local plugins = {
 	"tpope/vim-obsession",
 
 	-- Multi Cursor
-	--"mg979/vim-visual-multi",
+	"mg979/vim-visual-multi",
 	--"terryma/vim-multiple-cursors",
+	--{
+	--"jake-stewart/multicursor.nvim",
+	--branch = "1.0",
+	--},
 
 	-- Snippets
 	{
